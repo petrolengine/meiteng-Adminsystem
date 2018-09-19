@@ -31,7 +31,7 @@ class RequestHandler {
         }
         this.state = RequestHandler.EState.Progress;
         this.handler = handler;
-        this.xhttp.open("POST", "http://127.0.0.1:3001" + url, true);
+        this.xhttp.open("POST", process.env.REACT_APP_URL_PREFIX + url, true);
         const auth = window.localStorage.getItem("Authorization");
         if (auth) {
             this.xhttp.setRequestHeader("Authorization", auth);
