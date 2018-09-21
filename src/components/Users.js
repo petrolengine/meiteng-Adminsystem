@@ -20,7 +20,7 @@ class Users extends Component {
     }
 
     componentDidMount() {
-        RequestHandler.instance.send_message('/users', undefined, this);
+        RequestHandler.instance.send_message('/users/GetRoomInfo', undefined, this);
     }
 
     handleSelect(key) {
@@ -29,7 +29,7 @@ class Users extends Component {
                 this.setState({ currentTab: key });
             } else {
                 this.setState({ currentTab: key, waitResponse: true });
-                RequestHandler.instance.send_message('/users', undefined, this);
+                RequestHandler.instance.send_message('/users/GetRoomInfo', undefined, this);
             }
         }
     }
@@ -121,8 +121,9 @@ class Users extends Component {
     }
 
     on_error(code, data) {
-        if (typeof (data) === 'object')
+        if (typeof (data) === 'object') {
             this.setState({ error: true, code: code, errormsg: data.message, stack: data.stack });
+        }
     }
 }
 
