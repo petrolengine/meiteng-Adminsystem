@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
 import avatar2 from './svgs/avatar2.svg';
@@ -8,47 +9,44 @@ class Login extends Component {
         super(props, context);
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.state = {
-            error: "",
+            error: false,
+            message: "",
             state: 1
         };
     }
 
     handleSubmitEvent(event) {
+        this.setState({ error: false });
         event.preventDefault();
         fetch(event.target.action, {
             method: 'POST', body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         }).then((resp: Response) => {
-            if (resp.ok) {
-                return resp.text(); // or resp.json() or whatever the server sends
-            } else {
-                throw new Error("request error.");
+            if (!resp.ok) {
+                this.setState({ error: true });
+                return resp.json();
             }
-        }).then((body) => {
-            window.localStorage.setItem("Authorization", body);
-            window.location.assign('/meiteng/users');
-        }).catch((error) => {
-            this.setState({ error: "Request error." });
-            console.error('error', error);
+            return resp.text();
+        }).then((data) => {
+            if (this.state.error) {
+                this.setState({ message: data.message });
+                return;
+            }
+            window.localStorage.setItem("Authorization", data);
+            window.location.assign(process.env.REACT_APP_BASE_NAME + 'users');
+        }).catch((e) => {
+            this.setState({ error: true, message: "error: " + e });
         });
-    }
-
-    componentDidMount() {
-        document.forms['loginform'].addEventListener('submit', this.handleSubmitEvent);
-    }
-
-    componentWillUnmount() {
-        document.forms['loginform'].removeEventListener('submit');
     }
 
     render() {
         if (this.state.state === 1) {
             return (
                 <div className="modal">
-                    <form className="modal-content" action={process.env.REACT_APP_URL_PREFIX + "/login"} method="POST" id="loginform">
+                    <form className="modal-content" action={process.env.REACT_APP_URL_PREFIX + "/login"} method="POST" onSubmit={this.handleSubmitEvent}>
                         <div className="imgcontainer">
                             <img src={avatar2} alt="Avatar" className="avatar" />
                         </div>
-                        <p style={{ color: "red" }}>{this.state.error}</p>
+                        {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
                         <div className="container">
                             <label htmlFor="uname"><b>Username</b></label>
                             <input type="text" placeholder="Enter Username" name="uname" required></input>
@@ -69,12 +67,12 @@ class Login extends Component {
         } else {
             return (
                 <div className="modal">
-                    <form className="modal-content" action={process.env.REACT_APP_URL_PREFIX + "/regist"} method="POST" id="registform">
+                    <form className="modal-content" action={process.env.REACT_APP_URL_PREFIX + "/regist"} method="POST" onSubmit={this.handleSubmitEvent}>
                         <div className="container">
                             <h1>Sign Up</h1>
                             <p>Please fill in this form to create an account.</p>
                             <hr></hr>
-                            <p>{this.state.error}</p>
+                            {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
                             <label htmlFor="name"><b>Name</b></label>
                             <input type="text" placeholder="Enter Name" name="name" required />
                             <label htmlFor="psw"><b>Password</b></label>

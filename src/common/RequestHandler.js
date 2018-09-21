@@ -4,14 +4,14 @@ class RequestHandler {
 
     constructor() {
         this.xhttp = new XMLHttpRequest();
-        this.xhttp.onabort = (event: ProgressEvent) => RequestHandler.instance.__on_abort(event);
-        this.xhttp.onerror = (event: ProgressEvent) => RequestHandler.instance.__on_error(event);
-        this.xhttp.onload = (event: ProgressEvent) => RequestHandler.instance.__on_load(event);
-        this.xhttp.onloadend = (event: ProgressEvent) => RequestHandler.instance.__on_loadend(event);
-        this.xhttp.onloadstart = (event: ProgressEvent) => RequestHandler.instance.__on_loadstart(event);
-        this.xhttp.onprogress = (event: ProgressEvent) => RequestHandler.instance.__on_progress(event);
-        this.xhttp.onreadystatechange = (event: ProgressEvent) => RequestHandler.instance.__on_readystatechange(event);
-        this.xhttp.ontimeout = (event: ProgressEvent) => RequestHandler.instance.__on_timeout(event);
+        this.xhttp.onabort = this.__on_abort.bind(this);
+        this.xhttp.onerror = this.__on_error.bind(this);
+        this.xhttp.onload = this.__on_load.bind(this);
+        this.xhttp.onloadend = this.__on_loadend.bind(this);
+        this.xhttp.onloadstart = this.__on_loadstart.bind(this);
+        this.xhttp.onprogress = this.__on_progress.bind(this);
+        this.xhttp.onreadystatechange = this.__on_readystatechange.bind(this);
+        this.xhttp.ontimeout = this.__on_timeout.bind(this);
         this.state = RequestHandler.EState.None;
         this.xhttp.timeout = 3000;
         this.handler = null;

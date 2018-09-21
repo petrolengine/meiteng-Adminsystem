@@ -36,10 +36,10 @@ class Users extends Component {
 
     renderTab1Content() {
         const listItems = this.state.tab1Content.map((value: number[], index: number) =>
-            <Row className="rows">
+            <Row className="rows" key={value[0] * 10000}>
                 {
                     value.map((v: number, idx: number) =>
-                        <Col>
+                        <Col key={v}>
                             <Card body>
                                 <CardTitle>{v}</CardTitle>
                                 <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
@@ -79,7 +79,7 @@ class Users extends Component {
                         <NavItem>
                             <NavLink
                                 className={classnames({ active: this.state.currentTab === '1' })}
-                                onClick={() => { this.handleSelect('1'); }}
+                                onClick={() => this.handleSelect('1')}
                             >
                                 Tab1
                             </NavLink>
@@ -87,9 +87,9 @@ class Users extends Component {
                         <NavItem>
                             <NavLink
                                 className={classnames({ active: this.state.currentTab === '2' })}
-                                onClick={() => { this.handleSelect('2'); }}
+                                onClick={() => this.handleSelect('2')}
                             >
-                                Moar Tabs
+                                More Tabs
                             </NavLink>
                         </NavItem>
                     </Nav>
