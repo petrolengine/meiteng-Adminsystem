@@ -17,6 +17,9 @@ class RequestHandler {
         this.handler = null;
     }
 
+    /**
+     * @returns {RequestHandler}
+     */
     static get instance() {
         if (!RequestHandler.__instance) {
             RequestHandler.__instance = new RequestHandler();
@@ -24,7 +27,12 @@ class RequestHandler {
         return RequestHandler.__instance;
     }
 
-    send_message(url: string, data: string, handler: any) {
+    /**
+     * @param {string} url 
+     * @param {string} data 
+     * @param {any} handler 
+     */
+    send_message(url, data, handler) {
         if (this.state !== RequestHandler.EState.None) {
             console.error("send_message error.");
             return false;
@@ -39,21 +47,33 @@ class RequestHandler {
         this.xhttp.send(data);
     }
 
-    __on_abort(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_abort(event) {
         this.state = RequestHandler.EState.None;
         // console.log(event);
     }
 
-    __on_error(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_error(event) {
         this.state = RequestHandler.EState.None;
         // console.error(event.type);
     }
 
-    __on_load(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_load(event) {
         // console.log(event.type);
     }
 
-    __on_loadend(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_loadend(event) {
         this.state = RequestHandler.EState.None;
         if (this.handler && this.handler.on_loadend) {
             if (this.xhttp.status === 200) {
@@ -69,19 +89,31 @@ class RequestHandler {
         }
     }
 
-    __on_loadstart(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_loadstart(event) {
         // console.log(event.type);
     }
 
-    __on_progress(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_progress(event) {
         // console.log(event.type, event.total, event.loaded);
     }
 
-    __on_readystatechange(event: ProgressEvent) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_readystatechange(event) {
         // console.log(event.type, document.readyState);
     }
 
-    __on_timeout(event: ProgressEventc) {
+    /**
+     * @param {ProgressEvent} event 
+     */
+    __on_timeout(event) {
         this.state = RequestHandler.EState.None;
         // console.log(event.type);
     }

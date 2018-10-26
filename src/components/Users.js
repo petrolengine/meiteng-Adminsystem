@@ -17,6 +17,7 @@ class Users extends Component {
             tab2Content: [],
             waitResponse: false
         };
+        this.initNavTabs();
     }
 
     componentDidMount() {
@@ -63,6 +64,10 @@ class Users extends Component {
         );
     }
 
+    initNavTabs() {
+
+    }
+
     render() {
         if (this.state.error) {
             return (
@@ -80,27 +85,18 @@ class Users extends Component {
                             <NavLink
                                 className={classnames({ active: this.state.currentTab === '1' })}
                                 onClick={() => this.handleSelect('1')}
-                            >
-                                Tab1
-                            </NavLink>
+                            > Tab1 </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink
                                 className={classnames({ active: this.state.currentTab === '2' })}
                                 onClick={() => this.handleSelect('2')}
-                            >
-                                More Tabs
-                            </NavLink>
+                            > More Tabs </NavLink>
                         </NavItem>
                     </Nav>
                     <TabContent activeTab={this.state.currentTab}>
-                        <TabPane tabId='1'>
-                            <h1>test</h1>
-                            {this.renderTab1Content()}
-                        </TabPane>
-                        <TabPane tabId='2'>
-                            {this.renderTab2Content()}
-                        </TabPane>
+                        <TabPane tabId='1'>{this.renderTab1Content()}</TabPane>
+                        <TabPane tabId='2'>{this.renderTab2Content()}</TabPane>
                     </TabContent>
                 </div>
             );
@@ -117,6 +113,7 @@ class Users extends Component {
                 break;
             default:
                 alert("state error");
+                break;
         }
     }
 
