@@ -19,18 +19,18 @@ class Login extends Component {
         event.preventDefault();
         fetch(event.target.action, {
             method: 'POST', body: new URLSearchParams(new FormData(event.target))
-        }).then((resp: Response) => {
+        }).then((resp) => {
             if (!resp.ok) {
                 this.setState({ error: true });
-                return resp.json();
             }
-            return resp.text();
+            return resp.json();
         }).then((data) => {
             if (this.state.error) {
                 this.setState({ message: data.message });
                 return;
             }
-            window.localStorage.setItem("Authorization", data);
+            window.localStorage.setItem("Authorization", data.jwt);
+            window.localStorage.setItem("Flag", data.flag);
             window.location.assign(process.env.REACT_APP_BASE_NAME + 'users');
         }).catch((e) => {
             this.setState({ error: true, message: "error: " + e });

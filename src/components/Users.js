@@ -12,21 +12,23 @@ class Users extends Component {
         this.handleSelect = this.handleSelect.bind(this);
         this.state = {
             error: false,
-            currentTab: '1',
-            tab1Content: [],
-            tab2Content: [],
+            currentTab: 5,
+            content: [[], [], [], [], []],
+            offset: [0, 0, 0, 0, 0],
             waitResponse: false
         };
+        this.tabsTtile = ["房间", "小区", "房东", "顾客", "员工"];
+        this.urls = ["GetRoomInfo", "", "", "", "GetStaffList"];
         this.initNavTabs();
     }
 
     componentDidMount() {
-        RequestHandler.instance.send_message('/users/GetRoomInfo', undefined, this);
+        RequestHandler.instance.send_message('/users/GetStaffList', undefined, this);
     }
 
     handleSelect(key) {
         if (!this.state.waitResponse) {
-            if (this.state['tab' + key + "Content"].length > 0) {
+            if (this.state.content[key].length > 0) {
                 this.setState({ currentTab: key });
             } else {
                 this.setState({ currentTab: key, waitResponse: true });
@@ -36,10 +38,10 @@ class Users extends Component {
     }
 
     renderTab1Content() {
-        const listItems = this.state.tab1Content.map((value: number[], index: number) =>
+        const listItems = this.state.content[0].map((value, index) =>
             <Row className="rows" key={value[0] * 10000}>
                 {
-                    value.map((v: number, idx: number) =>
+                    value.map((v, idx) =>
                         <Col key={v}>
                             <Card body>
                                 <CardTitle>{v}</CardTitle>
@@ -64,8 +66,46 @@ class Users extends Component {
         );
     }
 
-    initNavTabs() {
+    renderTab3Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 1 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
 
+    renderTab4Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 1 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
+
+    renderTab5Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 1 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
+
+    initNavTabs() {
+        const navs = this.tabsTtile.map((value, index) => {
+            <NavItem>
+                <NavLink
+                    className={classnames({ active: this.state.currentTab === index })}
+                    onClick={() => this.handleSelect(index)}
+                > value </NavLink>
+            </NavItem>
+        });
+        return (<Nav tabs>{navs}</Nav>);
     }
 
     render() {
@@ -80,25 +120,15 @@ class Users extends Component {
         } else {
             return (
                 <div>
-                    <Nav tabs>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.currentTab === '1' })}
-                                onClick={() => this.handleSelect('1')}
-                            > Tab1 </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                className={classnames({ active: this.state.currentTab === '2' })}
-                                onClick={() => this.handleSelect('2')}
-                            > More Tabs </NavLink>
-                        </NavItem>
-                    </Nav>
-                    <TabContent activeTab={this.state.currentTab}>
+                    {this.initNavTabs}
+                    < TabContent activeTab={this.state.currentTab} >
                         <TabPane tabId='1'>{this.renderTab1Content()}</TabPane>
                         <TabPane tabId='2'>{this.renderTab2Content()}</TabPane>
-                    </TabContent>
-                </div>
+                        <TabPane tabId='3'>{this.renderTab3Content()}</TabPane>
+                        <TabPane tabId='4'>{this.renderTab4Content()}</TabPane>
+                        <TabPane tabId='5'>{this.renderTab5Content()}</TabPane>
+                    </TabContent >
+                </div >
             );
         }
     }
