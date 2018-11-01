@@ -33,14 +33,14 @@ class Login extends Component {
             window.localStorage.setItem("Flag", data.flag);
             window.location.assign(process.env.REACT_APP_BASE_NAME + 'users');
         }).catch((e) => {
-            this.setState({ error: true, message: "error: " + e });
+            this.setState({ error: true, message: `error: ${e}` });
         });
     }
 
     render() {
         return (
             <div className="modal">
-                <form className="modal-content" action={process.env.REACT_APP_URL_PREFIX + "/login"} method="POST" onSubmit={this.handleSubmitEvent}>
+                <form className="modal-content" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
                     <div className="imgcontainer">
                         <img src={avatar2} alt="Avatar" className="avatar" />
                     </div>

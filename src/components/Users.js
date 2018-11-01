@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Col, Row, Card, CardTitle, CardText, Button, Nav, NavItem, NavLink } from 'reactstrap';
+import { TabContent, TabPane, Col, Row, Card, CardTitle, CardText, CardFooter, Button, Nav, NavItem, NavLink } from 'reactstrap';
+import { CardBody, CardSubtitle } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import classnames from 'classnames';
 import './Users.css';
@@ -12,18 +13,22 @@ class Users extends Component {
         this.handleSelect = this.handleSelect.bind(this);
         this.state = {
             error: false,
-            currentTab: 5,
+            currentTab: 4,
             content: [[], [], [], [], []],
             offset: [0, 0, 0, 0, 0],
             waitResponse: false
         };
-        this.tabsTtile = ["房间", "小区", "房东", "顾客", "员工"];
-        this.urls = ["GetRoomInfo", "", "", "", "GetStaffList"];
-        this.initNavTabs();
+        this.urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
+        this.sex = {None: "未知", Man: "男", Woman: "女"};
+    }
+
+    __getMessageFromServer(key) {
+        this.setState({ currentTab: key, waitResponse: true });
+        RequestHandler.instance.send_message(`/users/${this.urls[this.state.currentTab]}`, undefined, this);
     }
 
     componentDidMount() {
-        RequestHandler.instance.send_message('/users/GetStaffList', undefined, this);
+        this.__getMessageFromServer(this.state.currentTab);
     }
 
     handleSelect(key) {
@@ -31,80 +36,109 @@ class Users extends Component {
             if (this.state.content[key].length > 0) {
                 this.setState({ currentTab: key });
             } else {
-                this.setState({ currentTab: key, waitResponse: true });
-                RequestHandler.instance.send_message('/users/GetRoomInfo', undefined, this);
+                this.__getMessageFromServer(key);
             }
         }
     }
 
-    renderTab1Content() {
-        const listItems = this.state.content[0].map((value, index) =>
-            <Row className="rows" key={value[0] * 10000}>
-                {
-                    value.map((v, idx) =>
-                        <Col key={v}>
-                            <Card body>
-                                <CardTitle>{v}</CardTitle>
-                                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                <Button>Go somewhere</Button>
-                            </Card>
-                        </Col>
-                    )
-                }
+    get renderTab1Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 1 Contents</h4>
+                </Col>
             </Row>
         );
+    }
+
+    get renderTab2Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 2 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
+
+    get renderTab3Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 3 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
+
+    get renderTab4Content() {
+        return (
+            <Row>
+                <Col sm='12'>
+                    <h4>Tab 4 Contents</h4>
+                </Col>
+            </Row>
+        );
+    }
+
+    __getReadableTime(src) {
+        const date = new Date(src);
+        return date.toLocaleDateString("zh");
+    }
+
+    get renderStaffContent() {
+        const listItems = [];
+        let tempItems = [];
+        for (let idx = 0; idx < this.state.content[4].length; idx++) {
+            const item = this.state.content[4][idx];
+            tempItems.push(
+                <Col key={`tab1_card_${idx}`}>
+                    <Card body className="StaffCard">
+                        <CardBody>
+                            <CardTitle>{item.name}</CardTitle>
+                            <CardText>
+                                电话: {item.phone}<br/>
+                                性别: {this.sex[item.sex]}
+                            </CardText>
+                            <Button>编辑</Button>
+                            <CardFooter>{this.__getReadableTime(item.create_time)}</CardFooter>
+                        </CardBody>
+                    </Card>
+                </Col>
+            );
+            if (idx % 5 === 4) {
+                listItems.push(
+                    <Row className="rows" key={`rab1_row_${listItems.length}`}>
+                        {tempItems}
+                    </Row>
+                );
+                tempItems = [];
+            }
+        }
+        if (tempItems.length > 0) {
+            listItems.push(
+                <Row className="rows" key={`rab1_row_${listItems.length}`}>
+                    {tempItems}
+                </Row>
+            );
+        }
         return listItems;
     }
 
-    renderTab2Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 1 Contents</h4>
-                </Col>
-            </Row>
-        );
-    }
-
-    renderTab3Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 1 Contents</h4>
-                </Col>
-            </Row>
-        );
-    }
-
-    renderTab4Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 1 Contents</h4>
-                </Col>
-            </Row>
-        );
-    }
-
-    renderTab5Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 1 Contents</h4>
-                </Col>
-            </Row>
-        );
-    }
-
-    initNavTabs() {
-        const navs = this.tabsTtile.map((value, index) => {
-            <NavItem>
-                <NavLink
-                    className={classnames({ active: this.state.currentTab === index })}
-                    onClick={() => this.handleSelect(index)}
-                > value </NavLink>
-            </NavItem>
-        });
+    get initNavTabs() {
+        const navs = [];
+        const tabsTtile = ["房间", "小区", "房东", "顾客", "员工"];
+        for (let idx = 0; idx < tabsTtile.length; idx++) {
+            const item = tabsTtile[idx];
+            navs.push(
+                <NavItem key={`NavItem_${idx}`}>
+                    <NavLink
+                        className={classnames({ active: this.state.currentTab === idx })}
+                        onClick={() => this.handleSelect(idx)}
+                    > {item} </NavLink>
+                </NavItem>
+            );
+        }
         return (<Nav tabs>{navs}</Nav>);
     }
 
@@ -121,12 +155,12 @@ class Users extends Component {
             return (
                 <div>
                     {this.initNavTabs}
-                    < TabContent activeTab={this.state.currentTab} >
-                        <TabPane tabId='1'>{this.renderTab1Content()}</TabPane>
-                        <TabPane tabId='2'>{this.renderTab2Content()}</TabPane>
-                        <TabPane tabId='3'>{this.renderTab3Content()}</TabPane>
-                        <TabPane tabId='4'>{this.renderTab4Content()}</TabPane>
-                        <TabPane tabId='5'>{this.renderTab5Content()}</TabPane>
+                    < TabContent activeTab={`${this.state.currentTab}`} >
+                        <TabPane tabId='0'>{this.renderTab1Content}</TabPane>
+                        <TabPane tabId='1'>{this.renderTab2Content}</TabPane>
+                        <TabPane tabId='2'>{this.renderTab3Content}</TabPane>
+                        <TabPane tabId='3'>{this.renderTab4Content}</TabPane>
+                        <TabPane tabId='4'>{this.renderStaffContent}</TabPane>
                     </TabContent >
                 </div >
             );
@@ -134,17 +168,9 @@ class Users extends Component {
     }
 
     on_loadend(data) {
-        switch (this.state.currentTab) {
-            case '1':
-                this.setState({ tab1Content: data, waitResponse: false });
-                break;
-            case '2':
-                this.setState({ tab2Content: data, waitResponse: false });
-                break;
-            default:
-                alert("state error");
-                break;
-        }
+        const temp = this.state.content;
+        temp[this.state.currentTab] = data;
+        this.setState({content: temp, waitResponse: false});
     }
 
     on_error(code, data) {
