@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { TabContent, TabPane, Col, Row, Card, CardTitle, CardText, CardFooter, Button, Nav, NavItem, NavLink } from 'reactstrap';
-import { CardBody, CardSubtitle } from 'reactstrap';
+import { CardBody, CardGroup } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import classnames from 'classnames';
 import './Users.css';
 import RequestHandler from '../common/RequestHandler';
+import { getReadableTime } from '../common/Function';
 
 class Users extends Component {
 
@@ -16,27 +17,29 @@ class Users extends Component {
             currentTab: 4,
             content: [[], [], [], [], []],
             offset: [0, 0, 0, 0, 0],
-            waitResponse: false
         };
-        this.urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
-        this.sex = {None: "未知", Man: "男", Woman: "女"};
+        this.currentTab = 4;
+        this.waitResponse = false
+        this.sex = { None: "未知", Man: "男", Woman: "女" };
     }
 
-    __getMessageFromServer(key) {
-        this.setState({ currentTab: key, waitResponse: true });
-        RequestHandler.instance.send_message(`/users/${this.urls[this.state.currentTab]}`, undefined, this);
+    __getMessageFromServer() {
+        const urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
+        this.waitResponse = true;
+        RequestHandler.instance.send_message(`/users/${urls[this.currentTab]}`, undefined, this);
     }
 
     componentDidMount() {
-        this.__getMessageFromServer(this.state.currentTab);
+        this.handleSelect(4);
     }
 
     handleSelect(key) {
-        if (!this.state.waitResponse) {
+        if (!this.waitResponse) {
+            this.currentTab = key;
             if (this.state.content[key].length > 0) {
                 this.setState({ currentTab: key });
             } else {
-                this.__getMessageFromServer(key);
+                this.__getMessageFromServer();
             }
         }
     }
@@ -61,29 +64,62 @@ class Users extends Component {
         );
     }
 
-    get renderTab3Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 3 Contents</h4>
-                </Col>
-            </Row>
-        );
+    get renderLandlordContent() {
+        const listItems = [];
+        let tempItems = [];
+        for (let idx = 0; idx < this.state.content[2].length; idx++) {
+            const item = this.state.content[2][idx];
+            tempItems.push(
+                <Card body className="Card" key={`LandlordCard_${listItems.length}_${tempItems.length}`}>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        <CardText>
+                            电话: {item.phone}<br />
+                            性别: {this.sex[item.sex]}
+                        </CardText>
+                        <Button>编辑</Button>
+                        <CardFooter>{getReadableTime(item.create_time)}</CardFooter>
+                    </CardBody>
+                </Card>
+            );
+            if (idx % 6 === 5) {
+                listItems.push(<CardGroup key={`LandlordCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                tempItems = [];
+            }
+        }
+        if (tempItems.length > 0) {
+            listItems.push(<CardGroup key={`LandlordCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+        }
+        return (<CardGroup>{listItems}</CardGroup>);
     }
 
-    get renderTab4Content() {
-        return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 4 Contents</h4>
-                </Col>
-            </Row>
-        );
-    }
-
-    __getReadableTime(src) {
-        const date = new Date(src);
-        return date.toLocaleDateString("zh");
+    get renderTenantContent() {
+        const listItems = [];
+        let tempItems = [];
+        for (let idx = 0; idx < this.state.content[3].length; idx++) {
+            const item = this.state.content[3][idx];
+            tempItems.push(
+                <Card body className="Card" key={`TenantCard_${listItems.length}_${tempItems.length}`}>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        <CardText>
+                            电话: {item.phone}<br />
+                            性别: {this.sex[item.sex]}
+                        </CardText>
+                        <Button>编辑</Button>
+                        <CardFooter>{getReadableTime(item.create_time)}</CardFooter>
+                    </CardBody>
+                </Card>
+            );
+            if (idx % 6 === 5) {
+                listItems.push(<CardGroup key={`TenantCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                tempItems = [];
+            }
+        }
+        if (tempItems.length > 0) {
+            listItems.push(<CardGroup key={`TenantCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+        }
+        return (<CardGroup>{listItems}</CardGroup>);
     }
 
     get renderStaffContent() {
@@ -92,54 +128,58 @@ class Users extends Component {
         for (let idx = 0; idx < this.state.content[4].length; idx++) {
             const item = this.state.content[4][idx];
             tempItems.push(
-                <Col key={`tab1_card_${idx}`}>
-                    <Card body className="StaffCard">
-                        <CardBody>
-                            <CardTitle>{item.name}</CardTitle>
-                            <CardText>
-                                电话: {item.phone}<br/>
-                                性别: {this.sex[item.sex]}
-                            </CardText>
-                            <Button>编辑</Button>
-                            <CardFooter>{this.__getReadableTime(item.create_time)}</CardFooter>
-                        </CardBody>
-                    </Card>
-                </Col>
+                <Card body className="Card" key={`StaffCard_${listItems.length}_${tempItems.length}`}>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        <CardText>
+                            电话: {item.phone}<br />
+                            性别: {this.sex[item.sex]}
+                        </CardText>
+                        <Button>编辑</Button>
+                        <CardFooter>{getReadableTime(item.create_time)}</CardFooter>
+                    </CardBody>
+                </Card>
             );
-            if (idx % 5 === 4) {
-                listItems.push(
-                    <Row className="rows" key={`rab1_row_${listItems.length}`}>
-                        {tempItems}
-                    </Row>
-                );
+            if (idx % 6 === 5) {
+                listItems.push(<CardGroup key={`StaffCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
                 tempItems = [];
             }
         }
         if (tempItems.length > 0) {
-            listItems.push(
-                <Row className="rows" key={`rab1_row_${listItems.length}`}>
-                    {tempItems}
-                </Row>
-            );
+            listItems.push(<CardGroup key={`StaffCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
         }
-        return listItems;
+        return (<CardGroup>{listItems}</CardGroup>);
     }
 
     get initNavTabs() {
         const navs = [];
         const tabsTtile = ["房间", "小区", "房东", "顾客", "员工"];
         for (let idx = 0; idx < tabsTtile.length; idx++) {
-            const item = tabsTtile[idx];
             navs.push(
                 <NavItem key={`NavItem_${idx}`}>
                     <NavLink
                         className={classnames({ active: this.state.currentTab === idx })}
                         onClick={() => this.handleSelect(idx)}
-                    > {item} </NavLink>
+                    > {tabsTtile[idx]} </NavLink>
                 </NavItem>
             );
         }
         return (<Nav tabs>{navs}</Nav>);
+    }
+
+    get initTabContent() {
+        const panes = [];
+        const content = [
+            this.renderTab1Content,
+            this.renderTab2Content,
+            this.renderLandlordContent,
+            this.renderTenantContent,
+            this.renderStaffContent
+        ];
+        for (let idx = 0; idx < content.length; idx++) {
+            panes.push(<TabPane tabId={`${idx}`} key={`TabPane_${idx}`}>{content[idx]}</TabPane>);
+        }
+        return (<TabContent activeTab={`${this.state.currentTab}`}>{panes}</TabContent>);
     }
 
     render() {
@@ -155,13 +195,7 @@ class Users extends Component {
             return (
                 <div>
                     {this.initNavTabs}
-                    < TabContent activeTab={`${this.state.currentTab}`} >
-                        <TabPane tabId='0'>{this.renderTab1Content}</TabPane>
-                        <TabPane tabId='1'>{this.renderTab2Content}</TabPane>
-                        <TabPane tabId='2'>{this.renderTab3Content}</TabPane>
-                        <TabPane tabId='3'>{this.renderTab4Content}</TabPane>
-                        <TabPane tabId='4'>{this.renderStaffContent}</TabPane>
-                    </TabContent >
+                    {this.initTabContent}
                 </div >
             );
         }
@@ -169,8 +203,9 @@ class Users extends Component {
 
     on_loadend(data) {
         const temp = this.state.content;
-        temp[this.state.currentTab] = data;
-        this.setState({content: temp, waitResponse: false});
+        temp[this.currentTab] = data;
+        this.setState({ content: temp, currentTab: this.currentTab });
+        this.waitResponse = false;
     }
 
     on_error(code, data) {
