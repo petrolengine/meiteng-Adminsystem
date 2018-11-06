@@ -2,6 +2,11 @@
     padding-top: 15px;
 }
 
-.Card {
-    width: 262px;
+.card {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.ToolsBar {
+    width: 100px;
 }

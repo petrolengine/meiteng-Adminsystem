@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Col, Row, Card, CardTitle, CardText, CardFooter, Button, Nav, NavItem, NavLink } from 'reactstrap';
-import { CardBody, CardGroup } from 'reactstrap';
+import { TabContent, TabPane, Button, Nav, NavItem, NavLink, Label } from 'reactstrap';
+import { Card, CardTitle, CardText, CardFooter, CardBody, CardGroup, CardSubtitle } from 'reactstrap';
+import { Pagination, PaginationLink, PaginationItem } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import classnames from 'classnames';
 import './Users.css';
@@ -44,23 +45,101 @@ class Users extends Component {
         }
     }
 
-    get renderTab1Content() {
+    renderPagination(current, total) {
+        const items = [];
+
+        items.push((current === 1)
+            ? <PaginationItem key="Pagination_0" disable><PaginationLink previous href="#" /></PaginationItem>
+            : <PaginationItem key="Pagination_0"><PaginationLink previous href="#" /></PaginationItem>
+        );
+
+        for (let idx = 1; idx <= total; idx++) {
+            items.push((current === idx)
+                ? <PaginationItem key={`Pagination_${idx}`} active><PaginationLink href="#">{idx}</PaginationLink></PaginationItem>
+                : <PaginationItem key={`Pagination_${idx}`}><PaginationLink href="#">{idx}</PaginationLink></PaginationItem>
+            );
+        }
+
+        items.push((current === total)
+            ? <PaginationItem key={`Pagination_${total + 1}`} disable><PaginationLink next href="#" /></PaginationItem>
+            : <PaginationItem key={`Pagination_${total + 1}`}><PaginationLink next href="#" /></PaginationItem>
+        );
+        return (<Pagination>{items}</Pagination>);
+    }
+
+    get renderRoomContent() {
+        const listItems = [];
+        let tempItems = [];
+        for (let idx = 0; idx < this.state.content[0].length; idx++) {
+            const item = this.state.content[0][idx];
+            tempItems.push(
+                <Card body key={`Card_${listItems.length}_${tempItems.length}`}>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        <CardText>
+                            小区: {item.area_address}<br />
+                            位置: {item.building}幢{item.house_number}单元<br />
+                            房东: {item.landlord_name}<br />
+                            电话: {item.landlord_phone}<br />
+                            对接人: {item.staff_name}<br />
+                            状态: {item.room_state}<br />
+                            整租: {item.whole_rent}<br />
+                            装修: {item.level}<br />
+                            面积: {item.size}<br />
+                            信息: {item.rooms}室{item.sittings}厅{item.kitchen}厨{item.toilet}卫
+                        </CardText>
+                        <Button>编辑</Button>
+                        <CardFooter>{getReadableTime(item.create_time)}</CardFooter>
+                    </CardBody>
+                </Card>
+            );
+            if (idx % 6 === 5) {
+                listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                tempItems = [];
+            } else {
+                tempItems.push(<a> </a>);
+            }
+        }
+        if (tempItems.length > 0) {
+            listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+        }
         return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 1 Contents</h4>
-                </Col>
-            </Row>
+            <TabPane tabId="0" key="TabPane_0">
+                {this.renderPagination(2, 9)}
+                <CardGroup>{listItems}</CardGroup>
+            </TabPane>
         );
     }
 
-    get renderTab2Content() {
+    get renderAreaContent() {
+        const listItems = [];
+        let tempItems = [];
+        for (let idx = 0; idx < this.state.content[1].length; idx++) {
+            const item = this.state.content[1][idx];
+            tempItems.push(
+                <Card key={`Card_${listItems.length}_${tempItems.length}`}>
+                    <CardBody>
+                        <CardTitle>{item.name}</CardTitle>
+                        <CardSubtitle>地址: {item.address}</CardSubtitle>
+                        <Button>编辑</Button>
+                    </CardBody>
+                </Card>
+            );
+            if (idx % 6 === 5) {
+                listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                tempItems = [];
+            } else {
+                tempItems.push(<a> </a>);
+            }
+        }
+        if (tempItems.length > 0) {
+            listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+        }
         return (
-            <Row>
-                <Col sm='12'>
-                    <h4>Tab 2 Contents</h4>
-                </Col>
-            </Row>
+            <TabPane tabId="1" key="TabPane_1">
+                {this.renderPagination(2, 9)}
+                <CardGroup>{listItems}</CardGroup>
+            </TabPane>
         );
     }
 
@@ -70,7 +149,7 @@ class Users extends Component {
         for (let idx = 0; idx < this.state.content[2].length; idx++) {
             const item = this.state.content[2][idx];
             tempItems.push(
-                <Card body className="Card" key={`LandlordCard_${listItems.length}_${tempItems.length}`}>
+                <Card body key={`Card_${listItems.length}_${tempItems.length}`}>
                     <CardBody>
                         <CardTitle>{item.name}</CardTitle>
                         <CardText>
@@ -83,14 +162,21 @@ class Users extends Component {
                 </Card>
             );
             if (idx % 6 === 5) {
-                listItems.push(<CardGroup key={`LandlordCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
                 tempItems = [];
+            } else {
+                tempItems.push(<a> </a>);
             }
         }
         if (tempItems.length > 0) {
-            listItems.push(<CardGroup key={`LandlordCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+            listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
         }
-        return (<CardGroup>{listItems}</CardGroup>);
+        return (
+            <TabPane tabId="2" key="TabPane_2">
+                {this.renderPagination(2, 9)}
+                <CardGroup>{listItems}</CardGroup>
+            </TabPane>
+        );
     }
 
     get renderTenantContent() {
@@ -99,7 +185,7 @@ class Users extends Component {
         for (let idx = 0; idx < this.state.content[3].length; idx++) {
             const item = this.state.content[3][idx];
             tempItems.push(
-                <Card body className="Card" key={`TenantCard_${listItems.length}_${tempItems.length}`}>
+                <Card body className="Card" key={`Card_${listItems.length}_${tempItems.length}`}>
                     <CardBody>
                         <CardTitle>{item.name}</CardTitle>
                         <CardText>
@@ -112,14 +198,21 @@ class Users extends Component {
                 </Card>
             );
             if (idx % 6 === 5) {
-                listItems.push(<CardGroup key={`TenantCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
                 tempItems = [];
+            } else {
+                tempItems.push(<a> </a>);
             }
         }
         if (tempItems.length > 0) {
-            listItems.push(<CardGroup key={`TenantCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+            listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
         }
-        return (<CardGroup>{listItems}</CardGroup>);
+        return (
+            <TabPane tabId="3" key="TabPane_3">
+                <CardGroup>{listItems}</CardGroup>
+                {this.renderPagination(2, 9)}
+            </TabPane>
+        );
     }
 
     get renderStaffContent() {
@@ -128,7 +221,7 @@ class Users extends Component {
         for (let idx = 0; idx < this.state.content[4].length; idx++) {
             const item = this.state.content[4][idx];
             tempItems.push(
-                <Card body className="Card" key={`StaffCard_${listItems.length}_${tempItems.length}`}>
+                <Card body className="Card" key={`Card_${listItems.length}_${tempItems.length}`}>
                     <CardBody>
                         <CardTitle>{item.name}</CardTitle>
                         <CardText>
@@ -141,14 +234,24 @@ class Users extends Component {
                 </Card>
             );
             if (idx % 6 === 5) {
-                listItems.push(<CardGroup key={`StaffCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+                listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
                 tempItems = [];
+            } else {
+                tempItems.push(<a> </a>);
             }
         }
         if (tempItems.length > 0) {
-            listItems.push(<CardGroup key={`StaffCardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
+            listItems.push(<CardGroup key={`CardGroup_${listItems.length}`}>{tempItems}</CardGroup>);
         }
-        return (<CardGroup>{listItems}</CardGroup>);
+        return (
+            <TabPane tabId="4" key="TabPane_4">
+                <Button className="ToolsBar">添加</Button>
+                <Form inline>
+                </Form>
+                <CardGroup>{listItems}</CardGroup><p />
+                {this.renderPagination(2, 9)}
+            </TabPane>
+        );
     }
 
     get initNavTabs() {
@@ -170,14 +273,14 @@ class Users extends Component {
     get initTabContent() {
         const panes = [];
         const content = [
-            this.renderTab1Content,
-            this.renderTab2Content,
+            this.renderRoomContent,
+            this.renderAreaContent,
             this.renderLandlordContent,
             this.renderTenantContent,
             this.renderStaffContent
         ];
         for (let idx = 0; idx < content.length; idx++) {
-            panes.push(<TabPane tabId={`${idx}`} key={`TabPane_${idx}`}>{content[idx]}</TabPane>);
+            panes.push(content[idx]);
         }
         return (<TabContent activeTab={`${this.state.currentTab}`}>{panes}</TabContent>);
     }
