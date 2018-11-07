@@ -15,6 +15,7 @@ class RequestHandler {
         this.state = RequestHandler.EState.None;
         this.xhttp.timeout = 3000;
         this.handler = null;
+        this.jwt = null;
     }
 
     /**
@@ -40,11 +41,19 @@ class RequestHandler {
         this.state = RequestHandler.EState.Progress;
         this.handler = handler;
         this.xhttp.open("POST", process.env.REACT_APP_URL_PREFIX + url, true);
-        const auth = window.localStorage.getItem("Authorization");
-        if (auth) {
-            this.xhttp.setRequestHeader("Authorization", auth);
+        this.xhttp.setRequestHeader("Content-Type", "application/json");
+        if (this.jwt) {
+            this.xhttp.setRequestHeader("Authorization", this.jwt);
         }
+        console.log(data);
         this.xhttp.send(data);
+    }
+
+    /**
+     * @param {string} data
+     */
+    setJWT(data) {
+        this.jwt = data;
     }
 
     /**

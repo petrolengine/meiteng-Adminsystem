@@ -29,8 +29,7 @@ class Login extends Component {
                 this.setState({ message: data.message });
                 return;
             }
-            window.localStorage.setItem("Authorization", data.jwt);
-            window.localStorage.setItem("Flag", data.flag);
+            window.localStorage.setItem("tempLoginData", JSON.stringify(data));
             window.location.assign(process.env.REACT_APP_BASE_NAME + 'users');
         }).catch((e) => {
             this.setState({ error: true, message: `error: ${e}` });
