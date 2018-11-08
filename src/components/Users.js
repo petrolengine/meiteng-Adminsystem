@@ -56,7 +56,7 @@ class Users extends Component {
         return panes;
     }
 
-    __renderPagination() {
+    get __renderPagination() {
         if (this.state.currentTab < 5) {
             const items = [];
 
@@ -90,7 +90,7 @@ class Users extends Component {
     __getMessageFromServer() {
         const urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
         this.waitResponse = true;
-        this.__send_message(`/users/${urls[this.currentTab]}`, `{"offset":${this.currentPage * 6}}`);
+        this.__send_message(`/users/${urls[this.currentTab]}`, { offset: this.currentPage * 6 });
     }
 
     componentDidMount() {
@@ -465,7 +465,7 @@ class Users extends Component {
                     {this.initNavTabs}
                     <TabContent activeTab={`${this.state.currentTab}`}>
                         {this.tabContent}
-                        {this.__renderPagination()}
+                        {this.__renderPagination}
                     </TabContent >
                 </div >
             );

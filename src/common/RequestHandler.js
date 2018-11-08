@@ -31,7 +31,7 @@ class RequestHandler {
     /**
      * Send message, auto add prefix
      * @param {string} url short url
-     * @param {string} data post data
+     * @param {string | object} data post data
      * @param {any} handler callback target
      * @returns {undefined}
      */
@@ -43,17 +43,21 @@ class RequestHandler {
         this.state = RequestHandler.EState.Progress;
         this.handler = handler;
         this.xhttp.open("POST", process.env.REACT_APP_URL_PREFIX + url, true);
-        this.xhttp.setRequestHeader("Content-Type", "application/json");
         if (this.jwt) {
             this.xhttp.setRequestHeader("Authorization", this.jwt);
         }
-        this.xhttp.send(data);
+        if (typeof (data) === 'object') {
+            this.xhttp.setRequestHeader("Content-Type", "application/json");
+            this.xhttp.send(JSON.stringify(data));
+        } else if (typeof (data) === "string") {
+            this.xhttp.send(data);
+        }
     }
 
     /**
      * Send message, use url direct
      * @param {string} url short url
-     * @param {string} data post data
+     * @param {string | object} data post data
      * @param {any} handler callback target
      * @returns {undefined}
      */
@@ -69,7 +73,12 @@ class RequestHandler {
             this.xhttp.setRequestHeader("Authorization", this.jwt);
         }
         console.log(data);
-        this.xhttp.send(data);
+        if (typeof (data) === 'object') {
+            this.xhttp.setRequestHeader("Content-Type", "application/json");
+            this.xhttp.send(JSON.stringify(data));
+        } else if (typeof (data) === "string") {
+            this.xhttp.send(data);
+        }
     }
 
     /**
