@@ -5,7 +5,7 @@ import { Pagination, PaginationLink, PaginationItem, Row } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import classnames from 'classnames';
 import RequestHandler from '../common/RequestHandler';
-import { getReadableTime } from '../common/Function';
+import { getReadableTime, formData2Json } from '../common/Function';
 
 class Users extends Component {
     constructor(props, context) {
@@ -120,44 +120,30 @@ class Users extends Component {
     }
 
     get addRoomContent() {
-        return (
-            <TabPane tabId="5" key="TabPane_5" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email5</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password5</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleText">Text Area</Label>
-                        <Input type="textarea" name="text" id="exampleText" />
-                    </FormGroup>
-                    <Button>Submit</Button>
-                </Form>
-            </TabPane>
-        );
+        this.renderRoomContent;
     }
 
     get addAreaContent() {
         return (
-            <TabPane tabId="6" key="TabPane_6" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email6</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+            <TabPane tabId="6" key="TabPane_6" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="add_area_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/AddArea`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name6">小区名称</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name6" required />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password6</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="address6">地址</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="address6" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleText">Text Area</Label>
-                        <Input type="textarea" name="text" id="exampleText" />
-                    </FormGroup>
-                    <Button>Submit</Button>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("add_area_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
                 </Form>
             </TabPane>
         );
@@ -165,21 +151,37 @@ class Users extends Component {
 
     get addLandlordContent() {
         return (
-            <TabPane tabId="7" key="TabPane_7" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email7</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+            <TabPane tabId="7" key="TabPane_7" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="add_landlord_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/AddLandlord`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name7">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name7" required />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password7</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="sex7">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex7">
+                            <option value="None" defaultValue>未知</option>
+                            <option value="Man">男</option>
+                            <option value="Woman">女</option>
+                        </select>
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleText">Text Area</Label>
-                        <Input type="textarea" name="text" id="exampleText" />
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="phone7">手机</Label>
+                        <Input style={{ width: 500 }} type="number" required />
                     </FormGroup>
-                    <Button>Submit</Button>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="id_card7">身份证</Label>
+                        <Input style={{ width: 500 }} type="number" name="id_card" id="id_card7" required />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("add_landlord_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
                 </Form>
             </TabPane>
         );
@@ -187,21 +189,37 @@ class Users extends Component {
 
     get addTenantContent() {
         return (
-            <TabPane tabId="8" key="TabPane_8" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email8</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+            <TabPane tabId="8" key="TabPane_8" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="add_tenant_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/AddTenant`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name8">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name8" required />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password8</Label>
-                        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="sex8">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex8">
+                            <option value="None" defaultValue>未知</option>
+                            <option value="Man">男</option>
+                            <option value="Woman">女</option>
+                        </select>
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="exampleText">Text Area</Label>
-                        <Input type="textarea" name="text" id="exampleText" />
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="phone8">手机</Label>
+                        <Input style={{ width: 500 }} type="text" name="phone" id="phone8" required />
                     </FormGroup>
-                    <Button>Submit</Button>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="id_card8">身份证</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card8" required />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("add_tenant_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
                 </Form>
             </TabPane>
         );
@@ -209,36 +227,41 @@ class Users extends Component {
 
     get addStaffContent() {
         return (
-            <TabPane tabId="9" key="TabPane_9" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form id="add_staff_id" action={`${process.env.REACT_APP_URL_PREFIX}/users/AddStaff`} method="POST" onSubmit={this.handleSubmitEvent}>
+            <TabPane tabId="9" key="TabPane_9" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="add_staff_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/AddStaff`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
                     <FormGroup className="form-inline">
-                        <Label for="name">姓名</Label>
-                        <Input type="text" name="name" id="name" required />
+                        <Label style={{ width: 70 }} for="name9">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name9" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
-                        <Label for="sex">性别</Label>
-                        <select className="custom-select" id="sex">
-                            <option defaultValue="None">未知</option>
+                        <Label style={{ width: 70 }} for="sex9">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex9">
+                            <option value="None" defaultValue>未知</option>
                             <option value="Man">男</option>
                             <option value="Woman">女</option>
                         </select>
                     </FormGroup>
                     <FormGroup className="form-inline">
-                        <Label for="pwd">密码</Label>
-                        <Input type="password" name="password" id="pwd" required />
+                        <Label style={{ width: 70 }} for="pwd9">密码</Label>
+                        <Input style={{ width: 500 }} type="password" name="password" id="pwd9" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
-                        <Label for="phone">手机</Label>
-                        <Input type="text" name="phone" id="phone" required />
+                        <Label style={{ width: 70 }} for="phone9">手机</Label>
+                        <Input style={{ width: 500 }} type="text" name="phone" id="phone9" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
-                        <Label for="id_card">身份证</Label>
-                        <Input type="text" name="id_card" id="id_card" required />
+                        <Label style={{ width: 70 }} for="id_card9">身份证</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card9" required />
                     </FormGroup>
-                    <Button className="ml-2" style={{ width: 239 }} onClick={
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
                         () => document.getElementById("add_staff_id").reset()
                     }>清空</Button>
-                    <Button className="ml-2" style={{ width: 239 }} type="submit">提交</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
                 </Form>
             </TabPane>
         );
@@ -511,7 +534,8 @@ class Users extends Component {
 
     handleSubmitEvent(event) {
         event.preventDefault();
-        RequestHandler.instance.send_message2(event.target.action, new URLSearchParams(new FormData(event.target)), this);
+        const formData = formData2Json(new FormData(event.target));
+        RequestHandler.instance.send_message2(event.target.action, formData, this);
     }
 }
 

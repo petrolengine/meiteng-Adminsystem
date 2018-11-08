@@ -72,7 +72,6 @@ class RequestHandler {
         if (this.jwt) {
             this.xhttp.setRequestHeader("Authorization", this.jwt);
         }
-        console.log(data);
         if (typeof (data) === 'object') {
             this.xhttp.setRequestHeader("Content-Type", "application/json");
             this.xhttp.send(JSON.stringify(data));
