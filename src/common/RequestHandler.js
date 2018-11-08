@@ -29,9 +29,11 @@ class RequestHandler {
     }
 
     /**
-     * @param {string} url 
-     * @param {string} data 
-     * @param {any} handler 
+     * Send message, auto add prefix
+     * @param {string} url short url
+     * @param {string} data post data
+     * @param {any} handler callback target
+     * @returns {undefined}
      */
     send_message(url, data, handler) {
         if (this.state !== RequestHandler.EState.None) {
@@ -45,12 +47,34 @@ class RequestHandler {
         if (this.jwt) {
             this.xhttp.setRequestHeader("Authorization", this.jwt);
         }
+        this.xhttp.send(data);
+    }
+
+    /**
+     * Send message, use url direct
+     * @param {string} url short url
+     * @param {string} data post data
+     * @param {any} handler callback target
+     * @returns {undefined}
+     */
+    send_message2(url, data, handler) {
+        if (this.state !== RequestHandler.EState.None) {
+            console.error("send_message error.");
+            return false;
+        }
+        this.state = RequestHandler.EState.Progress;
+        this.handler = handler;
+        this.xhttp.open("POST", url, true);
+        if (this.jwt) {
+            this.xhttp.setRequestHeader("Authorization", this.jwt);
+        }
         console.log(data);
         this.xhttp.send(data);
     }
 
     /**
      * @param {string} data
+     * @returns {undefined}
      */
     setJWT(data) {
         this.jwt = data;
@@ -58,6 +82,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_abort(event) {
         this.state = RequestHandler.EState.None;
@@ -66,6 +92,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_error(event) {
         this.state = RequestHandler.EState.None;
@@ -74,6 +102,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_load(event) {
         // console.log(event.type);
@@ -81,6 +111,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_loadend(event) {
         this.state = RequestHandler.EState.None;
@@ -100,6 +132,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_loadstart(event) {
         // console.log(event.type);
@@ -107,6 +141,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_progress(event) {
         // console.log(event.type, event.total, event.loaded);
@@ -114,6 +150,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_readystatechange(event) {
         // console.log(event.type, document.readyState);
@@ -121,6 +159,8 @@ class RequestHandler {
 
     /**
      * @param {ProgressEvent} event 
+     * @returns {undefined}
+     * @private
      */
     __on_timeout(event) {
         this.state = RequestHandler.EState.None;

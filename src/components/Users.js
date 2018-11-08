@@ -12,6 +12,7 @@ class Users extends Component {
         super(props, context);
         this.handleSelect = this.handleSelect.bind(this);
         this.handlePage = this.handlePage.bind(this);
+        this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.state = {
             error: false,
             currentTab: 9,
@@ -82,10 +83,14 @@ class Users extends Component {
         }
     }
 
+    __send_message(url, data) {
+        RequestHandler.instance.send_message(url, data, this);
+    }
+
     __getMessageFromServer() {
         const urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
         this.waitResponse = true;
-        RequestHandler.instance.send_message(`/users/${urls[this.currentTab]}`, `{"offset":${this.currentPage * 6}}`, this);
+        this.__send_message(`/users/${urls[this.currentTab]}`, `{"offset":${this.currentPage * 6}}`);
     }
 
     componentDidMount() {
@@ -205,33 +210,35 @@ class Users extends Component {
     get addStaffContent() {
         return (
             <TabPane tabId="9" key="TabPane_9" style={{ width: 500, margin: "auto", marginTop: 25 }}>
-                <Form id="add_staff_id">
+                <Form id="add_staff_id" action={`${process.env.REACT_APP_URL_PREFIX}/users/AddStaff`} method="POST" onSubmit={this.handleSubmitEvent}>
                     <FormGroup className="form-inline">
-                        <Label for="name">姓名 </Label>
-                        <Input type="text" name="name" id="name" placeholder="with a placeholder" />
+                        <Label for="name">姓名</Label>
+                        <Input type="text" name="name" id="name" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label for="sex">性别</Label>
                         <select className="custom-select" id="sex">
-                            <option defaultValue>未知</option>
+                            <option defaultValue="None">未知</option>
                             <option value="Man">男</option>
                             <option value="Woman">女</option>
                         </select>
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label for="pwd">密码</Label>
-                        <Input type="password" name="password" id="pwd" placeholder="password placeholder" />
+                        <Input type="password" name="password" id="pwd" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label for="phone">手机</Label>
+                        <Input type="text" name="phone" id="phone" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label for="id_card">身份证</Label>
-                        <Input type="text" name="id_card" id="id_card" />
+                        <Input type="text" name="id_card" id="id_card" required />
                     </FormGroup>
                     <Button className="ml-2" style={{ width: 239 }} onClick={
                         () => document.getElementById("add_staff_id").reset()
                     }>清空</Button>
-                    <Button className="ml-2" style={{ width: 239 }} onClick={() => {
-
-                    }}>提交</Button>
+                    <Button className="ml-2" style={{ width: 239 }} type="submit">提交</Button>
                 </Form>
             </TabPane>
         );
@@ -500,6 +507,11 @@ class Users extends Component {
         if (typeof (data) === 'object') {
             this.setState({ error: true, code: code, errormsg: data.message, stack: data.stack });
         }
+    }
+
+    handleSubmitEvent(event) {
+        event.preventDefault();
+        RequestHandler.instance.send_message2(event.target.action, new URLSearchParams(new FormData(event.target)), this);
     }
 }
 
