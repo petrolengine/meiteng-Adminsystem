@@ -25,6 +25,7 @@ class Users extends Component {
         this.sex = { None: "未知", Man: "男", Woman: "女" };
         this.content = [[], [], [], [], []];
         this.tabContent = this.__initTabContent;
+        this.tmpFormData = null;
 
         const tempData = JSON.parse(window.localStorage.getItem("tempLoginData"));
         if (tempData) {
@@ -63,33 +64,52 @@ class Users extends Component {
             const current = this.state.offset[this.state.currentTab] + 1;
             const total = Math.ceil(this.total[this.state.currentTab] / 6);
 
-            items.push((current === 1)
-                ? <PaginationItem key="Pagination_0" disabled><PaginationLink previous /></PaginationItem>
-                : <PaginationItem key="Pagination_0"><PaginationLink previous onClick={() => this.handlePage(current - 1)} /></PaginationItem>
-            );
-
-            for (let idx = 1; idx <= total; idx++) {
-                items.push((current === idx)
-                    ? <PaginationItem key={`Pagination_${idx}`} active><PaginationLink>{idx}</PaginationLink></PaginationItem>
-                    : <PaginationItem key={`Pagination_${idx}`}><PaginationLink onClick={() => this.handlePage(idx)}>{idx}</PaginationLink></PaginationItem>
+            if (total > 1) {
+                items.push((current === 1)
+                    ? <PaginationItem key="Pagination_0" disabled><PaginationLink previous /></PaginationItem>
+                    : <PaginationItem key="Pagination_0"><PaginationLink previous onClick={() => this.handlePage(current - 1)} /></PaginationItem>
                 );
-            }
 
-            items.push((current === total)
-                ? <PaginationItem key={`Pagination_${total + 1}`} disabled><PaginationLink next /></PaginationItem>
-                : <PaginationItem key={`Pagination_${total + 1}`}><PaginationLink next onClick={() => this.handlePage(current + 1)} /></PaginationItem>
-            );
-            return (<Pagination className="d-flex justify-content-center">{items}</Pagination>);
+                for (let idx = 1; idx <= total; idx++) {
+                    items.push((current === idx)
+                        ? <PaginationItem key={`Pagination_${idx}`} active><PaginationLink>{idx}</PaginationLink></PaginationItem>
+                        : <PaginationItem key={`Pagination_${idx}`}><PaginationLink onClick={() => this.handlePage(idx)}>{idx}</PaginationLink></PaginationItem>
+                    );
+                }
+
+                items.push((current === total)
+                    ? <PaginationItem key={`Pagination_${total + 1}`} disabled><PaginationLink next /></PaginationItem>
+                    : <PaginationItem key={`Pagination_${total + 1}`}><PaginationLink next onClick={() => this.handlePage(current + 1)} /></PaginationItem>
+                );
+                return (<Pagination className="d-flex justify-content-center">{items}</Pagination>);
+            }
         }
     }
 
+    /**
+     * Send message with short url
+     * @param {string} url short url, url without prefix
+     * @param {string | object} data post data
+     * @returns {undefined}
+     */
     __send_message(url, data) {
+        this.waitResponse = true;
         RequestHandler.instance.send_message(url, data, this);
+    }
+
+    /**
+     * Send message with full url
+     * @param {string} url full url, with prefix
+     * @param {string | object} data post data
+     * @returns {undefined}
+     */
+    __send_message2(url, data) {
+        this.waitResponse = true;
+        RequestHandler.instance.send_message2(url, data, this);
     }
 
     __getMessageFromServer() {
         const urls = ["GetRoomList", "GetAreaList", "GetLandlordList", "GetTenantList", "GetStaffList"];
-        this.waitResponse = true;
         this.__send_message(`/users/${urls[this.currentTab]}`, { offset: this.currentPage * 6 });
     }
 
@@ -107,6 +127,7 @@ class Users extends Component {
                     this.__getMessageFromServer();
                 }
             } else {
+                this.tmpFormData = null;
                 this.setState({ currentTab: key });
             }
         }
@@ -120,7 +141,29 @@ class Users extends Component {
     }
 
     get addRoomContent() {
-        this.renderRoomContent;
+        return (
+            <TabPane tabId="5" key="TabPane_5" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="add_room_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/AddArea`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name5">小区名称</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name5" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="address5">地址</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="address5" />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("add_room_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
     }
 
     get addAreaContent() {
@@ -496,6 +539,7 @@ class Users extends Component {
     }
 
     on_loadend(data) {
+        this.waitResponse = false;
         switch (this.currentTab) {
             case 0:
                 this.content[0] = data;
@@ -517,13 +561,21 @@ class Users extends Component {
                 this.content[4] = data;
                 this.tabContent[4] = this.renderStaffContent;
                 break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+                this.currentPage = 0;
+                this.content[this.currentTab - 5] = [];
+                this.handleSelect(this.currentTab - 5);
+                return;
             default:
-                break;
+                return;
         }
         const temp = this.state.offset;
         temp[this.currentTab] = this.currentPage;
         this.setState({ currentTab: this.currentTab, offset: temp });
-        this.waitResponse = false;
     }
 
     on_error(code, data) {
@@ -533,9 +585,11 @@ class Users extends Component {
     }
 
     handleSubmitEvent(event) {
-        event.preventDefault();
-        const formData = formData2Json(new FormData(event.target));
-        RequestHandler.instance.send_message2(event.target.action, formData, this);
+        if (!this.waitResponse) {
+            event.preventDefault();
+            this.tmpFormData = formData2Json(new FormData(event.target));
+            this.__send_message2(event.target.action, this.tmpFormData);
+        }
     }
 }
 
