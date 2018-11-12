@@ -65,6 +65,7 @@ class Users extends Component {
             const total = Math.ceil(this.total[this.state.currentTab] / 6);
 
             if (total > 1) {
+
                 items.push((current === 1)
                     ? <PaginationItem key="Pagination_0" disabled><PaginationLink previous /></PaginationItem>
                     : <PaginationItem key="Pagination_0"><PaginationLink previous onClick={() => this.handlePage(current - 1)} /></PaginationItem>
