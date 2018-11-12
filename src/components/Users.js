@@ -63,23 +63,26 @@ class Users extends Component {
             const current = this.state.offset[this.state.currentTab] + 1;
             const total = Math.ceil(this.total[this.state.currentTab] / 6);
 
-            items.push((current === 1)
-                ? <PaginationItem key="Pagination_0" disabled><PaginationLink previous /></PaginationItem>
-                : <PaginationItem key="Pagination_0"><PaginationLink previous onClick={() => this.handlePage(current - 1)} /></PaginationItem>
-            );
+            if (total > 1) {
 
-            for (let idx = 1; idx <= total; idx++) {
-                items.push((current === idx)
-                    ? <PaginationItem key={`Pagination_${idx}`} active><PaginationLink>{idx}</PaginationLink></PaginationItem>
-                    : <PaginationItem key={`Pagination_${idx}`}><PaginationLink onClick={() => this.handlePage(idx)}>{idx}</PaginationLink></PaginationItem>
+                items.push((current === 1)
+                    ? <PaginationItem key="Pagination_0" disabled><PaginationLink previous /></PaginationItem>
+                    : <PaginationItem key="Pagination_0"><PaginationLink previous onClick={() => this.handlePage(current - 1)} /></PaginationItem>
                 );
-            }
 
-            items.push((current === total)
-                ? <PaginationItem key={`Pagination_${total + 1}`} disabled><PaginationLink next /></PaginationItem>
-                : <PaginationItem key={`Pagination_${total + 1}`}><PaginationLink next onClick={() => this.handlePage(current + 1)} /></PaginationItem>
-            );
-            return (<Pagination className="d-flex justify-content-center">{items}</Pagination>);
+                for (let idx = 1; idx <= total; idx++) {
+                    items.push((current === idx)
+                        ? <PaginationItem key={`Pagination_${idx}`} active><PaginationLink>{idx}</PaginationLink></PaginationItem>
+                        : <PaginationItem key={`Pagination_${idx}`}><PaginationLink onClick={() => this.handlePage(idx)}>{idx}</PaginationLink></PaginationItem>
+                    );
+                }
+
+                items.push((current === total)
+                    ? <PaginationItem key={`Pagination_${total + 1}`} disabled><PaginationLink next /></PaginationItem>
+                    : <PaginationItem key={`Pagination_${total + 1}`}><PaginationLink next onClick={() => this.handlePage(current + 1)} /></PaginationItem>
+                );
+                return (<Pagination className="d-flex justify-content-center">{items}</Pagination>);
+            }
         }
     }
 
