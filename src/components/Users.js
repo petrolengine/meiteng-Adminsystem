@@ -141,6 +141,9 @@ class Users extends Component {
         }
     }
 
+    /**
+     * 添加房间信息
+     */
     get addRoomContent() {
         return (
             <TabPane tabId="5" key="TabPane_5" style={{ width: 570, margin: "auto", marginTop: 25 }}>
@@ -167,6 +170,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 添加小区信息
+     */
     get addAreaContent() {
         return (
             <TabPane tabId="6" key="TabPane_6" style={{ width: 570, margin: "auto", marginTop: 25 }}>
@@ -193,6 +199,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 添加房东信息
+     */
     get addLandlordContent() {
         return (
             <TabPane tabId="7" key="TabPane_7" style={{ width: 570, margin: "auto", marginTop: 25 }}>
@@ -216,7 +225,7 @@ class Users extends Component {
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="phone7">手机</Label>
-                        <Input style={{ width: 500 }} type="number" required />
+                        <Input style={{ width: 500 }} type="number" name="phone" id="phone7" required />
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="id_card7">身份证</Label>
@@ -231,6 +240,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 添加顾客信息
+     */
     get addTenantContent() {
         return (
             <TabPane tabId="8" key="TabPane_8" style={{ width: 570, margin: "auto", marginTop: 25 }}>
@@ -269,6 +281,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 添加员工信息
+     */
     get addStaffContent() {
         return (
             <TabPane tabId="9" key="TabPane_9" style={{ width: 570, margin: "auto", marginTop: 25 }}>
@@ -311,6 +326,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 房间列表
+     */
     get renderRoomContent() {
         const listItems = [];
         let tempItems = [];
@@ -352,6 +370,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 小区列表
+     */
     get renderAreaContent() {
         const listItems = [];
         let tempItems = [];
@@ -381,6 +402,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 房东列表
+     */
     get renderLandlordContent() {
         const listItems = [];
         let tempItems = [];
@@ -412,6 +436,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 顾客列表
+     */
     get renderTenantContent() {
         const listItems = [];
         let tempItems = [];
@@ -443,6 +470,9 @@ class Users extends Component {
         );
     }
 
+    /**
+     * 员工列表
+     */
     get renderStaffContent() {
         const listItems = [];
         let tempItems = [];
@@ -590,6 +620,7 @@ class Users extends Component {
             event.preventDefault();
             this.tmpFormData = formData2Json(new FormData(event.target));
             this.__send_message2(event.target.action, this.tmpFormData);
+            event.target.reset();
         }
     }
 }
