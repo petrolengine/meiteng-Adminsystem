@@ -13,6 +13,7 @@ class Users extends Component {
         this.handleSelect = this.handleSelect.bind(this);
         this.handlePage = this.handlePage.bind(this);
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
+        this.handleSetButton = this.handleSetButton.bind(this);
         this.state = {
             error: false,
             currentTab: 9,
@@ -141,6 +142,35 @@ class Users extends Component {
         }
     }
 
+    handleSetButton(type, id) {
+        if (!this.waitResponse || type < 0 || type > 4) {
+            let formData;
+            let content = this.content[type].find(o => o.id === id);
+            if (!content) {
+                return;
+            }
+            switch (type) {
+                case 0:
+                    break;
+                case 1:
+                    formData = document.forms["add_area_id"];
+                    formData.elements["name6"].value = content.name;
+                    formData.elements["address6"].value = content.address;
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                default:
+                    alert("unknown error.");
+            }
+            this.currentTab = type + 5;
+            this.setState({ currentTab: this.currentTab });
+        }
+    }
+
     /**
      * 添加房间信息
      */
@@ -188,7 +218,7 @@ class Users extends Component {
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="address6">地址</Label>
-                        <Input style={{ width: 500 }} type="text" name="id_card" id="address6" />
+                        <Input style={{ width: 500 }} type="text" name="address" id="address6" />
                     </FormGroup>
                     <Button className="ml-3" style={{ width: 265 }} onClick={
                         () => document.getElementById("add_area_id").reset()
@@ -225,11 +255,11 @@ class Users extends Component {
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="phone7">手机</Label>
-                        <Input style={{ width: 500 }} type="number" name="phone" id="phone7" required />
+                        <Input style={{ width: 500 }} type="number" name="phone" id="phone7" />
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="id_card7">身份证</Label>
-                        <Input style={{ width: 500 }} type="number" name="id_card" id="id_card7" required />
+                        <Input style={{ width: 500 }} type="number" name="id_card" id="id_card7" />
                     </FormGroup>
                     <Button className="ml-3" style={{ width: 265 }} onClick={
                         () => document.getElementById("add_landlord_id").reset()
@@ -266,11 +296,11 @@ class Users extends Component {
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="phone8">手机</Label>
-                        <Input style={{ width: 500 }} type="text" name="phone" id="phone8" required />
+                        <Input style={{ width: 500 }} type="text" name="phone" id="phone8" />
                     </FormGroup>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="id_card8">身份证</Label>
-                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card8" required />
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card8" />
                     </FormGroup>
                     <Button className="ml-3" style={{ width: 265 }} onClick={
                         () => document.getElementById("add_tenant_id").reset()
@@ -351,7 +381,7 @@ class Users extends Component {
                             信息: {item.rooms}室{item.sittings}厅{item.kitchen}厨{item.toilet}卫
                         </CardText>
                     </CardBody>
-                    <Button>编辑</Button>
+                    <Button onClick={() => this.handleSetButton(0, item.id)}>编辑</Button>
                     <CardFooter>{getReadableTime(item.create_time)}</CardFooter>
                 </Card>
             );
@@ -384,7 +414,7 @@ class Users extends Component {
                     <CardBody>
                         <Row>地址: {item.address}</Row>
                     </CardBody>
-                    <Button>编辑</Button>
+                    <Button onClick={() => this.handleSetButton(1, item.id)}> 编辑</Button>
                 </Card >
             );
             if (idx % 6 === 5) {
@@ -417,7 +447,7 @@ class Users extends Component {
                         <Row>电话: {item.phone}</Row>
                         <Row>性别: {this.sex[item.sex]}</Row>
                     </CardBody>
-                    <Button>编辑</Button>
+                    <Button onClick={() => this.handleSetButton(2, item.id)}>编辑</Button>
                     <CardFooter><small className="text-muted">{getReadableTime(item.create_time)}</small></CardFooter>
                 </Card >
             );
@@ -451,7 +481,7 @@ class Users extends Component {
                         <Row>电话: {item.phone}</Row>
                         <Row>性别: {this.sex[item.sex]}</Row>
                     </CardBody>
-                    <Button>编辑</Button>
+                    <Button onClick={() => this.handleSetButton(3, item.id)}>编辑</Button>
                     <CardFooter><small className="text-muted">{getReadableTime(item.create_time)}</small></CardFooter>
                 </Card >
             );
@@ -485,7 +515,7 @@ class Users extends Component {
                         <Row>电话: {item.phone}</Row>
                         <Row>性别: {this.sex[item.sex]}</Row>
                     </CardBody>
-                    <Button>编辑</Button>
+                    <Button onClick={() => this.handleSetButton(4, item.id)}>编辑</Button>
                     <CardFooter><small className="text-muted">{getReadableTime(item.create_time)}</small></CardFooter>
                 </Card >
             );
