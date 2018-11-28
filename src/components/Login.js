@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
-import avatar2 from './svgs/avatar2.svg';
+import meiteng from './svgs/meiteng.jpeg';
 
 class Login extends Component {
     constructor(props, context) {
@@ -41,7 +41,7 @@ class Login extends Component {
             <div className="modal">
                 <form className="modal-content" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
                     <div className="imgcontainer">
-                        <img src={avatar2} alt="Avatar" className="avatar" />
+                        <img src={meiteng} alt="Avatar" className="avatar" />
                     </div>
                     {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
                     <div className="container">
