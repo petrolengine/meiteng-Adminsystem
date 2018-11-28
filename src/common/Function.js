@@ -12,6 +12,10 @@ export function getReadableTime(src) {
  */
 export function formData2Json(formData) {
     const object = {};
-    formData.forEach((value, key) => object[key] = value);
+    formData.forEach((value, key) => {
+        if (value.length > 0) {
+            object[key] = value;
+        }
+    });
     return object;
 }

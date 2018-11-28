@@ -51,6 +51,11 @@ class Users extends Component {
             this.addLandlordContent,
             this.addTenantContent,
             this.addStaffContent,
+            this.modifyRoomContent,
+            this.modifyAreaContent,
+            this.modifyLandlordContent,
+            this.modifyTenantContent,
+            this.modifyStaffContent,
         ];
         for (let idx = 0; idx < temp.length; idx++) {
             panes.push(temp[idx]);
@@ -143,32 +148,231 @@ class Users extends Component {
     }
 
     handleSetButton(type, id) {
+
         if (!this.waitResponse || type < 0 || type > 4) {
-            let formData;
-            let content = this.content[type].find(o => o.id === id);
+            const content = this.content[type].find(o => o.id === id);
             if (!content) {
                 return;
             }
+            const formids = [
+                "modify_room_id",
+                "modify_area_id",
+                "modify_landlord_id",
+                "modify_tenant_id",
+                "modify_staff_id"
+            ];
+            const formData = document.forms[formids[type]];
+            formData.elements[`id${type + 10}`].value = content.id;
+            formData.elements[`name${type + 10}`].value = content.name;
             switch (type) {
                 case 0:
                     break;
                 case 1:
-                    formData = document.forms["add_area_id"];
-                    formData.elements["name6"].value = content.name;
-                    formData.elements["address6"].value = content.address;
+                    formData.elements["address11"].value = content.address;
                     break;
                 case 2:
-                    break;
                 case 3:
-                    break;
                 case 4:
+                    formData.elements[`sex${type + 10}`].value = content.sex;
+                    formData.elements[`phone${type + 10}`].value = content.phone;
+                    formData.elements[`id_card${type + 10}`].value = content.id_card;
                     break;
                 default:
-                    alert("unknown error.");
+                    break;
             }
-            this.currentTab = type + 5;
+            this.currentTab = type + 10;
             this.setState({ currentTab: this.currentTab });
         }
+    }
+
+    /**
+     * 修改房间信息
+     */
+    get modifyRoomContent() {
+        return (
+            <TabPane tabId="10" key="TabPane_10" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="modify_room_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/SetRoomInfo`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <h1 align="center">修改房间信息</h1>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name10">小区名称</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name10" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="address10">地址</Label>
+                        <Input style={{ width: 500 }} type="text" name="address" id="address10" />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("modify_room_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
+    }
+
+    /**
+     * 修改小区信息
+     */
+    get modifyAreaContent() {
+        return (
+            <TabPane tabId="11" key="TabPane_11" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="modify_area_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/SetAreaInfo`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <h1 align="center">修改小区信息</h1>
+                    <Input name="id" id="id11" style={{ visibility: "hidden" }}>0</Input>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name11">小区名称</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name11" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="address11">地址</Label>
+                        <Input style={{ width: 500 }} type="text" name="address" id="address11" />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("modify_area_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
+    }
+
+    /**
+     * 修改房东信息
+     */
+    get modifyLandlordContent() {
+        return (
+            <TabPane tabId="12" key="TabPane_12" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="modify_landlord_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/SetLandlordInfo`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <h1 align="center">修改房东信息</h1>
+                    <Input name="id" id="id12" style={{ visibility: "hidden" }}>0</Input>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name12">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name12" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="sex12">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex12">
+                            <option value="None" defaultValue>未知</option>
+                            <option value="Man">男</option>
+                            <option value="Woman">女</option>
+                        </select>
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="phone12">手机</Label>
+                        <Input style={{ width: 500 }} type="number" name="phone" id="phone12" />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="id_card12">身份证</Label>
+                        <Input style={{ width: 500 }} type="number" name="id_card" id="id_card12" />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("modify_landlord_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
+    }
+
+    /**
+     * 修改顾客信息
+     */
+    get modifyTenantContent() {
+        return (
+            <TabPane tabId="13" key="TabPane_13" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="modify_tenant_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/SetTenantInfo`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <h1 align="center">修改顾客信息</h1>
+                    <Input name="id" id="id13" style={{ visibility: "hidden" }}>0</Input>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name13">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name13" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="sex13">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex13">
+                            <option value="None" defaultValue>未知</option>
+                            <option value="Man">男</option>
+                            <option value="Woman">女</option>
+                        </select>
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="phone13">手机</Label>
+                        <Input style={{ width: 500 }} type="text" name="phone" id="phone13" />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="id_card13">身份证</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card13" />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("modify_tenant_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
+    }
+
+    /**
+     * 修改员工信息
+     */
+    get modifyStaffContent() {
+        return (
+            <TabPane tabId="14" key="TabPane_14" style={{ width: 570, margin: "auto", marginTop: 25 }}>
+                <Form
+                    id="modify_staff_id"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/users/SetStaffInfo`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
+                    <h1 align="center">修改员工信息</h1>
+                    <Input name="id" id="id14" style={{ visibility: "hidden" }}>0</Input>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="name14">姓名</Label>
+                        <Input style={{ width: 500 }} type="text" name="name" id="name14" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="sex14">性别</Label>
+                        <select style={{ width: 500 }} className="custom-select" name="sex" id="sex14">
+                            <option value="None" defaultValue>未知</option>
+                            <option value="Man">男</option>
+                            <option value="Woman">女</option>
+                        </select>
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="phone14">手机</Label>
+                        <Input style={{ width: 500 }} type="text" name="phone" id="phone14" required />
+                    </FormGroup>
+                    <FormGroup className="form-inline">
+                        <Label style={{ width: 70 }} for="id_card14">身份证</Label>
+                        <Input style={{ width: 500 }} type="text" name="id_card" id="id_card14" required />
+                    </FormGroup>
+                    <Button className="ml-3" style={{ width: 265 }} onClick={
+                        () => document.getElementById("modify_staff_id").reset()
+                    }>清空</Button>
+                    <Button className="ml-3" style={{ width: 265 }} type="submit">提交</Button>
+                </Form>
+            </TabPane>
+        );
     }
 
     /**
@@ -183,6 +387,7 @@ class Users extends Component {
                     method="POST"
                     onSubmit={this.handleSubmitEvent}
                 >
+                    <h1 align="center">添加房间</h1>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="name5">小区名称</Label>
                         <Input style={{ width: 500 }} type="text" name="name" id="name5" required />
@@ -212,6 +417,7 @@ class Users extends Component {
                     method="POST"
                     onSubmit={this.handleSubmitEvent}
                 >
+                    <h1 align="center">添加小区</h1>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="name6">小区名称</Label>
                         <Input style={{ width: 500 }} type="text" name="name" id="name6" required />
@@ -241,6 +447,7 @@ class Users extends Component {
                     method="POST"
                     onSubmit={this.handleSubmitEvent}
                 >
+                    <h1 align="center">添加房东</h1>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="name7">姓名</Label>
                         <Input style={{ width: 500 }} type="text" name="name" id="name7" required />
@@ -282,6 +489,7 @@ class Users extends Component {
                     method="POST"
                     onSubmit={this.handleSubmitEvent}
                 >
+                    <h1 align="center">添加顾客</h1>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="name8">姓名</Label>
                         <Input style={{ width: 500 }} type="text" name="name" id="name8" required />
@@ -323,6 +531,7 @@ class Users extends Component {
                     method="POST"
                     onSubmit={this.handleSubmitEvent}
                 >
+                    <h1 align="center">添加员工</h1>
                     <FormGroup className="form-inline">
                         <Label style={{ width: 70 }} for="name9">姓名</Label>
                         <Input style={{ width: 500 }} type="text" name="name" id="name9" required />
@@ -631,6 +840,15 @@ class Users extends Component {
                 this.content[this.currentTab - 5] = [];
                 this.handleSelect(this.currentTab - 5);
                 return;
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+                this.currentPage = 0;
+                this.content[this.currentTab - 10] = [];
+                this.handleSelect(this.currentTab - 10);
+                break;
             default:
                 return;
         }
