@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Alert } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
-import meiteng from './svgs/meiteng.jpeg';
 
 class Login extends Component {
     constructor(props, context) {
@@ -39,22 +38,21 @@ class Login extends Component {
     render() {
         return (
             <div className="modal">
-                <form className="modal-content" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
-                    <div className="imgcontainer">
-                        <img src={meiteng} alt="Avatar" className="avatar" />
-                    </div>
-                    {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
-                    <div className="container">
-                        <label htmlFor="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required></input>
-                        <label htmlFor="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required></input>
-                        <button type="submit">Login</button>
-                        <label>
-                            <input type="checkbox" defaultChecked name="remember" />Remember me
-                        </label>
-                    </div>
-                </form>
+                <div className="modal-left" >
+                </div>
+                <div className="modal-right">
+                    <form className="modal-content" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
+                        <h1>登录</h1>
+                        {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
+                        <label htmlFor="uname" className="loginName">账户</label>
+                        <input className="input_sty" type="text" placeholder="请输入您的账户名" name="uname" required></input>
+                        <label htmlFor="psw" className="passLabel">密码</label>
+                        <input className="input_sty" type="password" placeholder="请输入您的密码" name="psw" required></input>
+                        <button className="btn_ok" type="submit">确定</button>
+                        <input type="checkbox" name="remember" id="remember" ></input>
+                        <label htmlFor="remember" className="remeber_sty">记住密码</label>
+                    </form>
+                </div>
             </div >
         );
     }
