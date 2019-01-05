@@ -1,11 +1,5 @@
-.modal {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    width: 1257px;
-    height: 829px;
+.background {
     background-image: url("./login/background.png");
-    margin: auto;
 }
 
 .modal-left {
@@ -18,7 +12,6 @@
 }
 
 .modal-right {
-    position: relative;
     height: 829px;
     width: 810px;
     float: right;
@@ -26,57 +19,48 @@
 }
 
 .modal-content {
-    display: block;
     background-color: rgba(3, 13, 25, 0.8);
     width: 316px;
     height: 385px;
-    top: 224px;
-    left: 247px;
+    margin-top: 224px;
+    margin-left: 247px;
     border-radius: 0px;
 }
 
-h1 {
-    color: white;
-    width: 316px;
-    font: "黑体";
+.login_title {
     text-align: center;
-    font-size: 20px;
-    letter-spacing: 8px;
-    margin-top: 30px;
+    text-align-last: center;
+    height: 50px;
 }
 
 .loginName {
     height: 13px;
-    margin-top: 24;
+    margin-top: 24px;
     margin-left: 40px;
-    letter-spacing: 2px;
 }
 
 .passLabel {
     height: 13px;
     margin-top: 40px;
     margin-left: 40px;
-    letter-spacing: 2px;
 }
 
-label {
-    color: #FFFFFF;
-    font-size: 14px;
-}
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.input_size {
+    width: 264px;
+    height: 30px;
+}
+
+.input_sty {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-family: "黑体";
     margin-left: 35px;
     margin-right: 35px;
-    height: 30px;
-    width: 246px;
 }
 
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
+.input_sty:focus {
     background-color: #ddd;
     outline: none;
 }
@@ -116,15 +100,10 @@ input[type=checkbox] ~ .remeber_sty:hover {
 
 input[type=checkbox]:checked ~ .remeber_sty::after {
     content: url("./login/nick02.png");
-    display: block;
 }
 
 .remeber_sty {
-    display: block;
     margin-left: 55px;
     margin-top: 59px;
-    color: #FFFFFF;
-    font-size: 12px;
-    font: "黑体";
     bottom: 1px;
 }

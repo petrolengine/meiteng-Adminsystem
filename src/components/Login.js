@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Alert } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css';
+import '../common/css/label.css'
+import '../common/css/common.css'
 
 class Login extends Component {
     constructor(props, context) {
@@ -37,20 +37,20 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="modal">
+            <div className="modal background">
                 <div className="modal-left" >
                 </div>
                 <div className="modal-right">
                     <form className="modal-content" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
-                        <h1>登录</h1>
-                        {this.state.error && <Alert color="warning">{this.state.message}</Alert>}
-                        <label htmlFor="uname" className="loginName">账户</label>
-                        <input className="input_sty" type="text" placeholder="请输入您的账户名" name="uname" required></input>
-                        <label htmlFor="psw" className="passLabel">密码</label>
-                        <input className="input_sty" type="password" placeholder="请输入您的密码" name="psw" required></input>
+                        <h1 className={"login_title w20_8ch"}>登录</h1>
+                        {this.state.error && <label color="warning">{this.state.message}</label>}
+                        < label htmlFor="uname" className="loginName w14_2ch" > 账户</label>
+                        <input className="input_sty input_size" type="text" placeholder="请输入您的账户名" name="uname" required></input>
+                        <label htmlFor="psw" className="passLabel w14_2ch">密码</label>
+                        <input className="input_sty input_size" type="password" placeholder="请输入您的密码" name="psw" required></input>
                         <button className="btn_ok" type="submit">确定</button>
                         <input type="checkbox" name="remember" id="remember" ></input>
-                        <label htmlFor="remember" className="remeber_sty">记住密码</label>
+                        <label htmlFor="remember" className="remeber_sty w12_1ch">记住密码</label>
                     </form>
                 </div>
             </div >
