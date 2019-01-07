@@ -1,8 +1,11 @@
-.background {
+.login_modal {
     background-image: url("./login/background.png");
+    background-repeat: no-repeat;
 }
 
-.modal-left {
+.login_modal_left {
+    display: inline-block;
+    vertical-align: middle;
     background-color: rgba(3, 13, 25, 0.9);
     background-image: url("./login/LOGO01.png");
     background-repeat: no-repeat;
@@ -11,80 +14,69 @@
     height: 829px;
 }
 
-.modal-right {
-    height: 829px;
-    width: 810px;
-    float: right;
-    margin-top: -829px;
-}
-
-.modal-content {
+.login_modal_right {
+    display: inline-block;
+    vertical-align: middle;
     background-color: rgba(3, 13, 25, 0.8);
     width: 316px;
     height: 385px;
-    margin-top: 224px;
-    margin-left: 247px;
     border-radius: 0px;
+    margin-left: 247px;
+    position: relative;
 }
 
 .login_title {
+    display: block;
     text-align: center;
-    text-align-last: center;
-    height: 50px;
 }
 
-.loginName {
-    height: 13px;
-    margin-top: 24px;
-    margin-left: 40px;
+.login_nmr {
+    display: block;
+    margin-left: 35px;
 }
 
-.passLabel {
-    height: 13px;
-    margin-top: 40px;
-    margin-left: 40px;
+.login_label {
+    margin-top: 30px;
 }
 
-/* Full-width input fields */
-.input_size {
-    width: 264px;
+.login_input_sty {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 246px;
     height: 30px;
 }
 
-.input_sty {
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    margin-left: 35px;
-    margin-right: 35px;
-}
-
 /* Add a background color when the inputs get focus */
-.input_sty:focus {
+.login_input_sty:focus {
     background-color: #ddd;
     outline: none;
 }
 
-.input_sty::-webkit-input-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
-.input_sty:-moz-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
-.input_sty::-moz-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
-.input_sty:-ms-input-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
+.login_input_sty::-webkit-input-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
+.login_input_sty:-moz-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
+.login_input_sty::-moz-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
+.login_input_sty:-ms-input-placeholder { padding-left: 10px; font-size: 12px; letter-spacing: 2px; }
 
 .btn_ok {
     background-color: rgb(236, 105, 65);
     color: white;
-    margin-left: 35px;
-    margin-right: 35px;
     margin-top: 55px;
     height: 30px;
     width: 246px;
     border: 0px;
 }
 
-input[type=checkbox] {
+.login_cb {
     display: none;
 }
 
+.login_cb ~ .remeber_sty:hover {
+    opacity: 0.8;
+}
+
+.login_cb:checked ~ .remeber_sty::after {
+    content: url("./login/nick02.png");
+}
 
 .remeber_sty::after {
     content: url("./login/nick.png");
@@ -93,17 +85,8 @@ input[type=checkbox] {
     margin-top: -16px;
 }
 
-
-input[type=checkbox] ~ .remeber_sty:hover {
-    opacity: 0.9;
-}
-
-input[type=checkbox]:checked ~ .remeber_sty::after {
-    content: url("./login/nick02.png");
-}
-
 .remeber_sty {
+    display: block;
     margin-left: 55px;
     margin-top: 59px;
-    bottom: 1px;
 }

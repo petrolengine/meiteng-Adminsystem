@@ -4,4 +4,6 @@ body {
   width: 1257px;
   height: 829px;
   margin: auto;
+  position: relative;
+  display: block;
 }
