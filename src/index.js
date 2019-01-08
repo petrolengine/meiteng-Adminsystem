@@ -4,7 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Login from './components/Login';
 import Users from './components/Users';
-import './index.css';
+import './resources/css/index.css';
 
 ReactDOM.render(
     <BrowserRouter basename={process.env.REACT_APP_BASE_NAME} >

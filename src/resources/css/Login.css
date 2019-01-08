@@ -1,13 +1,14 @@
 .login_modal {
-    background-image: url("./login/background.png");
+    background-image: url("../images/login/background.png");
     background-repeat: no-repeat;
+    height: 829px;
 }
 
 .login_modal_left {
     display: inline-block;
     vertical-align: middle;
     background-color: rgba(3, 13, 25, 0.9);
-    background-image: url("./login/LOGO01.png");
+    background-image: url("../images/login/LOGO01.png");
     background-repeat: no-repeat;
     background-position: center;
     width: 447px;
@@ -75,11 +76,11 @@
 }
 
 .login_cb:checked ~ .remeber_sty::after {
-    content: url("./login/nick02.png");
+    content: url("../images/login/nick02.png");
 }
 
 .remeber_sty::after {
-    content: url("./login/nick.png");
+    content: url("../images/login/nick.png");
     display: block;
     margin-left: -18px;
     margin-top: -16px;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './Login.css';
-import '../common/css/label.css'
+import '../resources/css/Login.css';
+import '../resources/css/label.css'
+import CommonStr from '../resources/strings/common';
 
 class Login extends Component {
     constructor(props, context) {
@@ -39,15 +40,15 @@ class Login extends Component {
             <div className="login_modal">
                 <div className="login_modal_left"></div>
                 <form className="login_modal_right" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
-                    <h1 className={"login_title w20_8ch"}>登录</h1>
+                    <h1 className={"login_title w20_8ch"}>{CommonStr.login}</h1>
                     {this.state.error && <label color="warning">{this.state.message}</label>}
-                    <label className="login_nmr login_label w14_2ch" > 账户</label>
-                    <input className="login_nmr login_input_sty" type="text" placeholder="请输入您的账户名" name="uname" required></input>
-                    <label className="login_nmr login_label w14_2ch">密码</label>
-                    <input className="login_nmr login_input_sty" type="password" placeholder="请输入您的密码" name="psw" required></input>
-                    <button className="login_nmr btn_ok w14_2ch" type="submit">确定</button>
+                    <label className="login_nmr login_label w14_2ch" >{CommonStr.user}</label>
+                    <input className="login_nmr login_input_sty" type="text" placeholder={CommonStr.placeholder_user} name="uname" required></input>
+                    <label className="login_nmr login_label w14_2ch">{CommonStr.pass}</label>
+                    <input className="login_nmr login_input_sty" type="password" placeholder={CommonStr.placeholder_pass} name="psw" required></input>
+                    <button className="login_nmr btn_ok w14_2ch" type="submit">{CommonStr.ok}</button>
                     <input className="login_cb" type="checkbox" name="remember" id="remember" ></input>
-                    <label htmlFor="remember" className="remeber_sty w12_1ch">记住密码</label>
+                    <label htmlFor="remember" className="remeber_sty w12_1ch">{CommonStr.remember_pass}</label>
                 </form>
             </div >
         );

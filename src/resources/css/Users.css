@@ -1,9 +1,14 @@
-@import "../common/css/common.css";
+.home_page{
+    position: relative;
+    width: 1257px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .background_pic{
     width: 100%;
     background-image: 
-    url("./home/background.png");
+    url("../images/home/background.png");
     height: 829px;
     width: 1257px;
     margin-top: 4px;
@@ -11,7 +16,7 @@
 }
 .logo_frame{
     background-color: rgb(3, 19, 36,0.9);
-    background-image: url("./home/logo02.png");
+    background-image: url("../images/home/logo02.png");
     background-repeat: no-repeat;
     background-position-x: 541px;
     background-position-y: 72px;
@@ -38,7 +43,7 @@
 }
 
 .btn_search{
-    background-image: url("./home/searchbutton.png");
+    background-image: url("../images/home/searchbutton.png");
     width: 114px;
     height: 39px;
     border: 0px;

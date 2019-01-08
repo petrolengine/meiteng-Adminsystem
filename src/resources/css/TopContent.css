@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'Britannic Bold';
+    src: url('../font/BRITANIC.ttf');
+}
+
+.tc_logo {
+    display: block;
+    text-align: center;
+    position: relative;
+    margin-top:5px;
+}
+
+.tc_logo_english_name {
+    font-family:"Britannic Bold";
+    font-size:39px;
+    color: rgb(236, 125, 65);
+    display: inline-block;
+    text-align: center;
+}
+
+.tc_logo_chinese_name {
+    font-size: 35px;
+    color: rgb(236, 125, 65);
+    letter-spacing:2px;
+    margin-left:16px;
+    display: inline-block;
+    text-align: center;
+}
+
+.tc_tool_bar {
+    display: block;
+}
+
+.tc_line {
+    display: block;
+    height: 1px;
+    background-color: rgb(3, 19, 36);
+}
+
+.tc_toolbar_meun {
+    display: block;
+    height: 48px;
+    background-color: rgb(3, 19, 36,0.8);
+    margin-top: 4px;
+}
+
+.tc_tb_meun_label {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 13px;
+    height: 48px;
+    width: 133px;
+    text-align: center;
+}
+
+.tc_tb_drop_down_content {
+    display: none;
+    background-color: #354250;
+    list-style: none;
+    width: 133px;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.tc_tb_meun_dropdown_label {
+    height: 48px;
+    line-height: 45px;
+    text-align: center;
+}
+
+.tc_tb_meun_addition:hover .tc_tb_drop_down_content {
+    display: block;
+}
+
+.tc_tb_meun_dropdown_label:hover {
+    background-color: rgb(236, 125, 65);
+}
