@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import '../resources/css/Users.css';
 import * as tc from '../common/TopContent';
 import SearchPage from './SearchPage';
+import RoomPage from './RoomPage';
 
 class Users extends Component {
-
     constructor(props, context) {
         super(props, context);
-        this.search_page = new SearchPage;
+        this.pages = [
+            new SearchPage(),
+            new RoomPage(),
+        ];
         this.state = {
-            current_page: this.search_page
+            current_page: 1
         };
     }
 
@@ -18,7 +21,7 @@ class Users extends Component {
             <div className="home_page">
                 {tc.renderLogo()}
                 {tc.renderToolBar()}
-                {this.state.current_page.render}
+                {this.pages[this.state.current_page].render}
             </div>
         );
     }
