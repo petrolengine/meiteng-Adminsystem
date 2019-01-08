@@ -11,9 +11,9 @@
 }
 .company{
     width:100%;
+    height: 56px;
     text-align: center;
     position: relative;
-    margin-top:5px;
     display: block;
 }
 
@@ -48,11 +48,12 @@
 }
 .meun_bar{
     position: relative;
-    margin-left: 36px;
+    margin-left: -6px;
 }
 .item1 {
     display: inline-block;
     font-size: 20px;
+    letter-spacing: 6px;
     margin-left: 89px;
     margin-top: 8px;
     color: white;
@@ -69,7 +70,7 @@
     display: none;
     position: absolute;
     background-color: #354250;
-    margin-left: -45px;
+    margin-left: -40px;
     margin-top: 10px;
     z-index: 4;
     list-style: none;
