@@ -10,7 +10,7 @@ class Users extends Component {
         this.topcontent = new TopContent(this);
         this.pages = [
             new SearchPage(),
-            new RoomPage(),
+            new RoomPage(this),
         ];
         this.state = {
             current_page: 1

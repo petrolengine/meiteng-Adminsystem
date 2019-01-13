@@ -1,0 +1,524 @@
+.room_page{
+    display: block;
+    height: 400px;
+    background-color: #eeeeee;
+    border: 1px solid;
+    border-color: rgb(3, 19, 36);
+    border-width: 1px;
+    position: relative;
+    margin-top: 4px;
+}
+
+.condition_page{
+    display: block;
+    position: relative;
+    color: black;
+}
+
+.room_page_line{
+    background-color: #cccccc;
+    height: 1px;
+    margin-top: 15px;
+}
+
+.search{
+    width: 100%;
+    height: 47px;
+    position: relative;
+    margin-top: 4px;
+    display: block;
+}
+
+.search_logo{
+    background-image: url("../images/sale_page/search_frame.png");
+    width: 100%;
+    height: 47px;
+    display: block;
+}
+
+.search_frame{
+    display: inline-block;
+    width: 13\000px;
+    height: 47px;
+    position: absolute;
+    margin-top: -47px;
+    margin-left: 50px;
+}
+
+.btn{
+    background-image: url("../images/sale_page/search.png");
+    width: 27px;
+    height: 27px;
+    margin-left: 50px;
+    background-color: transparent;
+    margin-top: 10px;
+}
+.input_frame input[type="text"] {
+    background-color: transparent;
+    width: 1000px;
+    height: 47px;
+    margin-left: 10px;
+    border: 0;
+}
+
+.rp_select_condition_item {
+    color: rgb(236, 125, 65);
+    text-decoration: underline;
+}
+
+.rp_normal_condition_item {
+    color: black;
+    text-decoration: none;
+}
+
+.rp_normal_condition_item:hover{
+    color: rgb(236, 125, 65);
+}
+
+.rp_condition_item{
+    list-style: none;
+    display: inline-block;
+    margin-left: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.rp_contition_title {
+    list-style: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+.rp_contition_sub_collection {
+    display: block;
+    width: 1100px;
+    height: 39px;
+    background-image: url("../images/sale_page/child_collection.png");
+    background-repeat: no-repeat;
+    background-position-y: 4px;
+    margin-left: 110px;
+    margin-top: -13px;
+}
+
+.inner_frame{
+    display: block;
+    background-image: url("../images/sale_page/arrow.png");
+    background-repeat: no-repeat;
+    background-position-x: 75px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 32px;
+}
+
+.inner_frame::-webkit-scrollbar {
+    margin-top: 5px;
+}
+
+.a{
+    margin-left: -45px;
+    display: block;
+}
+.b{
+    margin-left: -45px;
+    display: block;
+    margin-top: -4px;
+}
+.c{
+    margin-left: -45px;
+    display: block;
+    margin-top: -4px;
+}
+.d{
+    margin-left: 10px;
+    display: block;
+    margin-top: -4px;
+}
+
+.dp{
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+}
+.dp:hover{
+    color: rgb(236, 125, 65);
+    text-decoration: underline
+}
+.dd{
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    margin-left: 24px;
+    cursor: pointer;
+}
+.dd:hover{
+    color: rgb(236, 125, 65);
+    text-decoration: underline;
+}
+
+.e{
+    margin-left: -45px;
+    display: block;
+    margin-top: -1px;
+}
+.f{
+    margin-left: -45px;
+    display: block;
+    margin-top: -4px;
+}
+.g{
+    margin-left: -45px;
+    display: block;
+    margin-top: -4px;
+}
+.filter{
+    margin-left: -45px;
+    display: block;
+    margin-top: 15px;
+}
+
+.L4{
+    background-color: #cccccc;
+    width: 100%;
+    height: 1px;
+    margin-top: -15px;
+}
+.ll{
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    margin-left: 24px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+.area{
+    font-size: 12px;
+    margin-left: 24px;
+}
+.floor{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.direction{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.decoration{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.others{
+    font-size: 12px;
+    margin-left: 10px;
+}
+.L5{
+    background-color: #cccccc;
+    width: 100%;
+    height: 1px;
+    margin-top: 0px;
+}
+.result{
+    display: block;
+}
+.tj{
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+    margin-left: -20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.tj_content{
+    background-color: #354250;
+    width: 93px;
+    height: 22px;
+    margin-left: 22px;
+    margin-top: 17px;
+    position: absolute;
+    display: none;
+}
+.second_hand_housing{
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'å®‹ä½“';
+    margin-left: 7px;
+    margin-top: -3px;
+}
+.no{
+    background-image: url("../images/sale_page/cross.png");
+    width: 14px;
+    height: 14px;
+    border: 0;
+    margin-right: 4px;
+    margin-top: 4px;
+    float: right;
+}
+.biaoti{
+    display: block;
+    width: 100%;
+    position: relative;
+    margin-top: 50px;
+    margin-left: -48px;
+}
+.ti{
+    font-size: 20px;
+    margin-left: 75px;
+    color: black;
+}
+.L6{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(236, 125, 65);
+}
+.xiaozi{
+    display: block;
+    position: relative;
+    margin-top: 21px; 
+}
+.huise{
+    color: #999999;
+    font-size: 14px;
+}
+.juse{
+    color: rgb(236, 125, 65);
+    font-size: 14px;
+    display: inline-block;
+}
+.first_result{
+    display: block;
+    position: relative;
+    margin-top: -8px;
+    height: 174px;
+}
+.info_pic{
+    background-image: url("../images/sale_page/house_pic.png");
+    width: 232px;
+    height: 174px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.info_text{
+    display: inline-block;
+    position: relative;
+    margin-left: 36px;
+    width: 500px;
+    height: 174px;
+    vertical-align: middle;
+}
+.p0{
+    font-size: 24px;
+    position: relative;
+    font-weight: bold;
+}
+.p1{
+    position: relative;
+    width: 500px;
+    height: 14px;
+    margin-top: -3px;
+}
+.icon1{
+    background-image: url("../images/sale_page/house.png");
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+}
+.p1_text{
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    margin-left: 6px;
+    color: #666666;
+}
+.p2{
+    position: relative;
+    width: 500px;
+    height: 14px;
+    color: #666666;
+    margin-top: 20px;
+}
+.icon2{
+    background-image: url("../images/sale_page/address.png");
+    width: 11px;
+    height: 14px;
+    display: inline-block;
+}
+.p2_text{
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    margin-left: 8px;
+    color: #666666;
+}
+.deepblue{
+    color: rgb(3, 19, 36);
+    display: inline-block;
+}
+.p3{
+    position: relative;
+    width: 500px;
+    height: 14px;
+    margin-top: 20px;
+}
+.icon3{
+    background-image: url("../images/sale_page/landlord.png");
+    width: 14px;
+    height: 13px;
+    display: inline-block;
+}
+.p3_text{
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    margin-left: 6px;
+    color: #666666;
+}
+.p4{
+    position: relative;
+    width: 500px;
+    margin-top: 20px;
+}
+.icon4{
+    background-image: url("../images/sale_page/buyer.png");
+    width: 14px;
+    height: 13px;
+    display: inline-block;
+}
+.p4_text{
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+    margin-left: 6px;
+    color: #666666;
+}
+.info_price{
+    display: inline-block;
+    position: relative;
+    width: 170px;
+    height: 174px;
+    vertical-align: middle;
+}
+.edition{
+    background-image: url("../images/sale_page/editon.png");
+    width: 14px;
+    height: 14px;
+    display: block;
+    float: right;
+    position: relative;
+    background-color: transparent;
+    border: 0;
+}
+.edition:hover{
+    background-color: rgb(236, 125, 65);
+}
+.price{
+    color: rgb(236, 125, 65);
+    font-weight: bolder;
+    font-size: 24px;
+    text-align: right;
+    display: block;
+    position: relative;
+    margin-top: 33px;
+}
+.unit_price{
+    font-size: 14px;
+    color: #666666;
+    display: block;
+    text-align: right;
+    position: relative;
+    margin-top: 2px;
+}
+.L7{
+    display: inline-block;
+    height: 174px;
+    width: 2px;
+    background-color: #eeeeee;
+    position: relative;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+.info_status{
+    display: inline-block;
+    width: 277px;
+    height: 174px;
+    vertical-align: middle;
+    margin-left: 20px;
+}
+.sale_status{
+    position: relative;
+    display: block;
+    margin-top: 42px;
+    height: 23px;
+}
+.sold{
+    background-image: url("../images/sale_page/sold.png");
+    width: 23px;
+    height: 23px;
+    display: inline-block;
+    vertical-align: top;
+}
+.ycs{
+    font-size: 23px;
+    color: #666666;
+    font-weight: bold;
+    letter-spacing: 4px;
+    display: inline-block;
+    margin-left: 6px;
+    margin-top: -6px;
+}
+.days{
+    color: rgb(236, 125, 65);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    letter-spacing: 0;
+    display: inline-block;
+}
+.saler{
+    display: block;
+    height: 20px;
+    position: relative;
+    margin-top: 43px;
+}
+.saler_icon{
+    background-image: url("../images/sale_page/saler.png");
+    width: 14px;
+    height: 13px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.saler_text{
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 14px;
+}
+.saletime{
+    display: block;
+    position: relative;
+    height: 20px;
+    margin-top: 16px;
+}
+.saletime_icon{
+    background-image: url("../images/sale_page/sale_time.png");
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.saletime_text{
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 14px;
+}
+.L8{
+    width: 100%;
+    height: 1px;
+    background-color: #cccccc;
+    margin-top: 35px;
+    position: relative;
+}

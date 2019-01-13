@@ -1,6 +1,6 @@
 /* encoding: utf-8 */
 
-const ConditionStr = {
+const RoomConditionStr = {
     main: {
         "性质": {
             type: 1,
@@ -74,6 +74,16 @@ const ConditionStr = {
         }
     },
     sub: {
+        "学校": [
+            "全部",
+            "浣江小学",
+            "行知小学",
+            "黄沙小学",
+            "暨阳小学",
+            "滨江小学",
+            "江东小学",
+            "新世纪小学"
+        ],
         "面积": [
             "全部",
             "50平米以下",
@@ -120,4 +130,4 @@ const ConditionStr = {
     }
 };
 
-export default ConditionStr;
+export default RoomConditionStr;
