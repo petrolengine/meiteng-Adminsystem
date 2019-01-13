@@ -83,7 +83,6 @@ export default class TopContent {
             <div className="tc_tool_bar">
                 <div className="tc_line"></div>
                 {this.__getToolbarItems(ToolbarStr)}
-                <div className="tc_line"></div>
             </div>
         );
     }

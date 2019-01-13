@@ -89,7 +89,7 @@
 .tc_search{
     display: block;
     height: 47px;
-    margin-top: 3px;
+    margin-top: -11px;
     background-image: url("../images/sale_page/search_frame.png");
 }
 
