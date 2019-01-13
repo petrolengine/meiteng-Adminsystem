@@ -47,11 +47,11 @@
 .tc_tb_meun_label {
     display: inline-block;
     vertical-align: top;
-    margin-top: 13px;
-    height: 48px;
+    height: 35px;
     width: 133px;
     text-align: center;
     letter-spacing: 6px;
+    padding-top: 13px;
 }
 
 .tc_tb_drop_down_content {
@@ -75,5 +75,13 @@
 }
 
 .tc_tb_meun_dropdown_label:hover {
+    background-color: rgb(236, 125, 65);
+}
+
+.tc_tb_menu_label_hilight:hover {
+    color: rgb(236, 125, 65);
+}
+
+.tc_tb_current_menu {
     background-color: rgb(236, 125, 65);
 }

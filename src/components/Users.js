@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import '../resources/css/Users.css';
-import * as tc from '../common/TopContent';
+import TopContent from '../common/TopContent';
 import SearchPage from './SearchPage';
 import RoomPage from './RoomPage';
 
 class Users extends Component {
     constructor(props, context) {
         super(props, context);
+        this.topcontent = new TopContent(this);
         this.pages = [
             new SearchPage(),
             new RoomPage(),
@@ -19,9 +20,9 @@ class Users extends Component {
     render() {
         return (
             <div className="home_page">
-                {tc.renderLogo()}
-                {tc.renderToolBar()}
-                {this.pages[this.state.current_page].render}
+                {this.topcontent.renderLogo}
+                {this.topcontent.renderToolBar}
+                {this.pages[this.state.current_page % this.pages.length].render}
             </div>
         );
     }
