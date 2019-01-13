@@ -127,7 +127,8 @@ const RoomConditionStr = {
             "豪华装修",
             "精装修"
         ]
-    }
+    },
+    "condition": "条件:"
 };
 
 export default RoomConditionStr;

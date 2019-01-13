@@ -87,4 +87,14 @@ export default class TopContent {
             </div>
         );
     }
+
+    get renderSearchBar() {
+        return (
+            <div className="tc_search">
+                <button className="tc_btn" type="summit"></button>
+                <input className="tc_input_frame" placeholder={CommonStr.placeholder_serarch}></input>
+            </div>
+        );
+    }
+
 }

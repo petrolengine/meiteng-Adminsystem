@@ -85,3 +85,34 @@
 .tc_tb_current_menu {
     background-color: rgb(236, 125, 65);
 }
+
+.tc_search{
+    display: block;
+    height: 47px;
+    margin-top: 3px;
+    background-image: url("../images/sale_page/search_frame.png");
+}
+
+.tc_btn{
+    display: inline-block;
+    background-image: url("../images/sale_page/search.png");
+    background-position: center;
+    vertical-align: top;
+    width: 27px;
+    height: 47px;
+    margin-left: 90px;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+}
+
+.tc_input_frame {
+    display: inline-block;
+    background-color: transparent;
+    width: 1125px;
+    height: 39px;
+    margin-left: 5px;
+    margin-top: 3px;
+    border: 0;
+    padding-left: 5px;
+}
