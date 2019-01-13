@@ -21,6 +21,7 @@ class Users extends Component {
             <div className="home_page">
                 {tc.renderLogo()}
                 {tc.renderToolBar()}
+                {this.state.current_page !== 0 ? tc.renderSearchBar() : undefined}
                 {this.pages[this.state.current_page].render}
             </div>
         );

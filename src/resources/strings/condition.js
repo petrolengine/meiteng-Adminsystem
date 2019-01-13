@@ -117,7 +117,8 @@ const ConditionStr = {
             "豪华装修",
             "精装修"
         ]
-    }
+    },
+    "condition": "条件:"
 };
 
 export default ConditionStr;

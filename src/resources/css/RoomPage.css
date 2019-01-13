@@ -23,45 +23,6 @@
     margin-top: 15px;
 }
 
-.search{
-    width: 100%;
-    height: 47px;
-    position: relative;
-    margin-top: 4px;
-    display: block;
-}
-
-.search_logo{
-    background-image: url("../images/sale_page/search_frame.png");
-    width: 100%;
-    height: 47px;
-    display: block;
-}
-
-.search_frame{
-    display: inline-block;
-    width: 13\000px;
-    height: 47px;
-    position: absolute;
-    margin-top: -47px;
-    margin-left: 50px;
-}
-.btn{
-    background-image: url("../images/sale_page/search.png");
-    width: 27px;
-    height: 27px;
-    margin-left: 50px;
-    background-color: transparent;
-    margin-top: 10px;
-}
-.input_frame input[type="text"] {
-    background-color: transparent;
-    width: 1000px;
-    height: 47px;
-    margin-left: 10px;
-    border: 0;
-}
-
 .a{
     margin-left: -45px;
     display: block;
