@@ -42,11 +42,11 @@ class Login extends Component {
                 <form className="login_modal_right" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
                     <h1 className={"login_title w20_8ch"}>{CommonStr.login}</h1>
                     {this.state.error && <label color="warning">{this.state.message}</label>}
-                    <label className="login_nmr login_label w14_2ch" >{CommonStr.user}</label>
+                    <label className="login_nmr login_label w15_2ch" >{CommonStr.user}</label>
                     <input className="login_nmr login_input_sty" type="text" placeholder={CommonStr.placeholder_user} name="uname" required></input>
-                    <label className="login_nmr login_label w14_2ch">{CommonStr.pass}</label>
+                    <label className="login_nmr login_label w15_2ch">{CommonStr.pass}</label>
                     <input className="login_nmr login_input_sty" type="password" placeholder={CommonStr.placeholder_pass} name="psw" required></input>
-                    <button className="login_nmr btn_ok w14_2ch" type="submit">{CommonStr.ok}</button>
+                    <button className="login_nmr btn_ok w15_2ch" type="submit">{CommonStr.ok}</button>
                     <input className="login_cb" type="checkbox" name="remember" id="remember" ></input>
                     <label htmlFor="remember" className="remeber_sty w12_1ch">{CommonStr.remember_pass}</label>
                 </form>

@@ -1,13 +1,6 @@
 .rp_condition_page{
     display: block;
-    position: relative;
     color: black;
-}
-
-.rpcp_line{
-    background-color: #cccccc;
-    height: 1px;
-    margin-top: 15px;
 }
 
 .rpcp_select_condition_item {

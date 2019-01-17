@@ -1,6 +1,7 @@
 import React from 'react';
 import RoomConditionStr from '../resources/strings/condition';
 import '../resources/css/RoomConditionPage.css';
+import '../resources/css/line.css';
 
 class RoomConditionPage {
     constructor(context) {
@@ -159,7 +160,7 @@ class RoomConditionPage {
             <ul>
                 < li className="rpcp_contition_title" > {RoomConditionStr.condition}</li >
                 {items}
-            </ul >
+            </ul>
         );
     }
 
@@ -175,7 +176,7 @@ class RoomConditionPage {
                     this.getConditionPage_t2(items, idx++, key, RoomConditionStr.main[key].content);
                     break;
                 case 3:
-                    items.push(<div className="rpcp_line" key={`rpcp_line_${idx}`}></div>);
+                    items.push(<div className="line1_1" style={{ "marginTop": "15px" }} key={`rpcp_line_${idx}`}></div>);
                     this.getConditionPage_t3(items, idx++, key, RoomConditionStr.main[key].content);
                     break;
                 default:
@@ -185,8 +186,9 @@ class RoomConditionPage {
         return (
             <div className="rp_condition_page">
                 {items}
-                <div className="rpcp_line"></div>
+                <div className="line1_1" style={{ "marginTop": "15px" }}></div>
                 {this.getSearchResultPage}
+                <div className="line1_1" style={{ "marginTop": "15px" }}></div>
             </div>
         );
     }
