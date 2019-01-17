@@ -11,19 +11,11 @@ class RoomConditionPage {
     }
 
     handleClickConditionPage_t1(x, y, arr) {
-        let toRemove;
-        if (this.current_items[x] > 0) {
-            toRemove = this.current_items[x];
-        }
         this.current_items[x] = (this.current_items[x] === y) ? 0 : y;
         if (this.current_items[x] > 0) {
-            this.search_result.push(arr[y]);
-        }
-        if (toRemove) {
-            const pos = this.search_result.indexOf(arr[toRemove]);
-            if (pos >= 0) {
-                this.search_result.splice(pos, 1);
-            }
+            this.search_result[x] = arr[y];
+        } else if (this.search_result[x].length > 0) {
+            this.search_result[x].splice(0, 1);
         }
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
@@ -57,38 +49,23 @@ class RoomConditionPage {
     }
 
     handleClickSubConditionPage_t2(x, y, obj) {
-        let toRemove;
-        if (this.current_items[x][1] > 0) {
-            toRemove = this.current_items[x][0];
-        }
         this.current_items[x][1] = y;
         if (this.current_items[x][1] > 0) {
-            this.search_result.push(obj[y]);
-        }
-        if (toRemove) {
-            const pos = this.search_result.indexOf(obj[toRemove]);
-            if (pos >= 0) {
-                this.search_result.splice(pos, 1);
-            }
+            this.search_result[x] = obj[y];
+        } else if (this.search_result[x].length > 0) {
+            this.search_result[x].splice(0, 1);
         }
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
 
     handleClickConditionPage_t2(x, y, obj) {
-        let toRemove;
-        if (this.current_items[x][0] > 0) {
-            toRemove = this.current_items[x][0];
-        }
         this.current_items[x][0] = (this.current_items[x][0] === y) ? 0 : y;
         if (RoomConditionStr.sub[obj[y]] === undefined && this.current_items[x][0] > 0) {
-            this.search_result.push(obj[y]);
+            this.search_result[x] = obj[y];
+        } else if (this.search_result[x].length > 0) {
+            this.search_result[x].splice(0, 1);
         }
-        if (toRemove) {
-            const pos = this.search_result.indexOf(obj[toRemove]);
-            if (pos >= 0) {
-                this.search_result.splice(pos, 1);
-            }
-        }
+
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
 
@@ -149,12 +126,14 @@ class RoomConditionPage {
     get getSearchResultPage() {
         const items = [];
         this.search_result.forEach((o) => {
-            items.push(
-                <div className="rcpc_one_search_result" key={`rpcp_result_${o}`}>
-                    <label className="rcpc_search_result_label w12_1ch">{o}</label>
-                    <button className="rcpc_search_result_close_btn"></button>
-                </div>
-            );
+            if (o.length > 0) {
+                items.push(
+                    <div className="rcpc_one_search_result" key={`rpcp_result_${o[0]}`}>
+                        <label className="rcpc_search_result_label w12_1ch">{o[0]}</label>
+                        <button className="rcpc_search_result_close_btn"></button>
+                    </div>
+                );
+            }
         });
         return (
             <ul>
@@ -168,6 +147,7 @@ class RoomConditionPage {
         const items = [];
         let idx = 0;
         for (let key in RoomConditionStr.main) {
+            this.search_result.push([]);
             switch (RoomConditionStr.main[key].type) {
                 case 1:
                     this.getConditionPage_t1(items, idx++, key, RoomConditionStr.main[key].content);
