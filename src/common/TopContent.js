@@ -53,8 +53,7 @@ export default class TopContent {
                     {obj.str}
                 </li>
             );
-        }
-        else {
+        } else {
             return (
                 <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
                     key={`top_toolbar_item_${idx}`}

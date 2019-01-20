@@ -3,6 +3,7 @@ import '../resources/css/Users.css';
 import TopContent from '../common/TopContent';
 import SearchPage from './SearchPage';
 import RoomPage from './RoomPage';
+import Test from './Test';
 
 class Users extends Component {
     constructor(props, context) {
@@ -11,6 +12,8 @@ class Users extends Component {
         this.pages = [
             new SearchPage(),
             new RoomPage(this),
+            new RoomPage(this),
+            new Test(),
         ];
         this.state = {
             current_page: 1
@@ -23,7 +26,7 @@ class Users extends Component {
                 {this.topcontent.renderLogo}
                 {this.topcontent.renderToolBar}
                 {this.state.current_page !== 0 ? this.topcontent.renderSearchBar : undefined}
-                {this.pages[this.state.current_page].render}
+                {this.pages[this.state.current_page % this.pages.length].render}
             </div>
         );
     }

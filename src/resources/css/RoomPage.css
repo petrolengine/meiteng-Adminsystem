@@ -5,9 +5,16 @@
     margin-top: 5px;
 }
 
+.rp_search_result_style {
+    width: 175px;
+    height: 35px;
+    text-align: center;
+    padding-top: 5px;
+}
+
 .rp_result_one_room_split_line{
     height: 175px;
-    width: 2px;
+    width: 1px;
     background-color: #cccccc;
     margin-left: 20px;
 }
@@ -23,8 +30,9 @@
     height: 175px;
 }
 
-.edition{
+.rp_result_one_edition{
     background-image: url("../images/sale_page/editon.png");
+    background-repeat: no-repeat;
     width: 15px;
     height: 15px;
     display: block;
@@ -34,11 +42,11 @@
     border: 0;
 }
 
-.edition:hover{
+.rp_result_one_edition:hover{
     background-color: rgb(236, 125, 65);
 }
 
-.price{
+.rp_result_one_price{
     color: rgb(236, 125, 65);
     font-weight: bolder;
     font-size: 25px;
@@ -48,7 +56,7 @@
     margin-top: 33px;
 }
 
-.unit_price{
+.rp_result_one_unit_price{
     font-size: 15px;
     color: #666666;
     display: block;

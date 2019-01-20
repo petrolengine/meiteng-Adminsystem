@@ -9,9 +9,6 @@ const CommonStr = {
     placeholder_pass: "请输入您的密码",
     placeholder_serarch: "请输入关键词",
     remember_pass: "记住密码",
-    default_sort: "默认排序",
-    price_sort: "价格",
-    date_sort: "时间",
     search_result_1: "共有",
     search_result_2: "个符合要求",
     fangdong: "房东",
@@ -21,6 +18,11 @@ const CommonStr = {
     xiaoshourenyuan: "销售人员",
     chushoushijian: "出售时间",
     lou: "楼",
+    sort_style: [
+        "默认排序",
+        "价格",
+        "时间"
+    ],
 };
 
 export default CommonStr;

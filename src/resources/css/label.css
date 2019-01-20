@@ -30,14 +30,18 @@
 
 .orange15_1_ch {
     font-size: 15px;
-    color: orange;
+    color: rgb(236, 125, 65);
     letter-spacing: 1px;  
 }
 
 .orange23_0_ch {
     font-size: 23px;
-    color: orange;
+    color: rgb(236, 125, 65);
     letter-spacing: 0px;  
+}
+
+.orange_bg {
+    background-color: rgb(236, 125, 65);
 }
 
 .b20_1_ch {

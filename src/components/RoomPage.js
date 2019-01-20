@@ -22,18 +22,24 @@ class RoomPage {
         this.context = context;
         this.roomConditionPage = new RoomConditionPage(context);
         this.room_info = {
-            data: TestRoomResult
+            data: TestRoomResult,
+            result_sort_style: 0
         }
     }
 
+    onClickResultSortStyle(idx) {
+        this.room_info.result_sort_style = idx;
+        this.context.setState({ "room_info": this.room_info });
+    }
+
     get renderResultSortTab() {
-        return (
-            <div className="b" style={{ "marginTop": "30px" }}>
-                <label className="b20_1_ch" style={{ "marginLeft": "25px" }}>{CommonStr.default_sort}</label>
-                <label className="b20_1_ch" style={{ "marginLeft": "75px" }}>{CommonStr.price_sort}</label>
-                <label className="b20_1_ch" style={{ "marginLeft": "75px" }}>{CommonStr.date_sort}</label>
-            </div>
-        );
+        const items = [];
+        for (let idx = 0; idx < CommonStr.sort_style.length; idx++) {
+            const o = CommonStr.sort_style[idx];
+            const clazName = (this.room_info.result_sort_style === idx ? "w20_1_ch orange_bg" : "b20_1_ch") + " in_top rp_search_result_style";
+            items.push(<label className={clazName} onClick={() => this.onClickResultSortStyle(idx)}>{o}</label>);
+        }
+        return (<div className="b" style={{ "marginTop": "30px" }}>{items}</div>);
     }
 
     get renderSearchResultSummary() {
@@ -52,26 +58,26 @@ class RoomPage {
         return (
             <div className="rp_result_one_room_info_text in_middle">
                 <label className="B25_1_ch">{item.area + '  ' + item.huxing + '  ' + item.mianji}</label>
-                <div className="b">
-                    <img className="in_top" src={house} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 in_top">
+                <div className="b m_t_16">
+                    <img className="i" src={house} alt=''></img>
+                    <label className="c666_15_1_ch m_l_6 i">
                         {item.area + '  ' + item.huxing + '  ' + item.mianji + '  ' + item.loucen + CommonStr.lou + '  ' + item.chaoxiang + '  ' + item.zhuangxiu}
                     </label>
                 </div>
-                <div className="b m_t_20">
-                    <img className="in_top" src={address} alt=''></img>
-                    <label className="deepblue15_1_ch in_top">{item.fujinshangquan}</label>
-                    <label className="c666_15_1_ch m_l_8 in_top">{' - ' + item.address}</label>
+                <div className="b m_t_12">
+                    <img className="i" src={address} alt=''></img>
+                    <label className="c666_15_1_ch m_l_8 i">{item.fujinshangquan}</label>
+                    <label className="c666_15_1_ch m_l_6 i">{' - ' + item.address}</label>
                 </div>
-                <div className="b m_t_20">
-                    <img className="in_top" src={landlord} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 in_top">{CommonStr.fangdong + ': ' + item.fangdong + ' - '}</label>
-                    <label className="deepblue15_1_ch in_top">{item.fangdongdianhua}</label>
+                <div className="b m_t_12">
+                    <img className="i" src={landlord} alt=''></img>
+                    <label className="c666_15_1_ch m_l_6 i">{CommonStr.fangdong + ': ' + item.fangdong}</label>
+                    <label className="c666_15_1_ch m_l_6 i">{' - ' + item.fangdongdianhua}</label>
                 </div>
-                <div className="b m_t_20">
-                    <img className="in_top" src={buyer} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 in_top">{CommonStr.guke + ': ' + item.guke + ' - '}</label>
-                    <label className="deepblue15_1_ch in_top">{item.gukedianhua}</label>
+                <div className="b m_t_12">
+                    <img className="i" src={buyer} alt=''></img>
+                    <label className="c666_15_1_ch m_l_6 i">{CommonStr.guke + ': ' + item.guke}</label>
+                    <label className="c666_15_1_ch m_l_6 i">{' - ' + item.gukedianhua}</label>
                 </div>
             </div >
         );
@@ -80,9 +86,9 @@ class RoomPage {
     renderRoomPriceInfo(item) {
         return (
             <div className="rp_result_one_room_info_price in_middle">
-                <button className="edition"></button>
-                <label className="price">{item.shoujia}</label>
-                <label className="unit_price">{CommonStr.danjia + ' ' + item.danjia}</label>
+                <button className="rp_result_one_edition"></button>
+                <label className="rp_result_one_price">{item.shoujia}</label>
+                <label className="rp_result_one_unit_price">{CommonStr.danjia + ' ' + item.danjia}</label>
             </div>
         );
     }
@@ -90,22 +96,20 @@ class RoomPage {
     renderRoomStatusInfo(item) {
         return (
             <div className="rp_result_one_room_info_status in_middle">
-                <button className="edition"></button>
+                <button className="rp_result_one_edition"></button>
                 <div className="m_t_39 b">
                     <img className="in_top" src={sold} alt=''></img>
-                    <label className="C666_23_3_ch in_top">
-                        {item.state}
-                        <label className="orange23_0_ch in_top">30</label>
-                        {CommonStr.day}
-                    </label>
+                    <label className="C666_23_3_ch in_center m_l_8">{item.state}</label>
+                    <label className="orange23_0_ch in_center">30</label>
+                    <label className="C666_23_3_ch in_center m_l_5">{CommonStr.day}</label>
                 </div>
                 <div className="m_t_39 b">
-                    <img className="in_top m_l_5" src={saler} alt=''></img>
-                    <label className="m_l_15 b15_1_ch in_top">{CommonStr.xiaoshourenyuan + ':  ' + item.chushouyuangong}</label>
+                    <img className="i m_l_5" src={saler} alt=''></img>
+                    <label className="m_l_15 b15_1_ch i">{CommonStr.xiaoshourenyuan + ':  ' + item.chushouyuangong}</label>
                 </div>
                 <div className="m_t_16 b">
-                    <img className="in_top m_l_5" src={sale_time} alt=''></img>
-                    <label className="m_l_15 b15_1_ch in_top">{CommonStr.chushoushijian + ':  ' + item.chushoushijian}</label>
+                    <img className="i m_l_5" src={sale_time} alt=''></img>
+                    <label className="m_l_15 b15_1_ch i">{CommonStr.chushoushijian + ':  ' + item.chushoushijian}</label>
                 </div>
             </div>
         );
@@ -126,8 +130,10 @@ class RoomPage {
     get render() {
         const items = [];
         this.room_info.data.forEach((o) => {
+            if (items.length > 0) {
+                items.push(<div className="line1_1" style={{ "marginTop": "38px", "marginBottom": "38px" }} key={`rp_one_result_line_${items.length}`}></div>);
+            }
             items.push(this.renderOneResult(o, items.length));
-            items.push(<div className="line1_1" style={{ "marginTop": "5px" }} key={`rp_one_result_line_${items.length}`}></div>);
         });
         return (
             <div className="b">
@@ -135,7 +141,6 @@ class RoomPage {
                 {this.renderResultSortTab}
                 <div className="line2_1"></div>
                 {this.renderSearchResultSummary}
-                <div className="line1_1" style={{ "marginTop": "5px" }}></div>
                 {items}
             </div>
         );

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../resources/css/Test.css'
 
-class Test extends Component {
-    render() {
+class Test {
+    get render() {
         return (<p>hello world</p>);
     }
 }

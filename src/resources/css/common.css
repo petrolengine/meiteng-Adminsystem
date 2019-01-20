@@ -51,6 +51,14 @@
     margin-top: 16px;
 }
 
+.m_t_12 {
+    margin-top: 10px;
+}
+
 .b {
     display: block;
+}
+
+.i {
+    display: inline;
 }
