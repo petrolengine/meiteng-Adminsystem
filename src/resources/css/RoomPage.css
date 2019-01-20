@@ -1,22 +1,3 @@
-.room_page {
-    display: block;
-    background-color: #eeeeee;
-    border: 1px solid;
-    border-color: rgb(3, 19, 36);
-    border-width: 1px;
-    margin-top: 5px;
-}
-
-.rp_result_sort_tab {
-    display: block;
-    margin-top: 30px;
-}
-
-.rp_search_result_summary {
-    display: block;
-    margin-top: 21px;
-}
-
 .rp_result_one_room{
     display: block;
     height: 175px;
@@ -27,7 +8,7 @@
 .rp_result_one_room_split_line{
     height: 175px;
     width: 2px;
-    background-color: black;
+    background-color: #cccccc;
     margin-left: 20px;
 }
 

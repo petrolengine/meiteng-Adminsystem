@@ -28,7 +28,7 @@ class RoomPage {
 
     get renderResultSortTab() {
         return (
-            <div className="rp_result_sort_tab">
+            <div className="b" style={{ "marginTop": "30px" }}>
                 <label className="b20_1_ch" style={{ "marginLeft": "25px" }}>{CommonStr.default_sort}</label>
                 <label className="b20_1_ch" style={{ "marginLeft": "75px" }}>{CommonStr.price_sort}</label>
                 <label className="b20_1_ch" style={{ "marginLeft": "75px" }}>{CommonStr.date_sort}</label>
@@ -38,7 +38,7 @@ class RoomPage {
 
     get renderSearchResultSummary() {
         return (
-            <div className="rp_search_result_summary">
+            <div className="b" style={{ "marginTop": "21px" }}>
                 <label className="gray15_1_ch">
                     {CommonStr.search_result_1}
                     <label className="orange15_1_ch">86</label>
@@ -130,7 +130,7 @@ class RoomPage {
             items.push(<div className="line1_1" style={{ "marginTop": "5px" }} key={`rp_one_result_line_${items.length}`}></div>);
         });
         return (
-            <div className="room_page">
+            <div className="b">
                 {this.roomConditionPage.render}
                 {this.renderResultSortTab}
                 <div className="line2_1"></div>

@@ -3,11 +3,28 @@ import RoomConditionStr from '../resources/strings/condition';
 import '../resources/css/RoomConditionPage.css';
 import '../resources/css/line.css';
 import '../resources/css/common.css';
+import arrow from '../resources/images/sale_page/arrow.png';
 
 class RoomConditionPage {
     constructor(context) {
         this.current_items = [];
         this.search_result = [];
+        for (let key in RoomConditionStr.main) {
+            switch (RoomConditionStr.main[key].type) {
+                case 1:
+                    this.current_items.push(0);
+                    break;
+                case 2:
+                    this.current_items.push([0, 0]);
+                    break;
+                case 3:
+                    this.current_items.push([]);
+                    break;
+                default:
+                    break;
+            }
+            this.search_result.push([]);
+        }
         this.context = context;
     }
 
@@ -24,7 +41,6 @@ class RoomConditionPage {
 
     getConditionPage_t1(parent, x, key, obj) {
         const items = [];
-        this.current_items.push(0);
         let unikey = `rcpc_item_${x}`;
         items.push(<li className="rpcp_contition_title" key={unikey}>{key}:</li>);
         for (let i = 0; i < obj.length; i++) {
@@ -37,15 +53,21 @@ class RoomConditionPage {
 
     __getSubContiditionPage_t2(x, y, obj) {
         const items = [];
+        const leftM = ["0", "75px", "129px", "179px", "233px", "285px", "338px"];
         for (let i = 0; i < obj.length; i++) {
             const clazName = "rpcp_condition_item " + (this.current_items[x][1] === i ? "rpcp_select_condition_item" : "rpcp_normal_condition_item");
-            items.push(<li className={clazName} key={`rpcp_subpage_${x}_${y}_${i}`} onClick={() => this.handleClickSubConditionPage_t2(x, i, obj)}>{obj[i]}</li>);
+            const key = `rpcp_subpage_${x}_${y}_${i}`
+            const cb = () => this.handleClickSubConditionPage_t2(x, i, obj)
+            items.push(
+                <li className={clazName} key={key} onClick={cb} style={{ marginTop: "8px" }}>
+                    {obj[i]}
+                </li>
+            );
         }
         return (
             <div className="rpcp_contition_sub_collection" key={`rpcp_subpage_${x}_${y}`}>
-                <div className="rpcp_inner_frame">
-                    <ul>{items}</ul>
-                </div>
+                <img src={arrow} style={{ marginLeft: leftM[y] }} alt=""></img>
+                <ul className="rpcp_inner_frame">{items}</ul>
             </div>
         );
     }
@@ -63,13 +85,13 @@ class RoomConditionPage {
 
     handleClickConditionPage_t2(x, y, obj) {
         this.current_items[x][0] = (this.current_items[x][0] === y) ? 0 : y;
+        this.current_items[x][1] = 0;
         if (this.search_result[x].length > 0) {
             this.search_result[x].splice(0, 1);
         }
         if (RoomConditionStr.sub[obj[y]] === undefined && this.current_items[x][0] > 0) {
             this.search_result[x].push(obj[y]);
         }
-
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
 
@@ -77,19 +99,18 @@ class RoomConditionPage {
         const items = [];
         let unikey = `rpcp_item_${x}`;
         items.push(<li className="rpcp_contition_title" key={unikey}>{key}:</li>);
-        this.current_items.push([0, 0]);
         let subItem;
         for (let i = 0; i < obj.length; i++) {
             unikey = `rpcp_item_${x}_${i}`;
+            const clazName = "rpcp_condition_item " + (this.current_items[x][0] === i ? "rpcp_select_condition_item" : "rpcp_normal_condition_item");
             if (this.current_items[x][0] === i && RoomConditionStr.sub[obj[i]]) {
                 items.push(
-                    <li className="rpcp_condition_item rpcp_normal_condition_item" key={unikey} onClick={() => this.handleClickConditionPage_t2(x, i, obj)}>
+                    <li className={clazName} key={unikey} onClick={() => this.handleClickConditionPage_t2(x, i, obj)}>
                         {obj[i]}
                     </li>
                 );
                 subItem = this.__getSubContiditionPage_t2(x, i, RoomConditionStr.sub[obj[i]])
             } else {
-                const clazName = "rpcp_condition_item " + (this.current_items[x][0] === i ? "rpcp_select_condition_item" : "rpcp_normal_condition_item");
                 items.push(<li className={clazName} key={unikey} onClick={() => this.handleClickConditionPage_t2(x, i, obj)}>{obj[i]}</li>);
             }
         }
@@ -119,7 +140,6 @@ class RoomConditionPage {
     getConditionPage_t3(parent, x, key, obj) {
         const items = [];
         items.push(<li className="rpcp_contition_title" key={`rpcp_item_${x}`}>{key}:</li>);
-        this.current_items.push([]);
         for (let i = 0; i < obj.length; i++) {
             this.current_items[x].push(0);
             items.push(this.__getSubContiditionPage_t3(x, i, obj[i]));
@@ -127,21 +147,37 @@ class RoomConditionPage {
         parent.push(<ul key={`rpcp_${x}`}>{items}</ul>);
     }
 
+    onClickCloseResult(idx) {
+        this.search_result[idx].splice(0, 1)
+        switch (typeof (this.current_items[idx])) {
+            case 'number':
+                this.current_items[idx] = 0;
+                break;
+            case 'object':
+                this.current_items[idx][0] = 0;
+                break;
+            default:
+                break;
+        }
+        this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
+    }
+
     get getSearchResultPage() {
         const items = [];
-        this.search_result.forEach((o) => {
+        for (let idx = 0; idx < this.search_result.length; idx++) {
+            const o = this.search_result[idx];
             if (o.length > 0) {
                 items.push(
                     <div className="rcpc_one_search_result  in_top" key={`rpcp_result_${o[0]}`}>
                         <label className="rcpc_search_result_label w12_1ch in_top">{o[0]}</label>
-                        <button className="rcpc_search_result_close_btn in_top"></button>
+                        <button className="rcpc_search_result_close_btn in_top" onClick={() => this.onClickCloseResult(idx)} />
                     </div>
                 );
             }
-        });
+        }
         return (
             <ul>
-                < li className="rpcp_contition_title in_top" > {RoomConditionStr.condition}</li >
+                <li className="rpcp_contition_title in_top" style={{ "height": "30px" }}> {RoomConditionStr.condition}</li>
                 {items}
             </ul>
         );
@@ -151,7 +187,6 @@ class RoomConditionPage {
         const items = [];
         let idx = 0;
         for (let key in RoomConditionStr.main) {
-            this.search_result.push([]);
             switch (RoomConditionStr.main[key].type) {
                 case 1:
                     this.getConditionPage_t1(items, idx++, key, RoomConditionStr.main[key].content);

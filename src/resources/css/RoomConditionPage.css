@@ -1,6 +1,10 @@
 .rp_condition_page{
     display: block;
     color: black;
+    border: 1px solid;
+    border-color: rgb(3, 19, 36);
+    border-width: 1px;
+    background-color: #eeeeee;
 }
 
 .rpcp_select_condition_item {
@@ -36,32 +40,26 @@
 
 .rpcp_contition_sub_collection {
     display: block;
-    width: 1100px;
+    position: relative;
+    width: 1000px;
     height: 39px;
-    background-image: url("../images/sale_page/child_collection.png");
-    background-repeat: no-repeat;
-    background-position-y: 4px;
     margin-left: 110px;
-    margin-top: -13px;
+    margin-top: -20px;
 }
 
 .rpcp_inner_frame {
     display: block;
-    background-image: url("../images/sale_page/arrow.png");
+    background-image: url("../images/sale_page/child_collection.png");
     background-repeat: no-repeat;
-    background-position-x: 75px;
-    overflow-x: hidden;
-    overflow-y: scroll;
     height: 32px;
-}
-
-.rpcp_inner_frame::-webkit-scrollbar {
-    margin-top: 5px;
+    margin-top: -6px;
+    overflow-y: auto;
 }
 
 .rpcp_contition_page_style3{
     font-size: 12px;
-    margin-left: 24px;
+    margin-left: 25px;
+    height: 25px;
 }
 
 .rcpc_one_search_result{
