@@ -2,6 +2,7 @@ import React from 'react';
 import RoomConditionStr from '../resources/strings/condition';
 import '../resources/css/RoomConditionPage.css';
 import '../resources/css/line.css';
+import '../resources/css/common.css';
 
 class RoomConditionPage {
     constructor(context) {
@@ -12,10 +13,11 @@ class RoomConditionPage {
 
     handleClickConditionPage_t1(x, y, arr) {
         this.current_items[x] = (this.current_items[x] === y) ? 0 : y;
-        if (this.current_items[x] > 0) {
-            this.search_result[x] = arr[y];
-        } else if (this.search_result[x].length > 0) {
+        if (this.search_result[x].length > 0) {
             this.search_result[x].splice(0, 1);
+        }
+        if (this.current_items[x] > 0) {
+            this.search_result[x].push(arr[y]);
         }
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
@@ -50,20 +52,22 @@ class RoomConditionPage {
 
     handleClickSubConditionPage_t2(x, y, obj) {
         this.current_items[x][1] = y;
-        if (this.current_items[x][1] > 0) {
-            this.search_result[x] = obj[y];
-        } else if (this.search_result[x].length > 0) {
+        if (this.search_result[x].length > 0) {
             this.search_result[x].splice(0, 1);
+        }
+        if (this.current_items[x][1] > 0) {
+            this.search_result[x].push(obj[y]);
         }
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
     }
 
     handleClickConditionPage_t2(x, y, obj) {
         this.current_items[x][0] = (this.current_items[x][0] === y) ? 0 : y;
-        if (RoomConditionStr.sub[obj[y]] === undefined && this.current_items[x][0] > 0) {
-            this.search_result[x] = obj[y];
-        } else if (this.search_result[x].length > 0) {
+        if (this.search_result[x].length > 0) {
             this.search_result[x].splice(0, 1);
+        }
+        if (RoomConditionStr.sub[obj[y]] === undefined && this.current_items[x][0] > 0) {
+            this.search_result[x].push(obj[y]);
         }
 
         this.context.setState({ "RoomConditionPageState": this.current_items, "RoomConditionPageResultState": this.search_result });
@@ -128,16 +132,16 @@ class RoomConditionPage {
         this.search_result.forEach((o) => {
             if (o.length > 0) {
                 items.push(
-                    <div className="rcpc_one_search_result" key={`rpcp_result_${o[0]}`}>
-                        <label className="rcpc_search_result_label w12_1ch">{o[0]}</label>
-                        <button className="rcpc_search_result_close_btn"></button>
+                    <div className="rcpc_one_search_result  in_top" key={`rpcp_result_${o[0]}`}>
+                        <label className="rcpc_search_result_label w12_1ch in_top">{o[0]}</label>
+                        <button className="rcpc_search_result_close_btn in_top"></button>
                     </div>
                 );
             }
         });
         return (
             <ul>
-                < li className="rpcp_contition_title" > {RoomConditionStr.condition}</li >
+                < li className="rpcp_contition_title in_top" > {RoomConditionStr.condition}</li >
                 {items}
             </ul>
         );
