@@ -42,9 +42,9 @@
 .rpcp_contition_sub_collection {
     display: block;
     position: relative;
-    width: 1000px;
+    width: 950px;
     height: 39px;
-    margin-left: 110px;
+    margin-left: 78px;
     margin-top: -20px;
 }
 
@@ -54,6 +54,7 @@
     background-repeat: no-repeat;
     height: 32px;
     margin-top: -6px;
+    padding-left: 0px;
     overflow-y: auto;
 }
 

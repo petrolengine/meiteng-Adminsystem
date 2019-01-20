@@ -12,8 +12,8 @@ export default class TopContent {
     get renderLogo() {
         return (
             <div className="tc_logo">
-                <label className="tc_logo_english_name">{CommonStr.en_title}</label>
-                <label className="tc_logo_chinese_name">{CommonStr.ch_title}</label>
+                <label className="tc_logo_english_name in_center">{CommonStr.en_title}</label>
+                <label className="tc_logo_chinese_name in_center">{CommonStr.ch_title}</label>
             </div>
         );
     }
@@ -40,7 +40,7 @@ export default class TopContent {
     __getToolbarItem(obj, idx) {
         if (obj.sub) {
             return (
-                <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch" key={`top_toolbar_item_${idx}`}>
+                <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
                     {obj.str}
                     {this.__getSubItem(obj)}
                 </li>

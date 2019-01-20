@@ -177,7 +177,7 @@ class RoomConditionPage {
         }
         return (
             <ul>
-                <li className="rpcp_contition_title in_top" style={{ "height": "30px" }}> {RoomConditionStr.condition}</li>
+                <li className="rpcp_contition_title in_top" style={{ "height": "25px" }}> {RoomConditionStr.condition}</li>
                 {items}
             </ul>
         );
@@ -207,7 +207,6 @@ class RoomConditionPage {
                 {items}
                 <div className="line1_1" style={{ "marginTop": "15px" }}></div>
                 {this.getSearchResultPage}
-                <div className="line1_1" style={{ "marginTop": "15px" }}></div>
             </div>
         );
     }
