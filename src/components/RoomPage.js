@@ -98,18 +98,18 @@ class RoomPage {
             <div className="rp_result_one_room_info_status in_middle">
                 <button className="rp_result_one_edition"></button>
                 <div className="m_t_39 b">
-                    <img className="in_top" src={sold} alt=''></img>
+                    <img className="in_center" src={sold} alt=''></img>
                     <label className="C666_23_3_ch in_center m_l_8">{item.state}</label>
                     <label className="orange23_0_ch in_center">30</label>
                     <label className="C666_23_3_ch in_center m_l_5">{CommonStr.day}</label>
                 </div>
                 <div className="m_t_39 b">
                     <img className="i m_l_5" src={saler} alt=''></img>
-                    <label className="m_l_15 b15_1_ch i">{CommonStr.xiaoshourenyuan + ':  ' + item.chushouyuangong}</label>
+                    <label className="m_l_6 c666_15_1_ch i">{CommonStr.xiaoshourenyuan + ':  ' + item.chushouyuangong}</label>
                 </div>
                 <div className="m_t_16 b">
                     <img className="i m_l_5" src={sale_time} alt=''></img>
-                    <label className="m_l_15 b15_1_ch i">{CommonStr.chushoushijian + ':  ' + item.chushoushijian}</label>
+                    <label className="m_l_6 c666_15_1_ch i">{CommonStr.chushoushijian + ':  ' + item.chushoushijian}</label>
                 </div>
             </div>
         );
