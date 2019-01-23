@@ -1,0 +1,71 @@
+.w15_2ch {
+    font-size: 15px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.w20_8ch {
+    font-size: 20px;
+    color: white;
+    letter-spacing: 8px;
+}
+
+.w12_1ch {
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.w20_1_ch {
+    font-size: 20px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.gray15_1_ch {
+    font-size: 15px;
+    color: gray;
+    letter-spacing: 1px;
+}
+
+.orange15_1_ch {
+    font-size: 15px;
+    color: rgb(236, 125, 65);
+    letter-spacing: 1px;  
+}
+
+.orange23_0_ch {
+    font-size: 23px;
+    color: rgb(236, 125, 65);
+    letter-spacing: 0px;  
+}
+
+.orange_bg {
+    background-color: rgb(236, 125, 65);
+}
+
+.b20_1_ch {
+    font-size: 20px;
+    color: black;
+    letter-spacing: 1px;  
+}
+
+.B25_1_ch {
+    font-size: 25px;
+    color: black;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.c666_15_1_ch {
+    font-size: 15px;
+    color: #666666;
+    letter-spacing: 1px;  
+}
+
+.C666_23_3_ch {
+    font-size: 23px;
+    color: #666666;
+    letter-spacing: 3px;
+    font-weight: bold;
+}

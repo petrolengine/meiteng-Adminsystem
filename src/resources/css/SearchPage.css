@@ -1,0 +1,39 @@
+.searchpage_background {
+    display: block;
+    background-image: url("../images/home/background.png");
+    height: 808px;
+    width: 1257px;
+    margin-top: 4px;
+}
+
+.searchpage_logo_frame {
+    background-color: rgb(3, 19, 36,0.9);
+    background-image: url("../images/home/logo02.png");
+    background-repeat: no-repeat;
+    background-position-x: 541px;
+    background-position-y: 72px;
+    height: 808px;
+    width: 1257px;
+    text-align: center;
+}
+
+.searchpage_search_content {
+    display: inline-block;
+    vertical-align: bottom;
+    background-color: transparent;
+    width: 711px;
+    height: 33px;
+    letter-spacing: 2px;
+    color: white;
+    margin-top: 167px;
+}
+
+.searchpage_btn_search {
+    display: inline-block;
+    vertical-align: bottom;
+    background-image: url("../images/home/searchbutton.png");
+    width: 114px;
+    height: 39px;
+    border: 0px;
+    margin-left: 5px;
+}

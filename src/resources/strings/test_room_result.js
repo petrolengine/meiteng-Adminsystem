@@ -1,0 +1,42 @@
+const TestRoomResult = [
+    {
+        area: "上城小区",
+        huxing: "4室2厅2卫",
+        mianji: "200平米",
+        loucen: "15",
+        chaoxiang: "南",
+        zhuangxiu: "精装修",
+        fujinshangquan: "雄风新天地商圈",
+        address: "城东暨阳街道东三路上城小区",
+        fangdong: "蜘蛛侠先生",
+        fangdongdianhua: "12345678912",
+        guke: "花木兰小姐",
+        gukedianhua: "21987456321",
+        shoujia: "200万",
+        danjia: "10000",
+        state: "已出售",
+        chushoushijian: "2018年12月5日",
+        chushouyuangong: "周杰伦",
+    },
+    {
+        area: "上城小区",
+        huxing: "4室2厅2卫",
+        mianji: "200平米",
+        loucen: "15",
+        chaoxiang: "南",
+        zhuangxiu: "精装修",
+        fujinshangquan: "雄风新天地商圈",
+        address: "城东暨阳街道东三路上城小区",
+        fangdong: "蜘蛛侠先生",
+        fangdongdianhua: "12345678912",
+        guke: "花木兰小姐",
+        gukedianhua: "21987456321",
+        shoujia: "200万",
+        danjia: "10000",
+        state: "已出售",
+        chushoushijian: "2018年12月5日",
+        chushouyuangong: "周杰伦",
+    }
+];
+
+export default TestRoomResult;
