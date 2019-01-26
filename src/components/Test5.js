@@ -2,7 +2,7 @@ import React from 'react';
 import '../resources/css/Test.css'
 import '../resources/css/common.css'
 
-class Test {
+class Test5 {
     get render() {
         return (
             <div>
@@ -52,4 +52,4 @@ class Test {
     }
 }
 
-export default Test;
+export default Test5;

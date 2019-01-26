@@ -3,8 +3,8 @@ const ToolbarStr = [
     { str: "卖房" },
     { str: "租房" },
     { str: "房东" },
-    { str: "小区" },
     { str: "顾客" },
+    { str: "小区" },
     { str: "员工" },
     {
         str: "添加",

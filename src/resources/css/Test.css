@@ -37,7 +37,7 @@
     height: 287px;
     width: 337px;
     display: block;
-    margin-top: 39px;
+    margin-top: 45px;
 }
 .blank_frame{
     display: block;
@@ -47,7 +47,7 @@
 }
 
 .bk {
-    margin-top: 10px;
+    margin-top: 12px;
     margin-left: 86px;
     width: 400px;
 }
@@ -65,6 +65,16 @@
     width: 250px;
     border: 0px;
 }
+.info_landlord_bk{
+    height: 23px;
+    width: 250px;
+    padding-top: 3px;
+    padding-bottom: 1px;
+}
+.gender{
+    font-size: 16px;
+    color: white;
+}
 .finish{
     background-color: #ec6941;
     height: 26px;
@@ -73,4 +83,5 @@
     border: 0px;
     margin-top: 20px;
     margin-left: 337px;
+    font-family: "微软雅黑";
 }
