@@ -23,6 +23,8 @@ const CommonStr = {
         "价格",
         "时间"
     ],
+    sales_records: "例.售出房屋3套/租出房屋6套",
+    others: "例.持有房地产经纪人证",
 };
 
 export default CommonStr;

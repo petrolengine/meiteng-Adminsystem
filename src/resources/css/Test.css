@@ -12,7 +12,7 @@
     position: relative;
     margin-top: 4px;
 }
-.specil_frame{
+.special_frame{
     background-image: url(../images/add_info_landlord/specil_frame.png);
     height: 454px;
     width: 509px;
@@ -37,7 +37,7 @@
     height: 287px;
     width: 337px;
     display: block;
-    margin-top: 45px;
+    margin-top: 40px;
 }
 .blank_frame{
     display: block;
@@ -62,8 +62,10 @@
 }
 .info_landlord_content{
     height: 25px;
-    width: 250px;
+    width: 244px;
     border: 0px;
+    padding-left: 6px;
+    font-size: 15px;
 }
 .info_landlord_bk{
     height: 23px;
@@ -81,7 +83,7 @@
     width: 88px;
     display: block;
     border: 0px;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 337px;
     font-family: "微软雅黑";
 }
