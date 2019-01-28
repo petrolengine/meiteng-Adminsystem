@@ -1,8 +1,8 @@
 import React from 'react';
-import '../resources/css/TopContent.css'
-import '../resources/css/label.css'
-import CommonStr from '../resources/strings/common'
-import ToolbarStr from '../resources/strings/toolbar'
+import '../resources/css/TopContent.css';
+import '../resources/css/label.css';
+import CommonStr from '../resources/strings/common';
+import ToolbarStr from '../resources/strings/toolbar';
 
 export default class TopContent {
     constructor(context) {
@@ -22,12 +22,18 @@ export default class TopContent {
         this.context.setState({ current_page: idx });
     }
 
-    __getSubItem(obj) {
+    __getSubItem(obj, idx) {
         if (obj.sub) {
             const items = [];
-            let idx = 0;
             obj.sub.forEach((o) => {
-                items.push(<li className="tc_tb_meun_dropdown_label w20_1_ch" key={`top_toolbar_subitem_${idx++}`}>{o.str}</li>);
+                items.push(
+                    <li className="tc_tb_meun_dropdown_label w20_1_ch"
+                        key={`top_toolbar_subitem_${idx}`}
+                        onClick={() => this.__handleToolbarClick(idx)}>
+                        {o.str}
+                    </li >
+                );
+                idx++;
             });
             return (
                 <ul className="tc_tb_drop_down_content">
@@ -37,38 +43,38 @@ export default class TopContent {
         }
     }
 
-    __getToolbarItem(obj, idx) {
-        if (obj.sub) {
-            return (
-                <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
-                    {obj.str}
-                    {this.__getSubItem(obj)}
-                </li>
-            );
-        } else if (this.context.state.current_page === idx) {
-            return (
-                <li className="tc_tb_meun_label w20_1_ch tc_tb_current_menu"
-                    key={`top_toolbar_item_${idx}`}
-                    onClick={() => this.__handleToolbarClick(idx)}>
-                    {obj.str}
-                </li>
-            );
-        } else {
-            return (
-                <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
-                    key={`top_toolbar_item_${idx}`}
-                    onClick={() => this.__handleToolbarClick(idx)}>
-                    {obj.str}
-                </li>
-            );
-        }
-    }
-
     __getToolbarItems(obj) {
         const items = [];
         let idx = 0;
         obj.forEach((o) => {
-            items.push(this.__getToolbarItem(o, idx++));
+            let item;
+            if (o.sub) {
+                item = (
+                    <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
+                        {o.str}
+                        {this.__getSubItem(o, idx)}
+                    </li>
+                );
+                idx += o.sub.length;
+            } else if (this.context.state.current_page === idx) {
+                item = (
+                    <li className="tc_tb_meun_label w20_1_ch tc_tb_current_menu"
+                        key={`top_toolbar_item_${idx}`}>
+                        {o.str}
+                    </li>
+                );
+                idx++;
+            } else {
+                item = (
+                    <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
+                        key={`top_toolbar_item_${idx}`}
+                        onClick={() => this.__handleToolbarClick(idx)}>
+                        {o.str}
+                    </li>
+                );
+                idx++;
+            }
+            items.push(item);
         });
         return (
             <ul className="tc_toolbar_meun">
@@ -94,5 +100,4 @@ export default class TopContent {
             </div>
         );
     }
-
 }
