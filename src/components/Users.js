@@ -37,7 +37,7 @@ class Users extends Component {
             <div className="home_page">
                 {this.topcontent.renderLogo}
                 {this.topcontent.renderToolBar}
-                {this.pages[this.state.current_page % this.pages.length][1] ? this.topcontent.renderSearchBar : undefined}
+                {this.topcontent.renderSearchBar(this.pages[this.state.current_page % this.pages.length][1])}
                 {this.pages[this.state.current_page % this.pages.length][0].render}
             </div>
         );

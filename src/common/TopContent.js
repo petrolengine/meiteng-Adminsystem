@@ -92,7 +92,10 @@ export default class TopContent {
         );
     }
 
-    get renderSearchBar() {
+    renderSearchBar(valide) {
+        if (!valide) {
+            return (<div className="tc_search"></div>);
+        }
         return (
             <div className="tc_search">
                 <button className="tc_btn" type="summit"></button>
