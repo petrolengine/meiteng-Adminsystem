@@ -17,6 +17,7 @@ class Users extends Component {
             new RoomPage(this),
             new RoomPage(this),
             new RoomPage(this),
+            new RoomPage(this),
             new AddLandordPage(this),
         ];
         this.state = {
@@ -25,7 +26,7 @@ class Users extends Component {
     }
 
     render() {
-        const hasSearchBar = [0, 1, 1, 1, 1, 1, 0];
+        const hasSearchBar = [0, 1, 1, 1, 1, 1, 1, 0];
         return (
             <div className="home_page">
                 {this.topcontent.renderLogo}

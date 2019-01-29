@@ -26,10 +26,11 @@ export default class TopContent {
         if (obj.sub) {
             const items = [];
             obj.sub.forEach((o) => {
+                const cur = idx;
                 items.push(
                     <li className="tc_tb_meun_dropdown_label w20_1_ch"
-                        key={`top_toolbar_subitem_${idx}`}
-                        onClick={() => this.__handleToolbarClick(idx)}>
+                        key={`top_toolbar_subitem_${cur}`}
+                        onClick={() => this.__handleToolbarClick(cur)}>
                         {o.str}
                     </li >
                 );
@@ -47,9 +48,8 @@ export default class TopContent {
         const items = [];
         let idx = 0;
         obj.forEach((o) => {
-            let item;
             if (o.sub) {
-                item = (
+                items.push(
                     <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
                         {o.str}
                         {this.__getSubItem(o, idx)}
@@ -57,7 +57,7 @@ export default class TopContent {
                 );
                 idx += o.sub.length;
             } else if (this.context.state.current_page === idx) {
-                item = (
+                items.push(
                     <li className="tc_tb_meun_label w20_1_ch tc_tb_current_menu"
                         key={`top_toolbar_item_${idx}`}>
                         {o.str}
@@ -65,16 +65,16 @@ export default class TopContent {
                 );
                 idx++;
             } else {
-                item = (
+                const cur = idx;
+                items.push(
                     <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
-                        key={`top_toolbar_item_${idx}`}
-                        onClick={() => this.__handleToolbarClick(idx)}>
+                        key={`top_toolbar_item_${cur}`}
+                        onClick={() => this.__handleToolbarClick(cur)}>
                         {o.str}
                     </li>
                 );
                 idx++;
             }
-            items.push(item);
         });
         return (
             <ul className="tc_toolbar_meun">
