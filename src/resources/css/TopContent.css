@@ -26,6 +26,7 @@
 
 .tc_tool_bar {
     display: block;
+    z-index: 999;
 }
 
 .tc_line {
@@ -60,6 +61,7 @@
     width: 139px;
     padding-left: 0;
     margin-top: 8px;
+    z-index: 999;
 }
 
 .tc_tb_meun_dropdown_label {

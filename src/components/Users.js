@@ -4,6 +4,9 @@ import TopContent from '../common/TopContent';
 import SearchPage from './SearchPage';
 import RoomPage from './RoomPage';
 import AddLandordPage from './AddLandordPage';
+import AddCustomerPage from './AddCustomerPage';
+import AddAreaPage from './AddAreaPage';
+import AddStaffPage from './AddStaffPage';
 
 
 class Users extends Component {
@@ -11,14 +14,18 @@ class Users extends Component {
         super(props, context);
         this.topcontent = new TopContent(this);
         this.pages = [
-            new SearchPage(),
-            new RoomPage(this),
-            new RoomPage(this),
-            new RoomPage(this),
-            new RoomPage(this),
-            new RoomPage(this),
-            new RoomPage(this),
-            new AddLandordPage(this),
+            // page obj | need search bar | 
+            [new SearchPage(), false],
+            [new RoomPage(this), true],
+            [new RoomPage(this), true],
+            [new RoomPage(this), true],
+            [new RoomPage(this), true],
+            [new RoomPage(this), true],
+            [new RoomPage(this), true],
+            [new AddLandordPage(this), false],
+            [new AddCustomerPage(this), false],
+            [new AddAreaPage(this), false],
+            [new AddStaffPage(this), false],
         ];
         this.state = {
             current_page: 1
@@ -26,13 +33,12 @@ class Users extends Component {
     }
 
     render() {
-        const hasSearchBar = [0, 1, 1, 1, 1, 1, 1, 0];
         return (
             <div className="home_page">
                 {this.topcontent.renderLogo}
                 {this.topcontent.renderToolBar}
-                {hasSearchBar[this.state.current_page % this.pages.length] === 1 ? this.topcontent.renderSearchBar : undefined}
-                {this.pages[this.state.current_page % this.pages.length].render}
+                {this.pages[this.state.current_page % this.pages.length][1] ? this.topcontent.renderSearchBar : undefined}
+                {this.pages[this.state.current_page % this.pages.length][0].render}
             </div>
         );
     }
