@@ -1,6 +1,6 @@
 import React from 'react';
 import CommonStr from '../resources/strings/common';
-import '../resources/css/Test.css';
+import '../resources/css/AddPage.css';
 import '../resources/css/common.css';
 
 export default class AddLandordPage {

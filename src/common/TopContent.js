@@ -94,7 +94,7 @@ export default class TopContent {
 
     renderSearchBar(valide) {
         if (!valide) {
-            return (<div className="tc_search"></div>);
+            return (<div className="tc_decoration"></div>);
         }
         return (
             <div className="tc_search">

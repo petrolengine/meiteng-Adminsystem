@@ -43,6 +43,9 @@ const CommonStr = {
     area_trafic: "交通出行",
     area_label: "标签生成",
     add_staff: "添加员工",
+    add_sale: "添加卖房",
+    add_rend: "添加租房",
+    address: "地址",
 };
 
 export default CommonStr;

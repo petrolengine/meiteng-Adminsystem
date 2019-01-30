@@ -7,6 +7,7 @@ import AddLandordPage from './AddLandordPage';
 import AddCustomerPage from './AddCustomerPage';
 import AddAreaPage from './AddAreaPage';
 import AddStaffPage from './AddStaffPage';
+import AddRoomPage from './AddRoomPage';
 
 
 class Users extends Component {
@@ -22,10 +23,12 @@ class Users extends Component {
             [new RoomPage(this), true],
             [new RoomPage(this), true],
             [new RoomPage(this), true],
-            [new AddLandordPage(this), false],
-            [new AddCustomerPage(this), false],
+            [new AddRoomPage(this, true), false],
+            [new AddRoomPage(this, false), false],
             [new AddAreaPage(this), false],
             [new AddStaffPage(this), false],
+            [new AddCustomerPage(this), false],
+            [new AddLandordPage(this), false],
         ];
         this.state = {
             current_page: 1
