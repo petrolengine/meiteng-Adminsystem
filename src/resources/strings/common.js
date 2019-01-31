@@ -15,6 +15,7 @@ const CommonStr = {
     guke: "顾客",
     danjia: "单价",
     day: "天",
+    sui: "岁",
     xiaoshourenyuan: "销售人员",
     chushoushijian: "出售时间",
     lou: "楼",
@@ -46,6 +47,11 @@ const CommonStr = {
     add_sale: "添加卖房",
     add_rend: "添加租房",
     address: "地址",
+    resources: "资源",
+    yizi: "已租",
+    yishou: "已售",
+    daizu: "待租",
+    daishou: "待售",
 };
 
 export default CommonStr;
