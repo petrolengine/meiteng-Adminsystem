@@ -1,6 +1,5 @@
 .home_page{
     position: relative;
     width: 1257px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }

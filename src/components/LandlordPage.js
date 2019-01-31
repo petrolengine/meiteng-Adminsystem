@@ -2,7 +2,7 @@ import React from 'react';
 import '../resources/css/common.css';
 import '../resources/css/add_sales.css';
 import '../resources/css/label.css';
-import '../resources/css/browse_landlord.css';
+import '../resources/css/LandlordPage.css';
 import CommonStr from '../resources/strings/common';
 import { renderPage } from '../common/Function';
 // for debug
