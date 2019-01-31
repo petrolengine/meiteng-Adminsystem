@@ -48,7 +48,7 @@ const CommonStr = {
     add_rend: "添加租房",
     address: "地址",
     resources: "资源",
-    yizi: "已租",
+    yizu: "已租",
     yishou: "已售",
     daizu: "待租",
     daishou: "待售",
