@@ -5,7 +5,7 @@
     margin-top: 12px;
 }
 .filter_male{
-    background-image: url(../images/browse_landlord/male_b.png);
+    background-image: url("../images/browse_landlord/male_b.png");
     height: 21px;
     width: 15px;
     border: 0px;
@@ -27,7 +27,7 @@
     margin-top: 8px;
 }
 .filter_female{
-    background-image: url(../images/browse_landlord/female_b.png);
+    background-image: url("../images/browse_landlord/female_b.png");
     height: 21px;
     width: 15px;
     border: 0px;
@@ -36,7 +36,7 @@
     margin-top: 13px;
 }
 .filter_rent{
-    background-image: url(../images/browse_landlord/rent_b.png);
+    background-image: url("../images/browse_landlord/rent_b.png");
     height: 21px;
     width: 25px;
     background-color: transparent;
@@ -45,7 +45,7 @@
     margin-left: 37px;
 }
 .filter_sales{
-    background-image: url(../images/browse_landlord/sales_b.png);
+    background-image: url("../images/browse_landlord/sales_b.png");
     height: 21px;
     width: 23px;
     border: 0px;
@@ -60,7 +60,7 @@
     margin-top: 12px;
 }
 .landlord_info_name{
-    background-image: url(../images/browse_landlord/w_circle.png);
+    background-image: url("../images/browse_landlord/w_circle.png");
     height: 85px;
     width: 85px;
     margin-left: 16px;
@@ -75,7 +75,7 @@
     margin-top: 0px;
 }
 .landlord_sex{
-    background-image: url(../images/browse_landlord/s_male_o.png);
+    background-image: url("../images/browse_landlord/s_male_o.png");
     height: 15px;
     width: 11px;
     margin-left: 37px;
@@ -89,28 +89,28 @@
     margin-top: 10px;
 }
 .tele_img{
-    background-image: url(../images/browse_landlord/tele.png);
+    background-image: url("../images/browse_landlord/tele.png");
     height: 14px;
     width: 8px;
     margin-left: 2px;
 }
 .identity_img{
-    background-image: url(../images/browse_landlord/idnumber.png);
+    background-image: url("../images/browse_landlord/idnumber.png");
     height: 14px;
     width: 13px;
 }
 .obode_img{
-    background-image: url(../images/browse_landlord/obode.png);
+    background-image: url("../images/browse_landlord/obode.png");
     height: 14px;
     width: 14px;
 }
 .house_resourde_img{
-    background-image: url(../images/browse_landlord/house_source.png);
+    background-image: url("../images/browse_landlord/house_source.png");
     height: 14px;
     width: 14px;
 }
 .commands_img{
-    background-image: url(../images/browse_landlord/remarks.png);
+    background-image: url("../images/browse_landlord/remarks.png");
     height: 14px;
     width: 11px;
     margin-left: 2px;
@@ -129,7 +129,7 @@
     margin-top: 4px;
 }
 .landlord_edit{
-    background-image: url(../images/browse_landlord/editon.png);
+    background-image: url("../images/browse_landlord/editon.png");
     height: 14px;
     width: 14px;
     border: 0px;
@@ -150,7 +150,7 @@
     width: 183px;
 }
 .arrow_left{
-    background-image: url(../images/browse_landlord/arrow_left.png);
+    background-image: url("../images/browse_landlord/arrow_left.png");
     height: 35px;
     width: 35px;
     border: 0px;
@@ -164,7 +164,7 @@
     margin-left: 2px;
 }
 .arrow_right{
-    background-image: url(../images/browse_landlord/arrow_right.png);
+    background-image: url("../images/browse_landlord/arrow_right.png");
     height: 35px;
     width: 35px;
     border: 0px;

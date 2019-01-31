@@ -1,11 +1,10 @@
 import React from 'react';
-import '../resources/css/Test.css'
-import '../resources/css/common.css'
-import '../resources/css/add_sales.css'
-import '../resources/css/label.css'
+import '../resources/css/common.css';
+import '../resources/css/add_sales.css';
+import '../resources/css/label.css';
 import '../resources/css/browse_landlord.css';
 
-class Test {
+export default class LandlordPage {
     get render() {
         return (
             <dev>
@@ -54,5 +53,3 @@ class Test {
         );
     }
 }
-
-export default Test;
