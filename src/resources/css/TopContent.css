@@ -92,6 +92,7 @@
     height: 50px;
     margin-top: -11px;
     background-image: url("../images/sale_page/search_frame.png");
+    background-repeat: no-repeat;
 }
 
 .tc_decoration{
