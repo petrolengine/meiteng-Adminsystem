@@ -27,11 +27,21 @@
     color: gray;
     letter-spacing: 1px;
 }
+.gray15_0_ch {
+    font-size: 15px;
+    color: gray;
+    letter-spacing: 0px;
+}
 
 .gray10_1_ch {
     font-size: 10px;
     color: gray;
     letter-spacing: 1px;
+}
+.gray10_0_ch {
+    font-size: 10px;
+    color: gray;
+    letter-spacing: 0px;
 }
 .orange15_1_ch {
     font-size: 15px;

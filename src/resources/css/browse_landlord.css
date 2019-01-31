@@ -136,6 +136,7 @@
     float: right;
     margin-right: 1px;
     margin-top: 1px;
+    background-color: transparent;
 }
 .landlord_last_time{
     float: right;
