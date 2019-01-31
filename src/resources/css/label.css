@@ -28,6 +28,11 @@
     letter-spacing: 1px;
 }
 
+.gray10_1_ch {
+    font-size: 10px;
+    color: gray;
+    letter-spacing: 1px;
+}
 .orange15_1_ch {
     font-size: 15px;
     color: rgb(236, 125, 65);
