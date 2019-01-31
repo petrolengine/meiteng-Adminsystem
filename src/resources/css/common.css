@@ -54,3 +54,7 @@
 .i {
     display: inline;
 }
+
+.noborder {
+    border: 0px;
+}
