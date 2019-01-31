@@ -4,6 +4,7 @@ import '../resources/css/add_sales.css';
 import '../resources/css/label.css';
 import '../resources/css/browse_landlord.css';
 import CommonStr from '../resources/strings/common';
+import { renderPage } from '../common/Function';
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
 
@@ -12,12 +13,14 @@ export default class LandlordPage {
         this.context = context;
         this.info = {
             data: TestLandlord,
+            totalPage: 3,
+            curPage: 0,
         }
     }
 
     renderOneResult(obj, idx) {
         return (
-            <div className="b landlord_info_card" key={`landlord_item_${idx}`}>
+            <div className="in_top landlord_info_card" key={`landlord_item_${idx}`}>
                 <div className="landlord_info_name in_middle">
                     <label className="b15_1_ch in_top person_name">{obj.name}</label>
                     <label className="gray10_1_ch in_top person_age">{obj.age + CommonStr.sui}</label>
@@ -62,13 +65,7 @@ export default class LandlordPage {
                     <div className="in_middle vertical_line line2"></div>
                 </div>
                 {items}
-                <div className="browse_landlord_page b">
-                    <button className="arrow_left in_top"></button>
-                    <button className="num_1 in_top b15_1_ch">1</button>
-                    <button className="num_1 in_top b15_1_ch">2</button>
-                    <button className="num_1 in_top b15_1_ch">3</button>
-                    <button className="arrow_right in_top"></button>
-                </div>
+                {renderPage(this.info.totalPage, this.info.curPage)}
             </dev>
         );
     }

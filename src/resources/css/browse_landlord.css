@@ -142,31 +142,3 @@
     margin-right: -13px;
     margin-top: 140px;
 }
-.browse_landlord_page{
-    margin-top: 623px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 35px;
-    width: 183px;
-}
-.arrow_left{
-    background-image: url("../images/browse_landlord/arrow_left.png");
-    height: 35px;
-    width: 35px;
-    border: 0px;
-    background-color: transparent;
-}
-.num_1{
-    background-color: #eeeeee;
-    height: 35px;
-    width: 35px;
-    border: 0px;
-    margin-left: 2px;
-}
-.arrow_right{
-    background-image: url("../images/browse_landlord/arrow_right.png");
-    height: 35px;
-    width: 35px;
-    border: 0px;
-    margin-left: 2px;
-}
