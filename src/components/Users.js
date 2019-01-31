@@ -6,7 +6,7 @@ import RoomPage from './RoomPage';
 import AddPersonPage from './AddPersonPage';
 import AddAreaPage from './AddAreaPage';
 import AddRoomPage from './AddRoomPage';
-import CommonStr from '../resources/strings/common';
+import PersonType from '../common/PersonType';
 
 
 class Users extends Component {
@@ -25,9 +25,9 @@ class Users extends Component {
             [new AddRoomPage(this, true), false],
             [new AddRoomPage(this, false), false],
             [new AddAreaPage(this), false],
-            [new AddPersonPage(this, CommonStr.add_staff), false],
-            [new AddPersonPage(this, CommonStr.add_customer), false],
-            [new AddPersonPage(this, CommonStr.add_landord), false],
+            [new AddPersonPage(this, PersonType.LANDLORD), false],
+            [new AddPersonPage(this, PersonType.CUSTOMER), false],
+            [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
             current_page: 1

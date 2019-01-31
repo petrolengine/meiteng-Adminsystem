@@ -3,19 +3,33 @@ import CommonStr from '../resources/strings/common';
 import '../resources/css/AddPageCommon.css';
 import '../resources/css/common.css';
 import '../resources/css/label.css';
+import { AddpersonAction, AddPersonTitle } from '../common/PersonType';
 
-export default class AddCustomerPage {
-    constructor(context, title) {
+
+export default class AddPersonPage {
+    constructor(context, person_type) {
         this.context = context;
-        this.title = title
+        this.person_type = person_type
+        this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.info = {
         }
+    }
+
+    handleSubmitEvent(event) {
+    }
+
+    get title() {
+        return AddPersonTitle[this.person_type];
+    }
+
+    get action() {
+        return `${process.env.REACT_APP_URL_PREFIX}/${AddpersonAction[this.person_type]}`;
     }
 
     get render() {
         return (
             <div className="add_page_common_background">
-                <div className="add_page_common_main_frame">
+                <form className="add_page_common_main_frame" action={this.action} method="POST" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch add_page_common_title textalign_c">{this.title}</label>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top" >{CommonStr.name}</label>
@@ -49,7 +63,7 @@ export default class AddCustomerPage {
                         <input className="add_page_common_value w15_1ch in_top" name="remarks"></input>
                     </div>
                     <button className="b add_page_common_ok w15_2ch">{CommonStr.ok}</button>
-                </div>
+                </form>
             </div>
         );
     }
