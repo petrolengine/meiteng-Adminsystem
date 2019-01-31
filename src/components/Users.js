@@ -3,11 +3,10 @@ import '../resources/css/Users.css';
 import TopContent from '../common/TopContent';
 import SearchPage from './SearchPage';
 import RoomPage from './RoomPage';
-import AddLandordPage from './AddLandordPage';
-import AddCustomerPage from './AddCustomerPage';
+import AddPersonPage from './AddPersonPage';
 import AddAreaPage from './AddAreaPage';
-import AddStaffPage from './AddStaffPage';
 import AddRoomPage from './AddRoomPage';
+import CommonStr from '../resources/strings/common';
 
 
 class Users extends Component {
@@ -26,9 +25,9 @@ class Users extends Component {
             [new AddRoomPage(this, true), false],
             [new AddRoomPage(this, false), false],
             [new AddAreaPage(this), false],
-            [new AddStaffPage(this), false],
-            [new AddCustomerPage(this), false],
-            [new AddLandordPage(this), false],
+            [new AddPersonPage(this, CommonStr.add_staff), false],
+            [new AddPersonPage(this, CommonStr.add_customer), false],
+            [new AddPersonPage(this, CommonStr.add_landord), false],
         ];
         this.state = {
             current_page: 1
