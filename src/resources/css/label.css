@@ -49,6 +49,11 @@
     letter-spacing: 1px;  
 }
 
+.orange15_0_ch {
+    font-size: 15px;
+    color: rgb(236, 125, 65);
+    letter-spacing: 0px;  
+}
 .orange23_0_ch {
     font-size: 23px;
     color: rgb(236, 125, 65);
