@@ -30,7 +30,7 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 1
+            current_page: 3
         };
     }
 

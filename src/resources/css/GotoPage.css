@@ -1,9 +1,7 @@
 .goto_page {
     margin-top: 66px;
-    margin-left: auto;
-    margin-right: auto;
     height: 35px;
-    width: 183px;
+    text-align: center;
 }
 
 .goto_page_arrow_left {

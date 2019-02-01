@@ -81,53 +81,14 @@
     margin-left: 37px;
     margin-top: 2px;
 }
-.landlord_info_icon{
-    margin-left: 20px;
-    margin-top: 12px;
-}
-.deviation{
-    margin-top: 10px;
-}
-.tele_img{
-    background-image: url("../images/browse_landlord/tele.png");
-    height: 14px;
-    width: 8px;
-    margin-left: 2px;
-}
-.identity_img{
-    background-image: url("../images/browse_landlord/idnumber.png");
-    height: 14px;
-    width: 13px;
-}
-.obode_img{
-    background-image: url("../images/browse_landlord/obode.png");
-    height: 14px;
-    width: 14px;
-}
-.house_resourde_img{
-    background-image: url("../images/browse_landlord/house_source.png");
-    height: 14px;
-    width: 14px;
-}
-.commands_img{
-    background-image: url("../images/browse_landlord/remarks.png");
-    height: 14px;
-    width: 11px;
-    margin-left: 2px;
-}
+
 .landlord_mian_info{
-    margin-top: 15px;
-    margin-left: 5px;
+    margin-top: 10px;
+    margin-left: 15px;
     height: 120px;
-    width: 250px;
+    width: 390px;
 }
-.house_num{
-    color: #ec6941;
-    margin-left: -145px;
-}
-.landlord_tele{
-    margin-top: 4px;
-}
+
 .landlord_edit{
     background-image: url("../images/browse_landlord/editon.png");
     height: 14px;
