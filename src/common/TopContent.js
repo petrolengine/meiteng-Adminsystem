@@ -1,8 +1,8 @@
 import React from 'react';
-import '../resources/css/TopContent.css'
-import '../resources/css/label.css'
-import CommonStr from '../resources/strings/common'
-import ToolbarStr from '../resources/strings/toolbar'
+import '../resources/css/TopContent.css';
+import '../resources/css/label.css';
+import CommonStr from '../resources/strings/common';
+import ToolbarStr from '../resources/strings/toolbar';
 
 export default class TopContent {
     constructor(context) {
@@ -22,12 +22,19 @@ export default class TopContent {
         this.context.setState({ current_page: idx });
     }
 
-    __getSubItem(obj) {
+    __getSubItem(obj, idx) {
         if (obj.sub) {
             const items = [];
-            let idx = 0;
             obj.sub.forEach((o) => {
-                items.push(<li className="tc_tb_meun_dropdown_label w20_1_ch" key={`top_toolbar_subitem_${idx++}`}>{o.str}</li>);
+                const cur = idx;
+                items.push(
+                    <li className="tc_tb_meun_dropdown_label w20_1_ch"
+                        key={`top_toolbar_subitem_${cur}`}
+                        onClick={() => this.__handleToolbarClick(cur)}>
+                        {o.str}
+                    </li >
+                );
+                idx++;
             });
             return (
                 <ul className="tc_tb_drop_down_content">
@@ -37,38 +44,37 @@ export default class TopContent {
         }
     }
 
-    __getToolbarItem(obj, idx) {
-        if (obj.sub) {
-            return (
-                <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
-                    {obj.str}
-                    {this.__getSubItem(obj)}
-                </li>
-            );
-        } else if (this.context.state.current_page === idx) {
-            return (
-                <li className="tc_tb_meun_label w20_1_ch tc_tb_current_menu"
-                    key={`top_toolbar_item_${idx}`}
-                    onClick={() => this.__handleToolbarClick(idx)}>
-                    {obj.str}
-                </li>
-            );
-        } else {
-            return (
-                <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
-                    key={`top_toolbar_item_${idx}`}
-                    onClick={() => this.__handleToolbarClick(idx)}>
-                    {obj.str}
-                </li>
-            );
-        }
-    }
-
     __getToolbarItems(obj) {
         const items = [];
         let idx = 0;
         obj.forEach((o) => {
-            items.push(this.__getToolbarItem(o, idx++));
+            if (o.sub) {
+                items.push(
+                    <li className="tc_tb_meun_addition tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight" key={`top_toolbar_item_${idx}`}>
+                        {o.str}
+                        {this.__getSubItem(o, idx)}
+                    </li>
+                );
+                idx += o.sub.length;
+            } else if (this.context.state.current_page === idx) {
+                items.push(
+                    <li className="tc_tb_meun_label w20_1_ch tc_tb_current_menu"
+                        key={`top_toolbar_item_${idx}`}>
+                        {o.str}
+                    </li>
+                );
+                idx++;
+            } else {
+                const cur = idx;
+                items.push(
+                    <li className="tc_tb_meun_label w20_1_ch tc_tb_menu_label_hilight"
+                        key={`top_toolbar_item_${cur}`}
+                        onClick={() => this.__handleToolbarClick(cur)}>
+                        {o.str}
+                    </li>
+                );
+                idx++;
+            }
         });
         return (
             <ul className="tc_toolbar_meun">
@@ -86,7 +92,10 @@ export default class TopContent {
         );
     }
 
-    get renderSearchBar() {
+    renderSearchBar(valide) {
+        if (!valide) {
+            return (<div className="tc_decoration"></div>);
+        }
         return (
             <div className="tc_search">
                 <button className="tc_btn" type="summit"></button>
@@ -94,5 +103,4 @@ export default class TopContent {
             </div>
         );
     }
-
 }

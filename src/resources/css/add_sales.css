@@ -1,5 +1,5 @@
 .special_frame_xl{
-    background-image: url(../images/add_info_sales/special_fame_b.png);
+    background-image: url("../images/add_info_sales/special_fame_b.png");
     height: 712px;
     width: 509px;
     position: relative;
@@ -61,7 +61,6 @@
     border: 0px;
     margin-top: 260px;
     margin-left: 337px;
-    font-family: "微软雅黑";
 }
 .facilities{
     background-color: white;
