@@ -3,7 +3,6 @@ import React from 'react';
 import '../resources/css/common.css';
 import '../resources/css/label.css';
 import '../resources/css/LandlordCustomerPage.css';
-import CommonStr from '../resources/strings/common';
 import tele from '../resources/images/browse_landlord/tele.png';
 import idnumber from '../resources/images/browse_landlord/idnumber.png';
 import obode from '../resources/images/browse_landlord/obode.png';
@@ -14,6 +13,7 @@ import s_female_o from '../resources/images/browse_landlord/s_female_o.png';
 
 import PersonType from "../common/PersonType";
 import { renderPage } from '../common/Function';
+import CommonStr from '../resources/strings/common';
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
 import TestCustomer from '../resources/strings/test_customer';
