@@ -9,6 +9,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 1,
     },
     {
         name: "崔永元",
@@ -20,6 +21,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 0,
     },
     {
         name: "崔永元",
@@ -31,6 +33,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 1,
     },
     {
         name: "崔永元",
@@ -42,6 +45,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 1,
     },
     {
         name: "崔永元",
@@ -53,6 +57,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 0,
     },
     {
         name: "崔永元",
@@ -64,6 +69,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 0,
     },
     {
         name: "崔永元",
@@ -75,6 +81,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 0,
     },
     {
         name: "崔永元",
@@ -86,6 +93,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 0,
     },
     {
         name: "崔永元",
@@ -97,6 +105,7 @@ const TestCustomer = [
         maifang: 0,
         remarks: "意向再租1间50平米的门店",
         datetime: "2019/01/30",
+        sex: 1,
     }
 ];
 
