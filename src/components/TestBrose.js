@@ -1,9 +1,14 @@
 import React from 'react';
-import '../resources/css/browse_landlord.css';
-import '../resources/css/TestBrose.css';
+import '../resources/css/LandlordPage.css';
 
 
 export default class TestBrose {
+    constructor(context) {
+        this.context = context;
+        this.info = {
+        }
+    }
+
     get render() {
         return (
             <dev>

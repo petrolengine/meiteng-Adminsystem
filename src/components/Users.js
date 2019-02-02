@@ -7,7 +7,7 @@ import AddPersonPage from './AddPersonPage';
 import AddAreaPage from './AddAreaPage';
 import AddRoomPage from './AddRoomPage';
 import PersonType from '../common/PersonType';
-import LandlordPage from './LandlordPage';
+import LandlordCustomerPage from './LandlordCustomerPage';
 
 class Users extends Component {
     constructor(props, context) {
@@ -18,8 +18,8 @@ class Users extends Component {
             [new SearchPage(), false],
             [new RoomPage(this), true],
             [new RoomPage(this), true],
-            [new LandlordPage(this), true],
-            [new RoomPage(this), true],
+            [new LandlordCustomerPage(this, PersonType.LANDLORD), true],
+            [new LandlordCustomerPage(this, PersonType.CUSTOMER), true],
             [new RoomPage(this), true],
             [new RoomPage(this), true],
             [new AddRoomPage(this, true), false],

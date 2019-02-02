@@ -52,6 +52,9 @@ const CommonStr = {
     yishou: "已售",
     daizu: "待租",
     daishou: "待售",
+    consume: "消费",
+    zufang: "租房",
+    maifang: "买房",
 };
 
 export default CommonStr;

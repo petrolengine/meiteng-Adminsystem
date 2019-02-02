@@ -1,7 +1,8 @@
 import React from 'react';
+
 import '../resources/css/common.css';
 import '../resources/css/label.css';
-import '../resources/css/LandlordPage.css';
+import '../resources/css/LandlordCustomerPage.css';
 import { renderPage } from '../common/Function';
 import CommonStr from '../resources/strings/common';
 import tele from '../resources/images/browse_landlord/tele.png';
@@ -10,14 +11,18 @@ import obode from '../resources/images/browse_landlord/obode.png';
 import house_source from '../resources/images/browse_landlord/house_source.png';
 import remarks from '../resources/images/browse_landlord/remarks.png';
 import s_male_o from '../resources/images/browse_landlord/s_male_o.png';
+
+import PersonType from "../common/PersonType";
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
+import TestCustomer from '../resources/strings/test_customer';
 
-export default class LandlordPage {
-    constructor(context) {
+export default class LandlordCustomerPage {
+    constructor(context, person_type) {
         this.context = context;
+        this.person_type = person_type;
         this.info = {
-            data: TestLandlord,
+            data: PersonType.LANDLORD === person_type ? TestLandlord : TestCustomer,
             totalPage: 5,
             curPage: 1,
         }
@@ -41,6 +46,35 @@ export default class LandlordPage {
                     <label className="landlord_page_filter_sales in_middle" htmlFor="landlord_page_filter_sales"></label>
                 </div>
             </div >
+        );
+    }
+
+    personResources(obj) {
+        if (PersonType.LANDLORD == this.person_type) {
+            return (
+                <div className="m_t_5 b">
+                    <img src={house_source} className="in_middle" alt=""></img>
+                    <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.resources + ":"}</label>
+                    <label className="m_l_8 b15_1_ch in_middle">{CommonStr.yizu}</label>
+                    <label className="m_l_5 orange15_1_ch in_middle">{obj.yizu}</label>
+                    <label className="m_l_5 b15_1_ch in_middle">{CommonStr.yishou}</label>
+                    <label className="m_l_5 orange15_1_ch in_middle">{obj.yishou}</label>
+                    <label className="m_l_5 b15_1_ch in_middle">{CommonStr.daizu}</label>
+                    <label className="m_l_5 orange15_1_ch in_middle">{obj.daizu}</label>
+                    <label className="m_l_5 b15_1_ch in_middle">{CommonStr.daishou}</label>
+                    <label className="m_l_5 orange15_1_ch in_middle">{obj.daishou}</label>
+                </div>
+            );
+        }
+        return (
+            <div className="m_t_5 b">
+                <img src={house_source} className="in_middle" alt=""></img>
+                <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.consume + ":"}</label>
+                <label className="m_l_8 b15_1_ch in_middle">{CommonStr.zufang}</label>
+                <label className="m_l_5 orange15_1_ch in_middle">{obj.zufang}</label>
+                <label className="m_l_5 b15_1_ch in_middle">{CommonStr.maifang}</label>
+                <label className="m_l_5 orange15_1_ch in_middle">{obj.maifang}</label>
+            </div>
         );
     }
 
@@ -72,18 +106,7 @@ export default class LandlordPage {
                         <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.native_place + ":"}</label>
                         <label className="m_l_8 b15_1_ch in_middle">{obj.native_place}</label>
                     </div>
-                    <div className="m_t_5 b">
-                        <img src={house_source} className="in_middle" alt=""></img>
-                        <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.resources + ":"}</label>
-                        <label className="m_l_8 b15_1_ch in_middle">{CommonStr.yizu}</label>
-                        <label className="m_l_5 orange15_1_ch in_middle">{obj.yizu}</label>
-                        <label className="m_l_5 b15_1_ch in_middle">{CommonStr.yishou}</label>
-                        <label className="m_l_5 orange15_1_ch in_middle">{obj.yishou}</label>
-                        <label className="m_l_5 b15_1_ch in_middle">{CommonStr.daizu}</label>
-                        <label className="m_l_5 orange15_1_ch in_middle">{obj.daizu}</label>
-                        <label className="m_l_5 b15_1_ch in_middle">{CommonStr.daishou}</label>
-                        <label className="m_l_5 orange15_1_ch in_middle">{obj.daishou}</label>
-                    </div>
+                    {this.personResources(obj)}
                     <div className="m_t_5 b">
                         <img src={remarks} className="in_middle" alt=""></img>
                         <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.remarks + ":"}</label>
