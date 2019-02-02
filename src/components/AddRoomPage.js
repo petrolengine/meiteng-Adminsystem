@@ -67,22 +67,7 @@ export default class AddRoomPage {
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.peitaosheshi}</label>
-
-                <label className="facilities w2 distance0_7 c666_15_1_ch in_middle"></label>
-                <label className="facilities w2 distance0_7 c666_15_1_ch in_middle"></label>
-                <label className="facilities w3 distance0_7 c666_15_1_ch in_middle"></label>
-                <div className="b">
-                    <label className="facilities w2 distance88_9 c666_15_1_ch in_middle"></label>
-                    <label className="facilities w2 distance9_7 c666_15_1_ch in_middle"></label>
-                    <label className="facilities w2 distance9_7 c666_15_1_ch in_middle"></label>
-                    <label className="facilities w3 distance9_7 c666_15_1_ch in_middle"></label>
-                    <div className="b">
-                        <label className="facilities w2 distance88_9 c666_15_1_ch in_middle"></label>
-                        <label className="facilities w2 distance9_7 c666_15_1_ch in_middle"></label>
-                        <label className="facilities w2 distance9_7 c666_15_1_ch in_middle"></label>
-                        <label className="facilities w3 distance9_7 c666_15_1_ch in_middle"></label>
-                    </div>
-                </div>
+                {items}
             </div>
         );
     }
