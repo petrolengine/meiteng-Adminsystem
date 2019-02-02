@@ -55,6 +55,7 @@ const CommonStr = {
     consume: "消费",
     zufang: "租房",
     maifang: "买房",
+    yeji: "业绩",
 };
 
 export default CommonStr;

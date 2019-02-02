@@ -3,7 +3,6 @@ import React from 'react';
 import '../resources/css/common.css';
 import '../resources/css/label.css';
 import '../resources/css/LandlordCustomerPage.css';
-import { renderPage } from '../common/Function';
 import CommonStr from '../resources/strings/common';
 import tele from '../resources/images/browse_landlord/tele.png';
 import idnumber from '../resources/images/browse_landlord/idnumber.png';
@@ -13,6 +12,7 @@ import remarks from '../resources/images/browse_landlord/remarks.png';
 import s_male_o from '../resources/images/browse_landlord/s_male_o.png';
 
 import PersonType from "../common/PersonType";
+import { renderPage } from '../common/Function';
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
 import TestCustomer from '../resources/strings/test_customer';
@@ -50,7 +50,7 @@ export default class LandlordCustomerPage {
     }
 
     personResources(obj) {
-        if (PersonType.LANDLORD == this.person_type) {
+        if (PersonType.LANDLORD === this.person_type) {
             return (
                 <div className="m_t_5 b">
                     <img src={house_source} className="in_middle" alt=""></img>

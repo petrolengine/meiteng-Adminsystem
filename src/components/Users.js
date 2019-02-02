@@ -6,8 +6,9 @@ import RoomPage from './RoomPage';
 import AddPersonPage from './AddPersonPage';
 import AddAreaPage from './AddAreaPage';
 import AddRoomPage from './AddRoomPage';
-import PersonType from '../common/PersonType';
 import LandlordCustomerPage from './LandlordCustomerPage';
+import StaffPage from './StaffPage';
+import PersonType from '../common/PersonType';
 
 class Users extends Component {
     constructor(props, context) {
@@ -20,7 +21,7 @@ class Users extends Component {
             [new RoomPage(this), true],
             [new LandlordCustomerPage(this, PersonType.LANDLORD), true],
             [new LandlordCustomerPage(this, PersonType.CUSTOMER), true],
-            [new RoomPage(this), true],
+            [new StaffPage(this), true],
             [new RoomPage(this), true],
             [new AddRoomPage(this, true), false],
             [new AddRoomPage(this, false), false],
@@ -30,7 +31,7 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 3
+            current_page: 5
         };
     }
 
