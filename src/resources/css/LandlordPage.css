@@ -1,105 +1,115 @@
-.browse_filter{
+.landlord_page_browse_filter {
     background-color: #eeeeee;
-    height: 47px;
-    width: 174px;
+    height: 28px;
+    width: 150px;
     margin-top: 12px;
 }
-.filter_male{
+
+.landlord_page_filter_male {
     background-image: url("../images/browse_landlord/male_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
     height: 21px;
     width: 15px;
     border: 0px;
-    background-color: transparent;
-    margin-left: 13px;
-    margin-top: 13px;
 }
-.vertical_line{
+
+#landlord_page_filter_male {
+    display: none;
+}
+
+#landlord_page_filter_male:checked + .landlord_page_filter_male {
+    background-image: url("../images/browse_landlord/male_o.png");
+}
+
+.landlord_page_filter_female {
+    background-image: url("../images/browse_landlord/female_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 15px;
+    border: 0px;
+}
+
+#landlord_page_filter_female {
+    display: none;
+}
+
+#landlord_page_filter_female:checked + .landlord_page_filter_female {
+    background-position: right center;
+}
+
+.landlord_page_filter_rent {
+    background-image: url("../images/browse_landlord/rent_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 25px;
+    border: 0px;
+}
+
+#landlord_page_filter_rent {
+    display: none;
+}
+
+#landlord_page_filter_rent:checked + .landlord_page_filter_rent {
+    background-image: url("../images/browse_landlord/rent_o.png");
+}
+
+.landlord_page_filter_sales {
+    background-image: url("../images/browse_landlord/sales_b.png");
+    background-size: auto 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 25px;
+    border: 0px;
+}
+
+#landlord_page_filter_sales {
+    display: none;
+}
+
+#landlord_page_filter_sales:checked + .landlord_page_filter_sales {
+    background-position: right center;
+}
+
+.landlord_page_filter_vertical_line{
     background-color: #cccccc;
     height: 28px;
     width: 1px;
 }
-.line1{
-    margin-left: -126px;
-    margin-top: 8px;
-}
-.line2{
-    margin-left: 93px;
-    margin-top: 8px;
-}
-.filter_female{
-    background-image: url("../images/browse_landlord/female_b.png");
-    height: 21px;
-    width: 15px;
-    border: 0px;
-    background-color: transparent;
-    margin-left: 17px;
-    margin-top: 13px;
-}
-.filter_rent{
-    background-image: url("../images/browse_landlord/rent_b.png");
-    height: 21px;
-    width: 25px;
-    background-color: transparent;
-    border: 0px;
-    margin-top: 13px;
-    margin-left: 37px;
-}
-.filter_sales{
-    background-image: url("../images/browse_landlord/sales_b.png");
-    height: 21px;
-    width: 23px;
-    border: 0px;
-    background-color: transparent;
-    margin-top: 13px;
-    margin-left: 17px;
-}
-.landlord_info_card{
+
+.landlord_page_info_card {
     background-color: #eeeeee;
     height: 156px;
     width: 600px;
     margin-top: 12px;
 }
-.landlord_info_name{
-    background-image: url("../images/browse_landlord/w_circle.png");
+
+.landlord_page_info_name {
+    background-color: white;
+    border-radius: 50%;
     height: 85px;
     width: 85px;
     margin-left: 16px;
-    margin-top: 41px;
-}
-.person_name{
-    margin-left: 20px;
-    margin-top: 17px;
-}
-.person_age{
-    margin-left: 30px;
-    margin-top: 0px;
-}
-.landlord_sex{
-    background-image: url("../images/browse_landlord/s_male_o.png");
-    height: 15px;
-    width: 11px;
-    margin-left: 37px;
-    margin-top: 2px;
+    margin-top: 39px;
 }
 
-.landlord_mian_info{
+.landlord_page_mian_info{
     margin-top: 10px;
     margin-left: 15px;
     height: 120px;
     width: 390px;
 }
 
-.landlord_edit{
-    background-image: url("../images/browse_landlord/editon.png");
-    height: 14px;
-    width: 14px;
-    border: 0px;
+.landlord_page_edit {
     float: right;
     margin-right: 1px;
     margin-top: 1px;
-    background-color: transparent;
 }
-.landlord_last_time{
+
+.landlord_page_last_time {
     float: right;
     margin-right: -13px;
     margin-top: 140px;

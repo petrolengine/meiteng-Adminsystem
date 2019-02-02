@@ -95,13 +95,6 @@
     background-repeat: no-repeat;
 }
 
-.tc_decoration{
-    display: block;
-    background-image: url("../images/add_info_landlord/LOGO.png");
-    height: 50px;
-    margin-top: -11px;
-}
-
 .tc_btn{
     display: inline-block;
     background-image: url("../images/sale_page/search.png");

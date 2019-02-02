@@ -93,14 +93,13 @@ export default class TopContent {
     }
 
     renderSearchBar(valide) {
-        if (!valide) {
-            return (<div className="tc_decoration"></div>);
+        if (valide) {
+            return (
+                <div className="tc_search">
+                    <button className="tc_btn" type="summit"></button>
+                    <input className="tc_input_frame" placeholder={CommonStr.placeholder_serarch}></input>
+                </div>
+            );
         }
-        return (
-            <div className="tc_search">
-                <button className="tc_btn" type="summit"></button>
-                <input className="tc_input_frame" placeholder={CommonStr.placeholder_serarch}></input>
-            </div>
-        );
     }
 }

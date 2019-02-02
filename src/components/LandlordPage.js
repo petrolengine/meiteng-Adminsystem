@@ -9,6 +9,7 @@ import idnumber from '../resources/images/browse_landlord/idnumber.png';
 import obode from '../resources/images/browse_landlord/obode.png';
 import house_source from '../resources/images/browse_landlord/house_source.png';
 import remarks from '../resources/images/browse_landlord/remarks.png';
+import s_male_o from '../resources/images/browse_landlord/s_male_o.png';
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
 
@@ -22,22 +23,43 @@ export default class LandlordPage {
         }
     }
 
+    get renderBrowseFilter() {
+        return (
+            <div className="b landlord_page_browse_filter">
+                <div className="in_top m_l_8">
+                    <input type="checkbox" id="landlord_page_filter_male"></input>
+                    <label className="landlord_page_filter_male in_middle" htmlFor="landlord_page_filter_male"></label>
+                    <div className="in_middle landlord_page_filter_vertical_line m_l_8 m_r_8"></div>
+                    <input type="checkbox" id="landlord_page_filter_female"></input>
+                    <label className="landlord_page_filter_female in_middle" htmlFor="landlord_page_filter_female"></label>
+                </div>
+                <div className="in_top fr m_r_8">
+                    <input type="checkbox" id="landlord_page_filter_rent"></input>
+                    <label className="landlord_page_filter_rent in_middle" htmlFor="landlord_page_filter_rent"></label>
+                    <div className="in_middle landlord_page_filter_vertical_line m_l_8 m_r_8"></div>
+                    <input type="checkbox" id="landlord_page_filter_sales"></input>
+                    <label className="landlord_page_filter_sales in_middle" htmlFor="landlord_page_filter_sales"></label>
+                </div>
+            </div >
+        );
+    }
+
     renderOneResult(obj, idx) {
         const style = {};
         if (idx % 2 === 1) {
             style["float"] = "right";
         }
         return (
-            <div className="in_top landlord_info_card" style={style} key={`landlord_item_${idx}`}>
-                <div className="landlord_info_name in_middle">
-                    <label className="b15_1_ch in_top person_name">{obj.name}</label>
-                    <label className="gray10_1_ch in_top person_age">{obj.age + CommonStr.sui}</label>
-                    <div className="landlord_sex"></div>
+            <div className="in_top landlord_page_info_card" style={style} key={`landlord_item_${idx}`}>
+                <div className="landlord_page_info_name in_middle">
+                    <label className="b b15_1_ch textalign_c m_t_16">{obj.name}</label>
+                    <label className="b gray10_1_ch textalign_c m_t_5">{obj.age + CommonStr.sui}</label>
+                    <img className="b m_t_5 m_l_r_auto" src={s_male_o} alt=""></img>
                 </div>
-                <div className="landlord_mian_info in_top">
+                <div className="landlord_page_mian_info in_top">
                     <div className="m_t_5 b">
                         <img src={tele} className="in_middle" alt=""></img>
-                        <label className="m_l_8 gray15_1_ch in_middle">{CommonStr.phone + ":"}</label>
+                        <label className="m_l_13 gray15_1_ch in_middle">{CommonStr.phone + ":"}</label>
                         <label className="m_l_8 b15_1_ch in_middle">{obj.phone}</label>
                     </div>
                     <div className="m_t_5 b">
@@ -68,9 +90,9 @@ export default class LandlordPage {
                         <label className="m_l_8 b15_1_ch in_middle">{obj.remarks}</label>
                     </div>
                 </div>
-                <button className="landlord_edit"></button>
-                <label className="landlord_last_time gray10_1_ch">{obj.datetime}</label>
-            </div >
+                <button className="edit_button landlord_page_edit"></button>
+                <label className="landlord_page_last_time gray10_1_ch">{obj.datetime}</label>
+            </div>
         );
     }
 
@@ -80,15 +102,8 @@ export default class LandlordPage {
             items.push(this.renderOneResult(o, items.length));
         });
         return (
-            <div>
-                <div className="b browse_filter">
-                    <button className="in_middle filter_male"></button>
-                    <button className="in_middle filter_female"></button>
-                    <button className="in_middle filter_rent"></button>
-                    <button className="in_middle filter_sales"></button>
-                    <div className="in_middle vertical_line line1"></div>
-                    <div className="in_middle vertical_line line2"></div>
-                </div>
+            <div className="b">
+                {this.renderBrowseFilter}
                 {items}
                 {renderPage(this.info.totalPage, this.info.curPage)}
             </div>
