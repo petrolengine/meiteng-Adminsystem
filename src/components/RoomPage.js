@@ -37,7 +37,7 @@ class RoomPage {
         for (let idx = 0; idx < CommonStr.sort_style.length; idx++) {
             const o = CommonStr.sort_style[idx];
             const clazName = (this.room_info.result_sort_style === idx ? "w20_1_ch orange_bg" : "b20_1_ch") + " in_top rp_search_result_style";
-            items.push(<label className={clazName} onClick={() => this.onClickResultSortStyle(idx)}>{o}</label>);
+            items.push(<label className={clazName} onClick={() => this.onClickResultSortStyle(idx)} key={`rp_result_sort_${idx}`} > {o}</label>);
         }
         return (<div className="b" style={{ "marginTop": "30px" }}>{items}</div>);
     }

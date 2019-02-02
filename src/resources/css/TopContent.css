@@ -26,6 +26,7 @@
 
 .tc_tool_bar {
     display: block;
+    z-index: 999;
 }
 
 .tc_line {
@@ -40,6 +41,7 @@
     background-color: rgb(3, 19, 36,0.8);
     margin-top: 4px;
     text-align: center;
+    padding-left: 0;
 }
 
 .tc_tb_meun_label {
@@ -58,7 +60,8 @@
     list-style: none;
     width: 139px;
     padding-left: 0;
-    margin-top: 8px;
+    margin-top: 7px;
+    z-index: 999;
 }
 
 .tc_tb_meun_dropdown_label {
@@ -86,9 +89,10 @@
 
 .tc_search{
     display: block;
-    height: 47px;
+    height: 50px;
     margin-top: -11px;
     background-image: url("../images/sale_page/search_frame.png");
+    background-repeat: no-repeat;
 }
 
 .tc_btn{

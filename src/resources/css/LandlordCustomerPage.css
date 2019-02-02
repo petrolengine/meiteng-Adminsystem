@@ -1,0 +1,116 @@
+.landlord_page_browse_filter {
+    background-color: #eeeeee;
+    height: 28px;
+    width: 150px;
+    margin-top: 12px;
+}
+
+.landlord_page_filter_male {
+    background-image: url("../images/browse_landlord/male_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 15px;
+    border: 0px;
+}
+
+#landlord_page_filter_male {
+    display: none;
+}
+
+#landlord_page_filter_male:checked + .landlord_page_filter_male {
+    background-image: url("../images/browse_landlord/male_o.png");
+}
+
+.landlord_page_filter_female {
+    background-image: url("../images/browse_landlord/female_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 15px;
+    border: 0px;
+}
+
+#landlord_page_filter_female {
+    display: none;
+}
+
+#landlord_page_filter_female:checked + .landlord_page_filter_female {
+    background-position: right center;
+}
+
+.landlord_page_filter_rent {
+    background-image: url("../images/browse_landlord/rent_b.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 25px;
+    border: 0px;
+}
+
+#landlord_page_filter_rent {
+    display: none;
+}
+
+#landlord_page_filter_rent:checked + .landlord_page_filter_rent {
+    background-image: url("../images/browse_landlord/rent_o.png");
+}
+
+.landlord_page_filter_sales {
+    background-image: url("../images/browse_landlord/sales_b.png");
+    background-size: auto 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 21px;
+    width: 25px;
+    border: 0px;
+}
+
+#landlord_page_filter_sales {
+    display: none;
+}
+
+#landlord_page_filter_sales:checked + .landlord_page_filter_sales {
+    background-position: right center;
+}
+
+.landlord_page_filter_vertical_line{
+    background-color: #cccccc;
+    height: 28px;
+    width: 1px;
+}
+
+.landlord_page_info_card {
+    background-color: #eeeeee;
+    height: 156px;
+    width: 600px;
+    margin-top: 12px;
+}
+
+.landlord_page_info_name {
+    background-color: white;
+    border-radius: 50%;
+    height: 85px;
+    width: 85px;
+    margin-left: 16px;
+    margin-top: 39px;
+}
+
+.landlord_page_mian_info{
+    margin-top: 10px;
+    margin-left: 15px;
+    height: 120px;
+    width: 390px;
+}
+
+.landlord_page_edit {
+    float: right;
+    margin-right: 1px;
+    margin-top: 1px;
+}
+
+.landlord_page_last_time {
+    float: right;
+    margin-right: -13px;
+    margin-top: 140px;
+}

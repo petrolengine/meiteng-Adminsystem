@@ -1,0 +1,68 @@
+.add_page_common_background {
+    background-image: url("../images/add_info_landlord/bg_img.png");
+    height: 750px;
+    width: 1257px;
+    margin-top: 3px;
+}
+
+.add_page_common_main_frame {
+    background-image: url("../images/add_info_landlord/specil_frame.png");
+    background-repeat: no-repeat;
+    background-size: 509px auto;
+    width: 509px;
+    margin: auto;
+}
+
+.add_page_common_title {
+    background-color: #ec6941;
+    height: 30px;
+    width: 120px;
+    margin: auto;
+}
+
+.add_page_common_item {
+    margin-top: 12px;
+    margin-left: 86px;
+    width: 399px;
+}
+
+.add_page_common_key {
+    background-color: #091b2b;
+    height: 23px;
+    width: 88px;
+    text-align: center;
+    padding-top: 3px;
+    padding-bottom: 1px;
+}
+
+.add_page_common_value {
+    height: 25px;
+    width: 251px;
+    padding-left: 6px;
+}
+
+.add_page_common_ok {
+    background-color: #ec6941;
+    height: 26px;
+    width: 88px;
+    margin-top: 25px;
+    margin-left: 337px;
+    margin-bottom: 25px;
+}
+
+/* 
+.blank_frame {
+    display: block;
+    position: relative;
+    height: 26px;
+    width: 337px;
+}
+
+.obk {
+    background-color: #999696;
+    height: 23px;
+    margin-left: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+} */
