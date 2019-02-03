@@ -36,11 +36,7 @@
 }
 
 #landlord_page_filter_female:checked + .landlord_page_filter_female {
-<<<<<<< HEAD
-    background-position: right center;
-=======
     background-image: url("../images/browse_landlord/female_o.png");
->>>>>>> origin/dev
 }
 
 .landlord_page_filter_rent {
@@ -63,10 +59,6 @@
 .landlord_page_filter_sales {
     background-image: url("../images/browse_landlord/sales_b.png");
     background-size: auto 100%;
-<<<<<<< HEAD
-    background-position: left center;
-=======
->>>>>>> origin/dev
     background-repeat: no-repeat;
     height: 21px;
     width: 25px;
@@ -78,11 +70,7 @@
 }
 
 #landlord_page_filter_sales:checked + .landlord_page_filter_sales {
-<<<<<<< HEAD
-    background-position: right center;
-=======
     background-image: url("../images/browse_landlord/sales_o.png");
->>>>>>> origin/dev
 }
 
 .landlord_page_filter_vertical_line{

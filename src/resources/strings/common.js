@@ -56,12 +56,9 @@ const CommonStr = {
     zufang: "租房",
     maifang: "买房",
     yeji: "业绩",
-<<<<<<< HEAD
-=======
     xiaoquweizhi: "小区位置",
     zhoubianpeitao: "周边配套",
     jiaotongchuxing: "交通出行",
->>>>>>> origin/dev
 };
 
 export default CommonStr;
