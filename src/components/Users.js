@@ -8,6 +8,7 @@ import AddAreaPage from './AddAreaPage';
 import AddRoomPage from './AddRoomPage';
 import LandlordCustomerPage from './LandlordCustomerPage';
 import StaffPage from './StaffPage';
+import AreaPage from './AreaPage';
 import PersonType from '../common/PersonType';
 
 class Users extends Component {
@@ -22,7 +23,7 @@ class Users extends Component {
             [new LandlordCustomerPage(this, PersonType.LANDLORD), true],
             [new LandlordCustomerPage(this, PersonType.CUSTOMER), true],
             [new StaffPage(this), true],
-            [new RoomPage(this), true],
+            [new AreaPage(this), true],
             [new AddRoomPage(this, true), false],
             [new AddRoomPage(this, false), false],
             [new AddAreaPage(this), false],

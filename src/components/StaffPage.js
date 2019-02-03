@@ -33,11 +33,13 @@ export default class StaffPage {
         return (
             <div className="staff_info_card in_top" style={style} key={`staff_page_item_${idx}`}>
                 <div className="staff_portait in_middle m_l_5"></div>
-                <div className="staff_page_content in_middle m_l_13" style={{ width: "200px" }}>
-                    <div className="m_t_5 b m_t_16">
+                <div className="staff_page_content in_middle m_l_13" style={{ width: "190px" }}>
+                    <div className="m_t_5 b m_t_35">
                         <img src={name_icon} className="in_middle" alt=""></img>
                         <label className="m_l_8 in_middle gray15_0_ch intop">{`${CommonStr.name}:`}</label>
-                        <label className="m_l_8 in_middle gray15_0_ch intop">{`${obj.name}-${obj.sex}-${obj.age}${CommonStr.sui}`}</label>
+                        <label className="m_l_8 in_middle gray15_0_ch intop">
+                            {`${obj.name}-${obj.sex === 0 ? CommonStr.woman : CommonStr.man}-${obj.age}${CommonStr.sui}`}
+                        </label>
                     </div>
                     <div className="m_t_5 b">
                         <img src={tele} className="in_middle" alt=""></img>
