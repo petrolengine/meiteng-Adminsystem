@@ -1,7 +1,11 @@
 .staff_info_card{
     background-color: #eeeeee;
     height: 139px;
+<<<<<<< HEAD
     width: 625px;
+=======
+    width: 615px;
+>>>>>>> origin/dev
     margin-top: 30px;
 }
 

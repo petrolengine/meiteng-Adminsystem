@@ -3,16 +3,17 @@ import React from 'react';
 import '../resources/css/common.css';
 import '../resources/css/label.css';
 import '../resources/css/LandlordCustomerPage.css';
-import CommonStr from '../resources/strings/common';
 import tele from '../resources/images/browse_landlord/tele.png';
 import idnumber from '../resources/images/browse_landlord/idnumber.png';
 import obode from '../resources/images/browse_landlord/obode.png';
 import house_source from '../resources/images/browse_landlord/house_source.png';
 import remarks from '../resources/images/browse_landlord/remarks.png';
 import s_male_o from '../resources/images/browse_landlord/s_male_o.png';
+import s_female_o from '../resources/images/browse_landlord/s_female_o.png';
 
 import PersonType from "../common/PersonType";
 import { renderPage } from '../common/Function';
+import CommonStr from '../resources/strings/common';
 // for debug
 import TestLandlord from '../resources/strings/test_landlord';
 import TestCustomer from '../resources/strings/test_customer';
@@ -88,7 +89,7 @@ export default class LandlordCustomerPage {
                 <div className="landlord_page_info_name in_middle">
                     <label className="b b15_1_ch textalign_c m_t_16">{obj.name}</label>
                     <label className="b gray10_1_ch textalign_c m_t_5">{obj.age + CommonStr.sui}</label>
-                    <img className="b m_t_5 m_l_r_auto" src={s_male_o} alt=""></img>
+                    <img className="b m_t_5 m_l_r_auto" src={obj.sex === 0 ? s_female_o : s_male_o} alt=""></img>
                 </div>
                 <div className="landlord_page_mian_info in_top">
                     <div className="m_t_5 b">
