@@ -47,8 +47,8 @@ class Login extends Component {
                     <label className="login_nmr login_label w15_2ch">{CommonStr.pass}</label>
                     <input className="login_nmr login_input_sty" type="password" placeholder={CommonStr.placeholder_pass} name="psw" required></input>
                     <button className="login_nmr btn_ok w15_2ch" type="submit">{CommonStr.ok}</button>
-                    <input className="login_cb" type="checkbox" name="remember" id="remember" ></input>
-                    <label htmlFor="remember" className="remeber_sty w12_1ch">{CommonStr.remember_pass}</label>
+                    {/* <input className="login_cb" type="checkbox" name="remember" id="remember" ></input>
+                    <label htmlFor="remember" className="remeber_sty w12_1ch">{CommonStr.remember_pass}</label> */}
                 </form>
             </div >
         );

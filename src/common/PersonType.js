@@ -7,7 +7,7 @@ const PersonType = {
 }
 
 export const AddPersonTitle = [CommonStr.add_customer, CommonStr.add_landord, CommonStr.add_staff];
-export const AddpersonAction = ["add_customer", "add_landord", "add_staff"];
+export const AddpersonAction = ["/users/add_customer", "/users/add_landord", "/users/AddStaff"];
 export const PersonSex = { MALE: CommonStr.man, FEMALE: CommonStr.woman }
 
 export default PersonType;
