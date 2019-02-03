@@ -61,7 +61,7 @@
     width: 139px;
     padding-left: 0;
     margin-top: 7px;
-    z-index: 999;
+    position: relative;
 }
 
 .tc_tb_meun_dropdown_label {

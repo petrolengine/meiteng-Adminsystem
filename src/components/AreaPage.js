@@ -7,6 +7,12 @@ import '../resources/css/common.css';
 import { renderPage } from '../common/Function';
 import CommonStr from '../resources/strings/common';
 
+import environment from '../resources/images/browse_community/environment.png';
+import environment2 from '../resources/images/browse_community/environment2.png';
+import address from '../resources/images/browse_community/address.png';
+import around_area from '../resources/images/browse_community/around_area.png';
+import transport from '../resources/images/browse_community/transport.png';
+
 // for debug
 import TestArea from '../resources/strings/test_area';
 
@@ -22,27 +28,33 @@ export default class AreaPage {
 
     renderOneResult(obj, idx) {
         const items = [];
-        obj.tags.forEach((o) => items.push(<label className="community_symbol_content orange15_0_ch in_top">{o}</label>));
+        obj.tags.forEach((o) => items.push(
+            <label className="area_page_symbol_content orange15_0_ch in_top" key={`area_page_symbol_${items.length}`}>{o}</label>
+        ));
         return (
-            <div className="browse_community_card b" key={`area_page_${idx}`}>
-                <div className="community_img in_top"></div>
-                <div className="community_img2 in_top"></div>
-                <div className="community_info_icon in_top">
-                    <div className="community_location"></div>
-                    <div className="community_around b"></div>
-                    <div className="community_transport b"></div>
+            <div className="area_page_card b" key={`area_page_${idx}`}>
+                <img className="area_page_prev_image in_middle m_t_16 m_l_16" src={environment} alt="" />
+                <img className="area_page_prev_image in_middle m_t_16 m_l_6" src={environment2} alt="" />
+                <div className="in_middle m_l_8" style={{ width: "390px" }}>
+                    <label className="textalign_c b20_1_ch b">{obj.name}</label>
+                    <div className="b m_t_16">
+                        <img className="in_middle" src={address} alt="" />
+                        <label className="gray15_1_ch in_middle m_l_5">{`${CommonStr.xiaoquweizhi}: ${obj.address}`}</label>
+                    </div>
+                    <div className="b m_t_12">
+                        <img className="in_middle" src={around_area} alt="" />
+                        <label className="gray15_1_ch in_middle m_l_5">{`${CommonStr.zhoubianpeitao}: ${obj.zhoubianpeitao}`}</label>
+                    </div>
+                    <div className="b m_t_12">
+                        <img className="in_middle" src={transport} alt="" />
+                        <label className="gray15_1_ch in_middle m_l_5">{`${CommonStr.jiaotongchuxing}: ${obj.jiaotongchuxing}`}</label>
+                    </div>
                 </div>
-                <label className="community_name b20_1_ch in_top">{obj.name}</label>
-                <div className="community_info_content in_top">
-                    <label className="community_info_location gray15_1_ch b">{`${CommonStr.xiaoquweizhi}: ${obj.address}`}</label>
-                    <label className="community_info_location gray15_1_ch b">{`${CommonStr.zhoubianpeitao}: ${obj.zhoubianpeitao}`}</label>
-                    <label className="community_info_location gray15_1_ch b">{`${CommonStr.jiaotongchuxing}: ${obj.jiaotongchuxing}`}</label>
-                </div>
-                <div className="community_symbol in_top">
+                <div className="in_middle" style={{ width: "330px" }}>
                     {items}
                 </div>
-                <button className="edit_button in_top"></button>
-                <label className="browse_community_date b gray10_0_ch">{obj.datetime}</label>
+                <button className="edit_button in_top fr m_t_2 m_r_2"></button>
+                <label className="b gray10_0_ch m_r_2 fr">{obj.datetime}</label>
             </div>
         );
     }
