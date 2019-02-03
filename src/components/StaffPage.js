@@ -10,18 +10,17 @@ import name_icon from '../resources/images/browse_staff/staff_name.png';
 import tele from '../resources/images/browse_landlord/tele.png';
 import idnumber from '../resources/images/browse_landlord/idnumber.png';
 
+import { PersonSex } from '../common/PersonType';
 import CommonStr from '../resources/strings/common';
 import { renderPage } from '../common/Function';
-// for debug
-import TestStaff from '../resources/strings/test_staff';
 
 export default class StaffPage {
     constructor(context) {
         this.context = context;
         this.info = {
-            data: TestStaff,
+            data: [],
             totalPage: 5,
-            curPage: 1,
+            curPage: 0,
         }
     }
 
@@ -38,7 +37,7 @@ export default class StaffPage {
                         <img src={name_icon} className="in_middle" alt=""></img>
                         <label className="m_l_8 in_middle gray15_0_ch intop">{`${CommonStr.name}:`}</label>
                         <label className="m_l_8 in_middle gray15_0_ch intop">
-                            {`${obj.name}-${obj.sex === 0 ? CommonStr.woman : CommonStr.man}-${obj.age}${CommonStr.sui}`}
+                            {`${obj.name}-${PersonSex[obj.sex]}-${obj.age}${CommonStr.sui}`}
                         </label>
                     </div>
                     <div className="m_t_5 b">
@@ -46,7 +45,6 @@ export default class StaffPage {
                         <label className="m_l_13 in_middle gray15_0_ch">{`${CommonStr.phone}:`}</label>
                         <label className="m_l_8 in_middle gray15_0_ch">{obj.phone}</label>
                     </div>
-
                     <div className="m_t_5 b">
                         <img src={obode} className="in_middle" alt=""></img>
                         <label className="m_l_8 gray15_1_ch in_middle">{`${CommonStr.native_place}:`}</label>
@@ -84,6 +82,9 @@ export default class StaffPage {
     }
 
     get render() {
+        if (this.info.data.length === 0) {
+            this.get_data_from_server();
+        }
         const items = [];
         this.info.data.forEach((o) => {
             items.push(this.renderOneResult(o, items.length));
@@ -92,7 +93,24 @@ export default class StaffPage {
             <div className="b">
                 {items}
                 {renderPage(this.info.totalPage, this.info.curPage)}
-            </div >
+            </div>
         );
+    }
+
+    on_loadend(data) {
+        this.info.data = data;
+        this.context.setState({ "StaffPageInfo": this.info });
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
+    }
+
+    get_data_from_server() {
+        const params = {
+            page: this.info.curPage,
+            prePage: 6,
+        };
+        this.context.requesthdr.send_message("/users/GetStaffList", params, this);
     }
 }

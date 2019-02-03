@@ -52,6 +52,7 @@ class RequestHandler {
         } else if (typeof (data) === "string") {
             this.xhttp.send(data);
         }
+        return true;
     }
 
     /**
@@ -78,6 +79,7 @@ class RequestHandler {
         } else if (typeof (data) === "string") {
             this.xhttp.send(data);
         }
+        return true;
     }
 
     /**
