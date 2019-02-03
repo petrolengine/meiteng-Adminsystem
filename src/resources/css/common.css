@@ -23,6 +23,10 @@
     vertical-align: text-bottom;
 }
 
+.m_l_2 {
+    margin-left: 2px;
+}
+
 .m_l_5 {
     margin-left: 5px;
 }
@@ -33,6 +37,14 @@
 
 .m_l_8 {
     margin-left: 8px;
+}
+
+.m_l_13 {
+    margin-left: 13px;
+}
+
+.m_r_8 {
+    margin-right: 8px;
 }
 
 .m_t_35 {
@@ -47,10 +59,35 @@
     margin-top: 10px;
 }
 
+.m_t_5 {
+    margin-top: 5px;
+}
+
 .b {
     display: block;
 }
 
 .i {
     display: inline;
+}
+
+.noborder {
+    border: 0px;
+}
+
+.fr {
+    float: right;
+}
+
+.edit_button {
+    background-image: url("../images/browse_landlord/editon.png");
+    height: 14px;
+    width: 14px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.m_l_r_auto {
+    margin-left: auto;
+    margin-right: auto;
 }
