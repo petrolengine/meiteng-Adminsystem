@@ -3,7 +3,7 @@ import CommonStr from '../resources/strings/common';
 import '../resources/css/AddPageCommon.css';
 import '../resources/css/common.css';
 import '../resources/css/label.css';
-import { AddpersonAction, AddPersonTitle } from '../common/PersonType';
+import PersonType, { AddpersonAction, AddPersonTitle } from '../common/PersonType';
 import { formData2Json } from '../common/Function';
 
 export default class AddPersonPage {
@@ -72,7 +72,22 @@ export default class AddPersonPage {
     }
 
     on_loadend(data) {
-        console.log(data);
+        switch (this.person_type) {
+            case PersonType.STAFF:
+                this.context.pages[5][0].info.data = [];
+                this.context.setState({ current_page: 5 });
+                break;
+            case PersonType.CUSTOMER:
+                this.context.pages[4][0].info.data = [];
+                this.context.setState({ current_page: 4 });
+                break;
+            case PersonType.LANDLORD:
+                this.context.pages[3][0].info.data = [];
+                this.context.setState({ current_page: 3 });
+                break;
+            default:
+                break;
+        }
     }
 
     on_error(code, data) {

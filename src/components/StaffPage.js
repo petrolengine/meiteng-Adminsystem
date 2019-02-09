@@ -76,7 +76,7 @@ export default class StaffPage {
                     </div>
                 </div>
                 <button className="landlord_page_edit edit_button in_top"></button>
-                <label className="staff_last_time gray10_0_ch b">{obj.datetime}</label>
+                <label className="staff_last_time gray10_0_ch b">{obj.create_time}</label>
             </div>
         );
     }
@@ -98,8 +98,10 @@ export default class StaffPage {
     }
 
     on_loadend(data) {
-        this.info.data = data;
-        this.context.setState({ "StaffPageInfo": this.info });
+        if (this.info.data.length !== data.length || data.length > 0) {
+            this.info.data = data;
+            this.context.setState({ "StaffPageInfo": this.info });
+        }
     }
 
     on_error(code, data) {

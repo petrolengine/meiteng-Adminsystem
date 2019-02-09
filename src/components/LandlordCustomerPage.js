@@ -23,7 +23,7 @@ export default class LandlordCustomerPage {
         this.info = {
             data: [],
             totalPage: 5,
-            curPage: 1,
+            curPage: 0,
         }
     }
 
@@ -136,11 +136,13 @@ export default class LandlordCustomerPage {
     }
 
     on_loadend(data) {
-        this.info.data = data;
-        const key = PersonType.LANDLORD === this.person_type ? "LandlordPageInfo" : "CustomerPageInfo";
-        const temp = {};
-        temp[key] = this.info;
-        this.context.setState(temp);
+        if (this.info.data.length !== data.length || data.length > 0) {
+            this.info.data = data;
+            const key = PersonType.LANDLORD === this.person_type ? "LandlordPageInfo" : "CustomerPageInfo";
+            const temp = {};
+            temp[key] = this.info;
+            this.context.setState(temp);
+        }
     }
 
     on_error(code, data) {
@@ -148,7 +150,7 @@ export default class LandlordCustomerPage {
     }
 
     get_data_from_server() {
-        const url = PersonType.LANDLORD === this.person_type ? "/users/GetLandlordList" : "/users/GetCustomerList";
+        const url = PersonType.LANDLORD === this.person_type ? "/users/GetLandlordList" : "/users/GetTenantList";
         const params = {
             page: this.info.curPage,
             prePage: 6,
