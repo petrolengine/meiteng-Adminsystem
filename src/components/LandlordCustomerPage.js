@@ -14,16 +14,14 @@ import s_female_o from '../resources/images/browse_landlord/s_female_o.png';
 import PersonType from "../common/PersonType";
 import { renderPage } from '../common/Function';
 import CommonStr from '../resources/strings/common';
-// for debug
-import TestLandlord from '../resources/strings/test_landlord';
-import TestCustomer from '../resources/strings/test_customer';
+
 
 export default class LandlordCustomerPage {
     constructor(context, person_type) {
         this.context = context;
         this.person_type = person_type;
         this.info = {
-            data: PersonType.LANDLORD === person_type ? TestLandlord : TestCustomer,
+            data: [],
             totalPage: 5,
             curPage: 1,
         }
@@ -121,6 +119,9 @@ export default class LandlordCustomerPage {
     }
 
     get render() {
+        if (this.info.data.length === 0) {
+            this.get_data_from_server();
+        }
         const items = [];
         this.info.data.forEach((o) => {
             items.push(this.renderOneResult(o, items.length));
@@ -132,5 +133,26 @@ export default class LandlordCustomerPage {
                 {renderPage(this.info.totalPage, this.info.curPage)}
             </div>
         );
+    }
+
+    on_loadend(data) {
+        this.info.data = data;
+        const key = PersonType.LANDLORD === this.person_type ? "LandlordPageInfo" : "CustomerPageInfo";
+        const temp = {};
+        temp[key] = this.info;
+        this.context.setState(temp);
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
+    }
+
+    get_data_from_server() {
+        const url = PersonType.LANDLORD === this.person_type ? "/users/GetLandlordList" : "/users/GetCustomerList";
+        const params = {
+            page: this.info.curPage,
+            prePage: 6,
+        };
+        this.context.requesthdr.send_message(url, params, this);
     }
 }
