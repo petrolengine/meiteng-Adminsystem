@@ -1,0 +1,17 @@
+<svg id="组_6" data-name="组 6" xmlns="http://www.w3.org/2000/svg" width="17" height="15.844" viewBox="0 0 17 15.844">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #999;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="圆角矩形_1" data-name="圆角矩形 1" class="cls-1" d="M1026.71,540.361l-0.42,8.739a2.134,2.134,0,0,1-2.15,2.122h-7.28a2.134,2.134,0,0,1-2.15-2.122l-0.42-8.739" transform="translate(-1011.5 -535.875)"/>
+  <path id="形状_1" data-name="形状 1" class="cls-1" d="M1012,539.763h16" transform="translate(-1011.5 -535.875)"/>
+  <path id="形状_1_拷贝" data-name="形状 1 拷贝" class="cls-1" d="M1019.43,542.734v5.093" transform="translate(-1011.5 -535.875)"/>
+  <path id="形状_1_拷贝_2" data-name="形状 1 拷贝 2" class="cls-1" d="M1021.54,542.734v5.093" transform="translate(-1011.5 -535.875)"/>
+  <path id="圆角矩形_2" data-name="圆角矩形 2" class="cls-1" d="M1016.29,540.611v-2.122a2.126,2.126,0,0,1,2.14-2.122h2.82a2.134,2.134,0,0,1,2.15,2.122v2.122" transform="translate(-1011.5 -535.875)"/>
+</svg>

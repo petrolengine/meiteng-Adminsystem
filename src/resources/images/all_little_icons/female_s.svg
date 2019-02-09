@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #091b2b;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="椭圆_2_拷贝_3" data-name="椭圆 2 拷贝 3" class="cls-1" d="M384.384,330.127a2.459,2.459,0,0,1,1.941-1.268,2.282,2.282,0,0,1,1.869,1.268l3.81,6.766a2.115,2.115,0,0,1-2.116,2.114h-6.774A2.116,2.116,0,0,1,381,336.893Zm1.91-6.127a2.2,2.2,0,1,1-2.2,2.2A2.2,2.2,0,0,1,386.294,324Z" transform="translate(-380.5 -323.5)"/>
+</svg>

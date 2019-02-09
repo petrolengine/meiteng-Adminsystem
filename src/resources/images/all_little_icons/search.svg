@@ -1,0 +1,17 @@
+<svg id="组_5" data-name="组 5" xmlns="http://www.w3.org/2000/svg" width="30" height="30.313" viewBox="0 0 30 30.313">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #999;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle id="椭圆_1" data-name="椭圆 1" class="cls-1" cx="12.39" cy="12.313" r="10.891"/>
+  <path id="形状_1" data-name="形状 1" class="cls-2" d="M440.29,142.3l8.71,7.784" transform="translate(-420.5 -123.5)"/>
+</svg>
