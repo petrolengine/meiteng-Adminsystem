@@ -1,0 +1,18 @@
+<svg id="组_2" data-name="组 2" xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke: #091b2b;
+        stroke-width: 1px;
+      }
+
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="椭圆_1" data-name="椭圆 1" class="cls-1" d="M578.5,196c2.908,0,5.266,2.079,5.266,4.644s-5.266,8.085-5.266,8.085-5.266-5.519-5.266-8.085S575.592,196,578.5,196Z" transform="translate(-572.5 -195.5)"/>
+  <path id="椭圆_2" data-name="椭圆 2" class="cls-1" d="M580.509,207.545c2.044,0.261,3.491.909,3.491,1.666,0,0.988-2.463,1.789-5.5,1.789s-5.5-.8-5.5-1.789c0-.756,1.443-1.4,3.482-1.665" transform="translate(-572.5 -195.5)"/>
+  <circle id="椭圆_3" data-name="椭圆 3" class="cls-2" cx="6" cy="5" r="1.5"/>
+</svg>
