@@ -1,26 +1,5 @@
-<svg id="组_3" data-name="组 3" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-  <defs>
-    <style>
-      .cls-1, .cls-2 {
-        fill: none;
-        stroke-width: 1px;
-        fill-rule: evenodd;
-      }
-
-      .cls-1 {
-        stroke: #091b2b;
-      }
-
-      .cls-2 {
-        stroke: #031324;
-      }
-
-      .cls-3 {
-        fill: #031324;
-      }
-    </style>
-  </defs>
-  <path id="矩形_21" data-name="矩形 21" class="cls-1" d="M654.65,227.581h2.139L659,233.646H645l2.21-6.065h2.322" transform="translate(-644.5 -219.5)"/>
-  <path id="椭圆_1" data-name="椭圆 1" class="cls-2" d="M652,220a4.055,4.055,0,0,1,4.052,4.058c0,2.241-2.811,6.556-4.052,6.556s-4.053-4.315-4.053-6.556A4.056,4.056,0,0,1,652,220Z" transform="translate(-644.5 -219.5)"/>
-  <circle id="椭圆_2" data-name="椭圆 2" class="cls-3" cx="7.657" cy="4.719" r="1.094"/>
+<svg data-name="svg_obode" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+    <path d="M10.15 8.081h2.139l2.211 6.065H.5l2.21-6.065h2.322" stroke="#091b2b" fill="none" fill-rule="evenodd"/>
+    <path d="M7.5.5a4.055 4.055 0 0 1 4.052 4.058c0 2.241-2.811 6.556-4.052 6.556S3.447 6.799 3.447 4.558A4.056 4.056 0 0 1 7.5.5z" stroke="#031324" fill="none" fill-rule="evenodd"/>
+    <circle cx="7.657" cy="4.719" r="1.094" fill="#031324"/>
 </svg>

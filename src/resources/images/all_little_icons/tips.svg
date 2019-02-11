@@ -1,19 +1,11 @@
-<svg id="组_4" data-name="组 4" xmlns="http://www.w3.org/2000/svg" width="12" height="15" viewBox="0 0 12 15">
-  <defs>
-    <style>
-      .cls-1, .cls-2 {
-        fill: none;
-        stroke: #091b2b;
-        stroke-width: 1px;
-      }
-
-      .cls-2 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <rect id="圆角矩形_2_copy" data-name="圆角矩形 2 copy" class="cls-1" x="0.5" y="0.5" width="11" height="14" rx="5" ry="5"/>
-  <path id="形状_1_copy" data-name="形状 1 copy" class="cls-2" d="M653.366,269.389v2.1a1.439,1.439,0,0,0,.434,1.178,1.792,1.792,0,0,0,1.313.389h2.453" transform="translate(-646.5 -268.5)"/>
-  <rect id="矩形_2_copy" data-name="矩形 2 copy" class="cls-1" x="3.969" y="9.688" width="5.094" height="1.406"/>
-  <rect id="矩形_2_拷贝_copy" data-name="矩形 2 拷贝 copy" class="cls-1" x="3.969" y="6.813" width="5.094" height="1.375"/>
+<svg id="svg_tips" xmlns="http://www.w3.org/2000/svg" width="12" height="15">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#091b2b;stroke-width:1px}
+        </style>
+    </defs>
+    <rect class="cls-1" x=".5" y=".5" width="11" height="14" rx="5" ry="5"/>
+    <path d="M6.866.889v2.1A1.439 1.439 0 0 0 7.3 4.167a1.792 1.792 0 0 0 1.313.389h2.453" fill-rule="evenodd" fill="none" stroke="#091b2b" stroke-width="1"/>
+    <path class="cls-1" d="M3.969 9.688h5.094v1.406H3.969z"/>
+    <path class="cls-1" d="M3.969 6.813h5.094v1.375H3.969z"/>
 </svg>

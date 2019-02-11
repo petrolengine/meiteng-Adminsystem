@@ -1,18 +1,13 @@
-<svg id="组_1" data-name="组 1" xmlns="http://www.w3.org/2000/svg" width="26" height="22" viewBox="0 0 26 22">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #0d1926;
-        stroke-width: 1px;
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <path id="圆角矩形_1_拷贝_copy_3" data-name="圆角矩形 1 拷贝 copy 3" class="cls-1" d="M433.443,207h-4.11a4.113,4.113,0,0,1-4.167-4.056v-7.21H421L433.5,186l12.5,9.734h-4.167v7.21A4.112,4.112,0,0,1,437.666,207h-2.242" transform="translate(-420.5 -185.5)"/>
-  <path id="Rectangle_2_copy_5" data-name="Rectangle 2 copy 5" class="cls-1" d="M431.135,194.175l0.536-.521,2.678,2.607-0.535.522Z" transform="translate(-420.5 -185.5)"/>
-  <path id="Rectangle_2_copy_2" data-name="Rectangle 2 copy 2" class="cls-1" d="M433.125,197.067h0.781V207h-0.781v-9.933Z" transform="translate(-420.5 -185.5)"/>
-  <path id="Rectangle_2_copy" data-name="Rectangle 2 copy" class="cls-1" d="M430.094,199.274h6.812v0.746h-6.812v-0.746Z" transform="translate(-420.5 -185.5)"/>
-  <path class="cls-1" d="M430.094,196.321h6.812v0.746h-6.812v-0.746Z" transform="translate(-420.5 -185.5)"/>
-  <path id="Rectangle_2_copy_4" data-name="Rectangle 2 copy 4" class="cls-1" d="M436.086,193.654l0.536,0.521-2.678,2.608-0.536-.522Z" transform="translate(-420.5 -185.5)"/>
+<svg id="svg_rend_house" xmlns="http://www.w3.org/2000/svg" width="26" height="22">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#0d1926;stroke-width:1px;fill-rule:evenodd}
+        </style>
+    </defs>
+    <path class="cls-1" d="M433.443 207h-4.11a4.113 4.113 0 0 1-4.167-4.056v-7.21H421L433.5 186l12.5 9.734h-4.167v7.21a4.112 4.112 0 0 1-4.167 4.056h-2.242" transform="translate(-420.5 -185.5)"/>
+    <path class="cls-1" d="M431.135 194.175l.536-.521 2.678 2.607-.535.522z" transform="translate(-420.5 -185.5)"/>
+    <path class="cls-1" d="M433.125 197.067h.781V207h-.781v-9.933z" transform="translate(-420.5 -185.5)"/>
+    <path class="cls-1" d="M430.094 199.274h6.812v.746h-6.812v-.746z" transform="translate(-420.5 -185.5)"/>
+    <path class="cls-1" d="M430.094 196.321h6.812v.746h-6.812v-.746z" transform="translate(-420.5 -185.5)"/>
+    <path class="cls-1" d="M436.086 193.654l.536.521-2.678 2.608-.536-.522z" transform="translate(-420.5 -185.5)"/>
 </svg>

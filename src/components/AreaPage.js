@@ -13,14 +13,12 @@ import address from '../resources/images/browse_community/address.png';
 import around_area from '../resources/images/browse_community/around_area.png';
 import transport from '../resources/images/browse_community/transport.png';
 
-// for debug
-import TestArea from '../resources/strings/test_area';
 
 export default class AreaPage {
     constructor(context) {
         this.context = context;
         this.info = {
-            data: TestArea,
+            data: [],
             totalPage: 5,
             curPage: 1,
         }
@@ -60,6 +58,9 @@ export default class AreaPage {
     }
 
     get render() {
+        if (this.info.data.length === 0) {
+            this.get_data_from_server();
+        }
         const items = [];
         this.info.data.forEach((o) => items.push(this.renderOneResult(o, items.length)));
         return (
@@ -68,5 +69,28 @@ export default class AreaPage {
                 {renderPage(this.info.totalPage, this.info.curPage)}
             </div>
         );
+    }
+
+    on_loadend(data) {
+        if (this.info.data.length !== data.length || data.length > 0) {
+            this.info.data = data;
+            const key = "AreaPageInfo";
+            const temp = {};
+            temp[key] = this.info;
+            this.context.setState(temp);
+        }
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
+    }
+
+    get_data_from_server() {
+        const url = "/users/GetAreaList";
+        const params = {
+            page: this.info.curPage,
+            prePage: 6,
+        };
+        this.context.requesthdr.send_message(url, params, this);
     }
 }

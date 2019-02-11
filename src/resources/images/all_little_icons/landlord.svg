@@ -1,17 +1,4 @@
-<svg id="组_9" data-name="组 9" xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14">
-  <defs>
-    <style>
-      .cls-1, .cls-2 {
-        fill: none;
-        stroke: #031324;
-        stroke-width: 1px;
-      }
-
-      .cls-1 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <path id="圆角矩形_4" data-name="圆角矩形 4" class="cls-1" d="M598.851,810.432c7.148,0,6.756,1.406,6.756,1.406V814.3a0.7,0.7,0,0,1-.7.7H592.7a0.7,0.7,0,0,1-.7-0.7v-2.459S591.577,810.432,598.851,810.432Z" transform="translate(-591.5 -801.5)"/>
-  <circle id="椭圆_3" data-name="椭圆 3" class="cls-2" cx="7.125" cy="4.36" r="3.5"/>
+<svg id="svg_landlord" xmlns="http://www.w3.org/2000/svg" width="15" height="14">
+    <path d="M7.351 8.932c7.148 0 6.756 1.406 6.756 1.406V12.8a.7.7 0 0 1-.7.7H1.2a.7.7 0 0 1-.7-.7v-2.459S.077 8.932 7.351 8.932z" fill-rule="evenodd" fill="none" stroke="#031324"/>
+    <circle cx="7.125" cy="4.36" r="3.5" fill="none" stroke="#031324"/>
 </svg>

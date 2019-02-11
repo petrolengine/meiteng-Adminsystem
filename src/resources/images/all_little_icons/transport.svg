@@ -1,25 +1,17 @@
-<svg id="组_3" data-name="组 3" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-        stroke: #031324;
-        stroke-width: 1px;
-      }
-
-      .cls-2 {
-        fill: #091b2b;
-      }
-    </style>
-  </defs>
-  <rect id="圆角矩形_5" data-name="圆角矩形 5" class="cls-1" x="1.5" y="0.5" width="11" height="12" rx="2" ry="2"/>
-  <rect id="圆角矩形_6" data-name="圆角矩形 6" class="cls-1" x="2.5" y="11.5" width="3" height="2" rx="1" ry="1"/>
-  <rect id="圆角矩形_6_拷贝_2" data-name="圆角矩形 6 拷贝 2" class="cls-1" x="0.5" y="4.5" width="2" height="3" rx="1" ry="1"/>
-  <rect id="圆角矩形_6_拷贝_3" data-name="圆角矩形 6 拷贝 3" class="cls-1" x="11.5" y="4.5" width="2" height="3" rx="1" ry="1"/>
-  <rect id="圆角矩形_6_拷贝" data-name="圆角矩形 6 拷贝" class="cls-1" x="8.5" y="11.5" width="3" height="2" rx="1" ry="1"/>
-  <rect id="矩形_22" data-name="矩形 22" class="cls-2" x="2.5" y="3.5" width="9" height="1"/>
-  <rect id="矩形_22_拷贝" data-name="矩形 22 拷贝" class="cls-2" x="2.5" y="7.5" width="9" height="1"/>
-  <rect id="矩形_22_拷贝_2" data-name="矩形 22 拷贝 2" class="cls-2" x="6.5" y="4.5" width="1" height="3"/>
-  <rect id="矩形_23" data-name="矩形 23" class="cls-2" x="3.5" y="9.5" width="2" height="1"/>
-  <rect id="矩形_23_拷贝" data-name="矩形 23 拷贝" class="cls-2" x="8.5" y="9.5" width="2" height="1"/>
+<svg id="svg_transport" xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#031324;stroke-width:1px}.cls-2{fill:#091b2b}
+        </style>
+    </defs>
+    <rect class="cls-1" x="1.5" y=".5" width="11" height="12" rx="2" ry="2"/>
+    <rect class="cls-1" x="2.5" y="11.5" width="3" height="2" rx="1" ry="1"/>
+    <rect class="cls-1" x=".5" y="4.5" width="2" height="3" rx="1" ry="1"/>
+    <rect class="cls-1" x="11.5" y="4.5" width="2" height="3" rx="1" ry="1"/>
+    <rect class="cls-1" x="8.5" y="11.5" width="3" height="2" rx="1" ry="1"/>
+    <path class="cls-2" d="M2.5 3.5h9v1h-9z"/>
+    <path class="cls-2" d="M2.5 7.5h9v1h-9z"/>
+    <path class="cls-2" d="M6.5 4.5h1v3h-1z"/>
+    <path class="cls-2" d="M3.5 9.5h2v1h-2z"/>
+    <path class="cls-2" d="M8.5 9.5h2v1h-2z"/>
 </svg>

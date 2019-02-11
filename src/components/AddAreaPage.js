@@ -2,16 +2,21 @@ import React from 'react';
 import CommonStr from '../resources/strings/common';
 import '../resources/css/AddPageCommon.css';
 import '../resources/css/common.css';
+import { formData2Json } from '../common/Function';
+
 
 export default class AddAreaPage {
     constructor(context) {
         this.context = context;
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.info = {
-        }
+        };
     }
 
     handleSubmitEvent(event) {
+        event.preventDefault();
+        const data = formData2Json(new FormData(event.target));
+        this.context.requesthdr.send_message(this.action, data, this);
     }
 
     get render() {
@@ -46,5 +51,14 @@ export default class AddAreaPage {
                 </form>
             </div>
         );
+    }
+
+    on_loadend(data) {
+        this.context.pages[6][0].info.data = [];
+        this.context.setState({ current_page: 6 });
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
     }
 }

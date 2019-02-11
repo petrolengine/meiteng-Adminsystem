@@ -1,18 +1,10 @@
-<svg id="组_17" data-name="组 17" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
-  <defs>
-    <style>
-      .cls-1, .cls-2 {
-        fill: none;
-        stroke: #ec6941;
-        stroke-width: 2px;
-      }
-
-      .cls-2 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
-  <circle id="椭圆_7_拷贝_copy" data-name="椭圆 7 拷贝 copy" class="cls-1" cx="13" cy="13" r="12"/>
-  <path id="椭圆_8_拷贝_copy" data-name="椭圆 8 拷贝 copy" class="cls-2" d="M1309.38,990.477c0-2.175,2.07-3.939,4.62-3.939s4.62,1.764,4.62,3.939-0.23,3.938-2.77,3.938c-1.03,0-.93,3.151-0.93,3.151" transform="translate(-1301 -980)"/>
-  <path id="椭圆_9_拷贝_copy" data-name="椭圆 9 拷贝 copy" class="cls-2" d="M1314,999.461a0.925,0.925,0,1,1-.92.919A0.92,0.92,0,0,1,1314,999.461Z" transform="translate(-1301 -980)"/>
+<svg id="never" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#ec6941;stroke-width:2px;fill-rule:evenodd}
+        </style>
+    </defs>
+    <circle cx="13" cy="13" r="12" fill="none" stroke="#ec6941" stroke-width="2"/>
+    <path class="cls-2" d="M1309.38 990.477c0-2.175 2.07-3.939 4.62-3.939s4.62 1.764 4.62 3.939-.23 3.938-2.77 3.938c-1.03 0-.93 3.151-.93 3.151" transform="translate(-1301 -980)"/>
+    <path class="cls-2" d="M1314 999.461a.925.925 0 1 1-.92.919.92.92 0 0 1 .92-.919z" transform="translate(-1301 -980)"/>
 </svg>
