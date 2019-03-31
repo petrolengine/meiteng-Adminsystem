@@ -13,6 +13,8 @@ import address from '../resources/images/browse_community/address.png';
 import around_area from '../resources/images/browse_community/around_area.png';
 import transport from '../resources/images/browse_community/transport.png';
 
+import TestAreaStr from '../resources/strings/test_area';
+
 
 export default class AreaPage {
     constructor(context) {
@@ -22,6 +24,7 @@ export default class AreaPage {
             totalPage: 5,
             curPage: 1,
         }
+        this.info.data = TestAreaStr;
     }
 
     renderOneResult(obj, idx) {

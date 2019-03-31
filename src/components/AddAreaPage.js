@@ -4,13 +4,18 @@ import '../resources/css/AddPageCommon.css';
 import '../resources/css/common.css';
 import { formData2Json } from '../common/Function';
 
-
 export default class AddAreaPage {
     constructor(context) {
         this.context = context;
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.info = {
         };
+        const BMap = window.BMap;
+        const map = new BMap.Map("bdmap");
+        map.centerAndZoom(new BMap.Point(120.282981, 29.71475), 16);
+        map.addControl(new BMap.MapTypeControl());
+        map.setCurrentCity("绍兴");
+        map.enableScrollWheelZoom(true);
     }
 
     handleSubmitEvent(event) {
@@ -18,6 +23,30 @@ export default class AddAreaPage {
         const data = formData2Json(new FormData(event.target));
         this.context.requesthdr.send_message(this.action, data, this);
     }
+
+    // mapClickEvent(e) {
+    //     console.log('map click event', e);
+    //     const options = {
+    //         onSearchComplete: (result) => {
+
+    //         }
+    //     }
+    //     this.map.search();
+    // }
+
+    // getEvents() {
+    //     return {
+    //         click: this.mapClickEvent
+    //     }
+    // }
+
+    // <Map center={{ lng: 120.282981, lat: 29.71475 }}
+    //     enableScrollWheelZoom={true}
+    //     events={this.getEvents()}
+    //     ref={ref => this.map = ref.map}
+    //     zoom="16">
+    //     <Marker position={{ lng: 120.282981, lat: 29.71475 }} />
+    // </Map>
 
     get render() {
         return (
@@ -46,6 +75,8 @@ export default class AddAreaPage {
                     </div>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top">{CommonStr.area_label}</label>
+                    </div>
+                    <div id="bdmap">
                     </div>
                     <button className="b add_page_common_ok w15_2ch noborder">{CommonStr.ok}</button>
                 </form>
