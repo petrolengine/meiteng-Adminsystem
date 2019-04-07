@@ -2,7 +2,6 @@ import React from 'react';
 import CommonStr from '../resources/strings/common';
 import '../resources/css/AddPageCommon.css';
 import '../resources/css/common.css';
-import { formData2Json } from '../common/Function';
 const BMap = window.BMap;
 
 export default class AddAreaPage {
@@ -26,8 +25,13 @@ export default class AddAreaPage {
 
     handleSubmitEvent(event) {
         event.preventDefault();
-        const data = formData2Json(new FormData(event.target));
-        this.context.requesthdr.send_message(this.action, data, this);
+        const data = {};
+        data.name = this.info.name;
+        data.address = this.info.address;
+        data.city = this.info.city;
+        data.tags = this.info.tags;
+        data.traficTags = this.info.traficTags;
+        this.context.requesthdr.send_message("/users/AddArea", data, this);
     }
 
     updateAreaInfo(info, tags, traficTags) {
@@ -78,14 +82,14 @@ export default class AddAreaPage {
                                 })
                             } else {
                                 if (o.title.length > 0 && !arr.find((val) => val.title === o.title))
-                                    arr.push(o);
+                                    arr.push(o.title);
                             }
                         });
                     })
                     this.updateAreaInfo(areas[0], arr, arr2);
                 }
             });
-            local.searchNearby(["旅游景点", "公园", "商场", "银行", "剧院", "学校", "医院", "公交"], point, 500);
+            local.searchNearby(["旅游景点", "公园", "商场", "万达广场", "银行", "剧院", "学校", "医院", "公交"], point, 500);
         }
     }
 
@@ -131,7 +135,7 @@ export default class AddAreaPage {
         const ret = [];
         if (this.context.state.AddAreaPageInfo.tags) {
             this.context.state.AddAreaPageInfo.tags.forEach((o) => ret.push(
-                <label className="add_area_page_symbol_content gray12_1_ch in_top" key={`area_page_symbol_${ret.length}`}>{o.title}</label>
+                <label className="add_area_page_symbol_content gray12_1_ch in_top" key={`area_page_symbol_${ret.length}`}>{o}</label>
             ));
         }
         return ret;
@@ -161,18 +165,15 @@ export default class AddAreaPage {
         return (
             <div className="add_page_common_background">
                 <div className="in_top bdmap" id="bdmap"></div>
-                <form className="in_top add_page_common_main_frame2"
-                    action={`${process.env.REACT_APP_URL_PREFIX}/add_area`}
-                    method="POST"
-                    onSubmit={this.handleSubmitEvent}
-                >
+                <form className="in_top add_page_common_main_frame2" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch textalign_c add_page_common_title">{CommonStr.add_area}</label>
                     <div className="b add_page_common_item" style={{ marginTop: "30px" }}>
                         <label className="add_page_common_key w15_2ch in_top">{CommonStr.area_name}</label>
                         <input className="add_page_common_value b15_1_ch in_top noborder"
                             name="name"
                             value={this.name}
-                            onChange={this.setName}>
+                            onChange={this.setName}
+                            required>
                         </input>
                     </div>
                     <div className="b add_page_common_item">
