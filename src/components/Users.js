@@ -39,8 +39,28 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 5
+            current_page: 9,
+            AddAreaPageInfo: {},
         };
+        this.oldPage = 9;
+    }
+
+    componentDidMount() {
+        const obj = this.pages[this.state.current_page % this.pages.length][0];
+        if (obj.componentDidMount)
+            obj.componentDidMount()
+    }
+
+    componentDidUpdate() {
+        if (this.oldPage !== this.state.current_page) {
+            const temp = this.pages[this.oldPage % this.pages.length][0];
+            if (temp.componentFinish)
+                temp.componentFinish()
+            this.oldPage = this.state.current_page;
+        }
+        const obj = this.pages[this.state.current_page % this.pages.length][0];
+        if (obj.componentDidUpdate)
+            obj.componentDidUpdate()
     }
 
     initialize() {
@@ -57,7 +77,7 @@ class Users extends Component {
             this.flag = obj.flag;
             this.id = obj.id;
             this.totals = obj.totals;
-            window.localStorage.removeItem("tempLoginData");
+            //window.localStorage.removeItem("tempLoginData");
         } catch (e) {
             console.error(e);
             return false;

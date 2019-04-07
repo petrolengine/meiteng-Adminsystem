@@ -16,7 +16,7 @@ export default class AddRoomPage {
 
     get renderTypes() {
         const items = [];
-        AddRoomStr.types.forEach((o) => items.push(<option>{o}</option>));
+        AddRoomStr.types.forEach((o) => items.push(<option key={`add_room_page_types_key_${items.length}`}>{o}</option>));
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.type}</label>
@@ -29,7 +29,7 @@ export default class AddRoomPage {
 
     get renderChaoXiang() {
         const items = [];
-        AddRoomStr.chaoxiangs.forEach((o) => items.push(<option>{o}</option>));
+        AddRoomStr.chaoxiangs.forEach((o) => items.push(<option key={`add_room_page_chao_xiang_key_${items.length}`}>{o}</option>));
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.chaoxiang}</label>
@@ -42,7 +42,7 @@ export default class AddRoomPage {
 
     get renderZhuangXiu() {
         const items = [];
-        AddRoomStr.zhuangxius.forEach((o) => items.push(<option>{o}</option>));
+        AddRoomStr.zhuangxius.forEach((o) => items.push(<option key={`add_room_page_zhuang_xiu_key_${items.length}`}>{o}</option>));
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.zhuangxiu}</label>
@@ -57,9 +57,9 @@ export default class AddRoomPage {
         const items = [];
         AddRoomStr.peitaosheshis.forEach((o) => {
             const sub = [];
-            o.forEach((oo) => sub.push(<label className="facilities w2 distance0_7 c666_15_1_ch in_middle">{oo}</label>));
+            o.forEach((oo) => sub.push(<label className="facilities w2 distance0_7 c666_15_1_ch in_middle" key={`add_room_page_peitaosheshi_key_${sub.length}`}>{oo}</label>));
             items.push(
-                <div className="b">
+                <div className="b" key={`add_room_page_peitaosheshi2_key_${items.length}`}>
                     {sub}
                 </div>
             );
@@ -75,7 +75,11 @@ export default class AddRoomPage {
     get render() {
         return (
             <div className="add_page_common_background">
-                <div className="special_frame_xl">
+                <form className="in_top add_page_common_main_frame ma"
+                    action={`${process.env.REACT_APP_URL_PREFIX}/add_room`}
+                    method="POST"
+                    onSubmit={this.handleSubmitEvent}
+                >
                     <label className="b add_page_common_title w20_1ch textalign_c">{this.bsale ? CommonStr.add_sale : CommonStr.add_rend}</label>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.place}</label>
@@ -131,7 +135,7 @@ export default class AddRoomPage {
                     </div>
                     {this.renderPeiTaoSheShi}
                     <button className="b add_page_common_ok w15_2ch">{CommonStr.ok}</button>
-                </div>
+                </form>
             </div>
         );
     }

@@ -31,8 +31,8 @@ export default class AddPersonPage {
 
     get render() {
         return (
-            <div className="add_page_common_background">
-                <form className="add_page_common_main_frame" onSubmit={this.handleSubmitEvent}>
+            <div className="b add_page_common_background">
+                <form className="in_top add_page_common_main_frame" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch add_page_common_title textalign_c">{this.title}</label>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top" >{CommonStr.name}</label>
