@@ -39,10 +39,10 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 9,
+            current_page: 6,
             AddAreaPageInfo: {},
         };
-        this.oldPage = 9;
+        this.oldPage = 6;
     }
 
     componentDidMount() {
