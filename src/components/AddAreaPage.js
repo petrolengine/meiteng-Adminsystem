@@ -186,13 +186,13 @@ export default class AddAreaPage {
                     </div>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch b">{CommonStr.area_trafic}</label>
-                        <div className="in_middle">
+                        <div className="in_middle" style={{ maxHeight: "120px", overflow: "scroll" }}>
                             {this.traficTags}
                         </div>
                     </div>
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch b">{CommonStr.area_around}</label>
-                        <div className="in_middle">
+                        <div className="in_middle" style={{ maxHeight: "190px", overflow: "scroll" }}>
                             {this.tags}
                         </div>
                     </div>

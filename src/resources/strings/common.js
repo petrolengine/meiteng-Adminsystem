@@ -42,7 +42,6 @@ const CommonStr = {
     area_address: "小区位置",
     area_around: "周边配套",
     area_trafic: "交通出行",
-    area_label: "标签生成",
     add_staff: "添加员工",
     add_sale: "添加卖房",
     add_rend: "添加租房",
@@ -56,9 +55,6 @@ const CommonStr = {
     zufang: "租房",
     maifang: "买房",
     yeji: "业绩",
-    xiaoquweizhi: "小区位置",
-    zhoubianpeitao: "周边配套",
-    jiaotongchuxing: "交通出行",
 };
 
 export default CommonStr;

@@ -41,3 +41,12 @@ export function renderPage(total, current) {
         </div>
     );
 }
+
+export function renderAddPageCommonItem(name, key, value) {
+    return (
+        <div className="b add_page_common_item">
+            <label className="add_page_common_key w15_2ch in_top" htmlFor={name}>{key}</label>
+            <input className="add_page_common_value in_top" name={name} placeholder={value}></input>
+        </div>
+    );
+}

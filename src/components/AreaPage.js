@@ -44,7 +44,7 @@ export default class AreaPage {
                         {trafics}
                     </div>
                 </div>
-                <div className="in_middle" style={{ width: "410px", maxHeight: "180px", overflow: "scroll" }}>
+                <div className="in_middle m_l_8" style={{ width: "390px", maxHeight: "180px", overflow: "scroll" }}>
                     {items}
                 </div>
                 <button className="edit_button in_top fr m_t_2 m_r_2"></button>

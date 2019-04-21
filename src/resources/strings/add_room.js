@@ -1,6 +1,7 @@
 const AddRoomStr = {
-    place: "位置",
-    place_example: "例.靠近万达广场",
+    area: "小区",
+    area_placehold: "选择小区",
+    landlord_placehold: "选择房东",
     type: "类型",
     types: [
         "住宅",

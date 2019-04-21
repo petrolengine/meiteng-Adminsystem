@@ -5,13 +5,20 @@ import '../resources/css/add_sales.css'
 import '../resources/css/label.css'
 import CommonStr from '../resources/strings/common';
 import AddRoomStr from '../resources/strings/add_room';
+import { renderAddPageCommonItem } from '../common/Function';
 
 export default class AddRoomPage {
     constructor(context, bsale) {
+        this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
         this.context = context;
         this.bsale = bsale;
         this.info = {
         }
+    }
+
+    handleSubmitEvent(event) {
+        event.preventDefault();
+        //this.context.requesthdr.send_message("/users/AddRoom", data, this);
     }
 
     get renderTypes() {
@@ -75,20 +82,10 @@ export default class AddRoomPage {
     get render() {
         return (
             <div className="add_page_common_background">
-                <form className="in_top add_page_common_main_frame ma"
-                    action={`${process.env.REACT_APP_URL_PREFIX}/add_room`}
-                    method="POST"
-                    onSubmit={this.handleSubmitEvent}
-                >
+                <form className="in_top add_page_common_main_frame ma" onSubmit={this.handleSubmitEvent}>
                     <label className="b add_page_common_title w20_1ch textalign_c">{this.bsale ? CommonStr.add_sale : CommonStr.add_rend}</label>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.place}</label>
-                        <input className="add_page_common_value in_top" name="sales_house_location" placeholder={AddRoomStr.place_example}></input>
-                    </div>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.address}</label>
-                        <input className="add_page_common_value in_top name=sales_house_address"></input>
-                    </div>
+                    {renderAddPageCommonItem("area", AddRoomStr.area, AddRoomStr.area_placehold)}
+                    {renderAddPageCommonItem("landlord", CommonStr.fangdong, AddRoomStr.landlord_placehold)}
                     {this.renderTypes}
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.huxing}</label>
@@ -125,14 +122,8 @@ export default class AddRoomPage {
                         <input className="zj in_top b12_1_ch" name="park_total_price" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
                         <label className="w15_2ch in_top hx">{AddRoomStr.wanyuan_ge}</label>
                     </div>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top" >{AddRoomStr.wuyegongsi}</label>
-                        <input className="add_page_common_value in_top" name="property_management_company"></input>
-                    </div>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.remarks}</label>
-                        <input className="add_page_common_value in_top" name="sales_remark"></input>
-                    </div>
+                    {renderAddPageCommonItem("property_management_company", AddRoomStr.wuyegongsi, "")}
+                    {renderAddPageCommonItem("remark", CommonStr.remarks, "")}
                     {this.renderPeiTaoSheShi}
                     <button className="b add_page_common_ok w15_2ch">{CommonStr.ok}</button>
                 </form>
