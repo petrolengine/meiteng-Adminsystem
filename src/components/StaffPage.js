@@ -21,6 +21,7 @@ export default class StaffPage {
             data: [],
             totalPage: 5,
             curPage: 0,
+            searchKey: "",
         }
     }
 
@@ -98,9 +99,15 @@ export default class StaffPage {
     }
 
     on_loadend(data) {
-        if (this.info.data.length !== data.length || data.length > 0) {
-            this.info.data = data;
-            this.context.setState({ "StaffPageInfo": this.info });
+        switch (data.key) {
+            case "/GetStaffList":
+                if (this.info.data.length !== data.length || data.length > 0) {
+                    this.info.data = data.data;
+                    this.context.setState({ "StaffPageInfo": this.info });
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -112,6 +119,7 @@ export default class StaffPage {
         const params = {
             page: this.info.curPage,
             prePage: 6,
+            key: this.info.searchKey,
         };
         this.context.requesthdr.send_message("/users/GetStaffList", params, this);
     }

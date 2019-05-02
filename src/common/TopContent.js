@@ -3,10 +3,12 @@ import '../resources/css/TopContent.css';
 import '../resources/css/label.css';
 import CommonStr from '../resources/strings/common';
 import ToolbarStr from '../resources/strings/toolbar';
+import { formData2Json } from '../common/Function';
 
 export default class TopContent {
     constructor(context) {
         this.context = context;
+        this.searchSubmit = this.searchSubmit.bind(this);
     }
 
     get renderLogo() {
@@ -18,7 +20,29 @@ export default class TopContent {
         );
     }
 
+    get obj() {
+        const pages = this.context.pages;
+        return pages[this.context.state.current_page % pages.length][0];
+    }
+
+    searchSubmitObj(obj, key) {
+        obj.info.curPage = 0;
+        obj.info.searchKey = key.key;
+        obj.get_data_from_server();
+    }
+
+    resetSearch(obj) {
+        obj.info.searchKey = "";
+        obj.info.curPage = 0;
+        obj.info.data = [];
+    }
+
     __handleToolbarClick(idx) {
+        const searchItem = document.getElementById("searchTopBar");
+        if (searchItem && searchItem.value.length > 0) {
+            searchItem.value = "";
+            this.resetSearch(this.obj);
+        }
         this.context.setState({ current_page: idx });
     }
 
@@ -92,13 +116,22 @@ export default class TopContent {
         );
     }
 
+    searchSubmit(e) {
+        e.preventDefault();
+        const data = formData2Json(new FormData(e.target));
+        if (!data.key)
+            data['key'] = "";
+
+        this.searchSubmitObj(this.obj, data);
+    }
+
     renderSearchBar(valide) {
         if (valide) {
             return (
-                <div className="tc_search">
-                    <button className="tc_btn" type="summit"></button>
-                    <input className="tc_input_frame" placeholder={CommonStr.placeholder_serarch}></input>
-                </div>
+                <form className="tc_search" onSubmit={this.searchSubmit}>
+                    <button className="tc_btn"></button>
+                    <input className="tc_input_frame" placeholder={CommonStr.placeholder_serarch} name="key" id="searchTopBar"></input>
+                </form>
             );
         }
     }

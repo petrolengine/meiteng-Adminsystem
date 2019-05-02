@@ -18,6 +18,7 @@ export default class AreaPage {
             data: [],
             totalPage: 5,
             curPage: 0,
+            searchKey: "",
         }
     }
 
@@ -68,12 +69,18 @@ export default class AreaPage {
     }
 
     on_loadend(data) {
-        if (this.info.data.length !== data.length || data.length > 0) {
-            this.info.data = data;
-            const key = "AreaPageInfo";
-            const temp = {};
-            temp[key] = this.info;
-            this.context.setState(temp);
+        switch (data.key) {
+            case "/GetAreaList":
+                if (this.info.data.length !== data.length || data.length > 0) {
+                    this.info.data = data.data;
+                    const key = "AreaPageInfo";
+                    const temp = {};
+                    temp[key] = this.info;
+                    this.context.setState(temp);
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -86,6 +93,7 @@ export default class AreaPage {
         const params = {
             page: this.info.curPage,
             prePage: 6,
+            key: this.info.searchKey,
         };
         this.context.requesthdr.send_message(url, params, this);
     }
