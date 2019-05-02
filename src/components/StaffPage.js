@@ -17,9 +17,10 @@ import { renderPage } from '../common/Function';
 export default class StaffPage {
     constructor(context) {
         this.context = context;
+        this.prePage = 6;
         this.info = {
             data: [],
-            totalPage: 5,
+            totalPage: Math.ceil(this.context.totals.staff / this.prePage),
             curPage: 0,
             searchKey: "",
         }
@@ -93,7 +94,7 @@ export default class StaffPage {
         return (
             <div className="b">
                 {items}
-                {renderPage(this.info.totalPage, this.info.curPage)}
+                {renderPage(this)}
             </div>
         );
     }
@@ -118,7 +119,7 @@ export default class StaffPage {
     get_data_from_server() {
         const params = {
             page: this.info.curPage,
-            prePage: 6,
+            prePage: this.prePage,
             key: this.info.searchKey,
         };
         this.context.requesthdr.send_message("/users/GetStaffList", params, this);

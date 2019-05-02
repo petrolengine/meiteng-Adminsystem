@@ -14,9 +14,10 @@ import address from '../resources/images/browse_community/address.png';
 export default class AreaPage {
     constructor(context) {
         this.context = context;
+        this.prePage = 6;
         this.info = {
             data: [],
-            totalPage: 5,
+            totalPage: Math.ceil(this.context.totals.area / this.prePage),
             curPage: 0,
             searchKey: "",
         }
@@ -63,7 +64,7 @@ export default class AreaPage {
         return (
             <div className="b">
                 {items}
-                {renderPage(this.info.totalPage, this.info.curPage)}
+                {renderPage(this)}
             </div>
         );
     }
@@ -92,7 +93,7 @@ export default class AreaPage {
         const url = "/users/GetAreaList";
         const params = {
             page: this.info.curPage,
-            prePage: 6,
+            prePage: this.prePage,
             key: this.info.searchKey,
         };
         this.context.requesthdr.send_message(url, params, this);

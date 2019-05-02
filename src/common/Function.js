@@ -24,22 +24,45 @@ export function formData2Json(formData) {
     return object;
 }
 
-export function renderPage(total, current) {
-    const items = [];
-    items.push(<button className="goto_page_arrow_left in_top noborder goto_page_size" disabled={current === 0} key={`page_left`}></button>);
-    for (let idx = 0; idx < total; idx++) {
-        if (idx === current) {
-            items.push(<button className="goto_page_size in_top b15_1_ch noborder m_l_2" style={{ backgroundColor: "rgb(236, 125, 65)" }} key={`page_${idx}`} disabled>{idx + 1}</button>);
-        } else {
-            items.push(<button className="goto_page_size in_top b15_1_ch noborder m_l_2" style={{ backgroundColor: "#eeeeee" }} key={`page_${idx}`}>{idx + 1}</button>);
+function onPageClicked(obj, page) {
+    obj.info.curPage = page;
+    obj.get_data_from_server();
+}
+
+export function renderPage(obj) {
+    const current = obj.info.curPage;
+    if (obj.info.totalPage > 1) {
+        const items = [];
+        items.push(
+            <button className="goto_page_arrow_left in_top noborder goto_page_size"
+                disabled={current === 0}
+                onClick={() => onPageClicked(obj, current - 1)}
+                key={`page_left`}>
+            </button>
+        );
+        for (let idx = 0; idx < obj.info.totalPage; idx++) {
+            items.push(
+                <button className="goto_page_size in_top b15_1_ch noborder m_l_2"
+                    style={idx === current ? { backgroundColor: "rgb(236, 125, 65)" } : { backgroundColor: "#eeeeee" }}
+                    onClick={() => onPageClicked(obj, idx)}
+                    key={`page_${idx}`} disabled={idx === current}>
+                    {idx + 1}
+                </button>
+            );
         }
+        items.push(
+            <button className="goto_page_arrow_right in_top noborder m_l_2 goto_page_size"
+                key={`page_right`}
+                onClick={() => onPageClicked(obj, current + 1)}
+                disabled={current + 1 === obj.info.totalPage}>
+            </button>
+        );
+        return (
+            <div className="goto_page b">
+                {items}
+            </div>
+        );
     }
-    items.push(<button className="goto_page_arrow_right in_top noborder m_l_2 goto_page_size" key={`page_right`} disabled={current + 1 === total}></button>);
-    return (
-        <div className="goto_page b">
-            {items}
-        </div>
-    );
 }
 
 export function renderAddPageCommonItem(name, key, value) {

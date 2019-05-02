@@ -19,10 +19,14 @@ import CommonStr from '../resources/strings/common';
 export default class LandlordCustomerPage {
     constructor(context, person_type) {
         this.context = context;
+        this.prePage = 6;
         this.person_type = person_type;
         this.info = {
             data: [],
-            totalPage: 5,
+            totalPage: Math.ceil((PersonType.LANDLORD === this.person_type
+                ? this.context.totals.landlord
+                : this.context.totals.tenant
+            ) / this.prePage),
             curPage: 0,
             searchKey: "",
         }
@@ -131,7 +135,7 @@ export default class LandlordCustomerPage {
             <div className="b">
                 {this.renderBrowseFilter}
                 {items}
-                {renderPage(this.info.totalPage, this.info.curPage)}
+                {renderPage(this)}
             </div>
         );
     }
@@ -149,7 +153,6 @@ export default class LandlordCustomerPage {
             default:
                 break;
         }
-
     }
 
     on_error(code, data) {
