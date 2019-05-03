@@ -26,7 +26,7 @@ export function formData2Json(formData) {
 
 function onPageClicked(obj, page) {
     obj.info.curPage = page;
-    obj.get_data_from_server();
+    obj.get_data_from_server(obj.url1);
 }
 
 export function renderPage(obj) {
@@ -72,4 +72,23 @@ export function renderAddPageCommonItem(name, key, value) {
             <input className="add_page_common_value in_top" name={name} placeholder={value}></input>
         </div>
     );
+}
+
+function updateInfo(obj) {
+    const temp = {};
+    temp[obj.updateKey] = obj.info;
+    obj.context.setState(temp);
+}
+
+export function onList1(obj, data) {
+    if (obj.info.data.length !== data.length || data.length > 0) {
+        obj.info.data = data.data;
+        updateInfo(obj);
+    }
+}
+
+export function onList2(obj, data) {
+    obj.info.data = data.data.data;
+    obj.info.totalPage = Math.ceil(data.data.total / obj.prePage);
+    updateInfo(obj);
 }

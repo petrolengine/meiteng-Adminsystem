@@ -28,13 +28,11 @@ export default class TopContent {
     searchSubmitObj(obj, key) {
         obj.info.curPage = 0;
         obj.info.searchKey = key.key;
-        obj.get_data_from_server();
+        obj.search();
     }
 
     resetSearch(obj) {
-        obj.info.searchKey = "";
-        obj.info.curPage = 0;
-        obj.info.data = [];
+        obj.initialize();
     }
 
     __handleToolbarClick(idx) {

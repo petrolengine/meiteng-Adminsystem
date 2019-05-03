@@ -145,6 +145,10 @@ class RoomPage {
             </div>
         );
     }
+
+    initialize() {
+
+    }
 }
 
 export default RoomPage;
