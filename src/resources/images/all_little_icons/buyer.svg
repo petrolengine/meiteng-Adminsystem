@@ -1,0 +1,10 @@
+<svg id="svg_buyer" xmlns="http://www.w3.org/2000/svg" width="15" height="14.313">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#031324;stroke-width:1px;fill-rule:evenodd}
+        </style>
+    </defs>
+    <path class="cls-1" d="M598.851 843.432c7.148 0 6.756 1.406 6.756 1.406v2.462a.7.7 0 0 1-.7.7H592.7a.7.7 0 0 1-.7-.7v-2.459s-.423-1.409 6.851-1.409z" transform="translate(-591.5 -834.5)"/>
+    <circle cx="7.125" cy="4.36" r="3.5" fill="none" stroke="#031324"/>
+    <path class="cls-1" d="M595 838h7M596 844v4M602 844v4.312" transform="translate(-591.5 -834.5)"/>
+</svg>

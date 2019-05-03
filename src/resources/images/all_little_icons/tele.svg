@@ -1,0 +1,10 @@
+<svg id="svg_tele" xmlns="http://www.w3.org/2000/svg" width="9" height="15">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#0b1e2f;stroke-width:1px}
+        </style>
+    </defs>
+    <rect class="cls-1" x=".5" y=".5" width="8" height="14" rx="2" ry="2"/>
+    <path class="cls-1" d="M1.5 2.5h6v1h-6z"/>
+    <path class="cls-1" d="M1.5 11.5h6v1h-6z"/>
+</svg>

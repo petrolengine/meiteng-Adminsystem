@@ -43,8 +43,16 @@
     margin-left: 13px;
 }
 
+.m_l_16 {
+    margin-left: 16px;
+}
+
 .m_r_8 {
     margin-right: 8px;
+}
+
+.m_r_2 {
+    margin-right: 2px;
 }
 
 .m_t_35 {
@@ -61,6 +69,10 @@
 
 .m_t_5 {
     margin-top: 5px;
+}
+
+.m_t_2 {
+    margin-top: 2px;
 }
 
 .b {
@@ -90,4 +102,8 @@
 .m_l_r_auto {
     margin-left: auto;
     margin-right: auto;
+}
+
+.ma {
+    margin: auto;
 }

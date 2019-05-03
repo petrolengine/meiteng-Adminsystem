@@ -1,0 +1,9 @@
+<svg id="svg_house" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#0d1926;stroke-width:1px;fill-rule:evenodd}
+        </style>
+    </defs>
+    <path class="cls-1" d="M603.667 738.6v6.067a2.334 2.334 0 0 1-2.334 2.333h-4.666a2.334 2.334 0 0 1-2.334-2.333V738.6H592l7-5.6 7 5.6h-2.333z" transform="translate(-591.5 -732.5)"/>
+    <path class="cls-1" d="M597.6 746.533V744.2a.933.933 0 0 1 .933-.933h.934a.933.933 0 0 1 .933.933v2.333" transform="translate(-591.5 -732.5)"/>
+</svg>

@@ -10,10 +10,17 @@ import LandlordCustomerPage from './LandlordCustomerPage';
 import StaffPage from './StaffPage';
 import AreaPage from './AreaPage';
 import PersonType from '../common/PersonType';
+import RequestHandler from '../common/RequestHandler';
 
 class Users extends Component {
     constructor(props, context) {
         super(props, context);
+        if (!this.initialize()) {
+            window.location.assign(process.env.REACT_APP_BASE_NAME);
+            return;
+        }
+        this.requesthdr = new RequestHandler();
+        this.requesthdr.setJWT(this.jwt);
         this.topcontent = new TopContent(this);
         this.pages = [
             // page obj | need search bar | 
@@ -32,8 +39,50 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 5
+            current_page: 6,
+            AddAreaPageInfo: {},
         };
+        this.oldPage = 6;
+    }
+
+    componentDidMount() {
+        const obj = this.pages[this.state.current_page % this.pages.length][0];
+        if (obj.componentDidMount)
+            obj.componentDidMount()
+    }
+
+    componentDidUpdate() {
+        if (this.oldPage !== this.state.current_page) {
+            const temp = this.pages[this.oldPage % this.pages.length][0];
+            if (temp.componentFinish)
+                temp.componentFinish()
+            this.oldPage = this.state.current_page;
+        }
+        const obj = this.pages[this.state.current_page % this.pages.length][0];
+        if (obj.componentDidUpdate)
+            obj.componentDidUpdate()
+    }
+
+    initialize() {
+        const data = window.localStorage.getItem("tempLoginData");
+        if (!data) {
+            console.log("no data");
+            return false;
+        }
+        try {
+            const obj = JSON.parse(data);
+            if (obj.jwt === undefined || obj.flag === undefined || obj.id === undefined || obj.totals === undefined)
+                return false;
+            this.jwt = obj.jwt;
+            this.flag = obj.flag;
+            this.id = obj.id;
+            this.totals = obj.totals;
+            //window.localStorage.removeItem("tempLoginData");
+        } catch (e) {
+            console.error(e);
+            return false;
+        }
+        return true;
     }
 
     render() {

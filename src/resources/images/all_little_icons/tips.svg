@@ -1,0 +1,11 @@
+<svg id="svg_tips" xmlns="http://www.w3.org/2000/svg" width="12" height="15">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#091b2b;stroke-width:1px}
+        </style>
+    </defs>
+    <rect class="cls-1" x=".5" y=".5" width="11" height="14" rx="5" ry="5"/>
+    <path d="M6.866.889v2.1A1.439 1.439 0 0 0 7.3 4.167a1.792 1.792 0 0 0 1.313.389h2.453" fill-rule="evenodd" fill="none" stroke="#091b2b" stroke-width="1"/>
+    <path class="cls-1" d="M3.969 9.688h5.094v1.406H3.969z"/>
+    <path class="cls-1" d="M3.969 6.813h5.094v1.375H3.969z"/>
+</svg>

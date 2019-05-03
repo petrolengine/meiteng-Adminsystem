@@ -10,6 +10,12 @@
     letter-spacing: 1px;
 }
 
+.b15_1ch {
+    font-size: 15px;
+    color: black;
+    letter-spacing: 1px;
+}
+
 .w16_1ch {
     font-size: 16px;
     color: white;
@@ -50,11 +56,25 @@
     color: gray;
     letter-spacing: 1px;
 }
+
 .gray10_0_ch {
     font-size: 10px;
     color: gray;
     letter-spacing: 0px;
 }
+
+.gray12_1_ch {
+    font-size: 12px;
+    color: gray;
+    letter-spacing: 1px;
+}
+
+.orange13_0_ch {
+    font-size: 13px;
+    color: rgb(236, 125, 65);
+    letter-spacing: 0px;  
+}
+
 .orange15_1_ch {
     font-size: 15px;
     color: rgb(236, 125, 65);

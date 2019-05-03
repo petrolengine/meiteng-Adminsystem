@@ -1,0 +1,10 @@
+<svg id="svg_saler" xmlns="http://www.w3.org/2000/svg" width="15" height="14">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#031324;stroke-width:1px;fill-rule:evenodd}
+        </style>
+    </defs>
+    <path class="cls-1" d="M1313.85 791.432c7.15 0 6.76 1.406 6.76 1.406v2.462a.7.7 0 0 1-.7.7h-12.21a.7.7 0 0 1-.7-.7v-2.459s-.42-1.409 6.85-1.409z" transform="translate(-1306.5 -782.5)"/>
+    <path class="cls-1" d="M1312 792l2 3 2-3h-4z" transform="translate(-1306.5 -782.5)"/>
+    <circle cx="7.13" cy="4.36" r="3.5" fill="none" stroke="#031324" stroke-width="1"/>
+</svg>
