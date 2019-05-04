@@ -47,7 +47,7 @@ export default class AddAreaPage {
     onGetGeoLocationInfo(info) {
         const areas = []
         info.surroundingPois.forEach(e => {
-            if (e.Ei === "房地产" || e.Ei === "行政地标") {
+            if (e.ME.includes("房地产") || e.ME.includes("行政地标")) {
                 areas.push(e);
             }
         });
@@ -59,7 +59,7 @@ export default class AddAreaPage {
                 onSearchComplete: (results) => {
                     const arr = [], arr2 = [];
                     results.forEach(obj => {
-                        obj.Lq.forEach(o => {
+                        obj.Qq.forEach(o => {
                             if (obj.keyword === '银行') {
                                 o.title = ((str) => {
                                     const pos = str.indexOf('行');

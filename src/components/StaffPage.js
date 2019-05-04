@@ -101,7 +101,7 @@ export default class StaffPage {
             case "/GetStaffList":
                 onList1(this, data);
                 break;
-            case "GetStaffList2":
+            case "/GetStaffList2":
                 onList2(this, data);
                 break;
             default:

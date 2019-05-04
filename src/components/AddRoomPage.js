@@ -10,8 +10,11 @@ import { renderAddPageCommonItem } from '../common/Function';
 export default class AddRoomPage {
     constructor(context, bsale) {
         this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
+        this.quickAreaSearch = this.quickAreaSearch.bind(this);
+        this.quickLandlordSearch = this.quickLandlordSearch.bind(this);
         this.context = context;
         this.bsale = bsale;
+        this.title = bsale ? CommonStr.add_sale : CommonStr.add_rend;
         this.info = {
         }
     }
@@ -19,6 +22,18 @@ export default class AddRoomPage {
     handleSubmitEvent(event) {
         event.preventDefault();
         //this.context.requesthdr.send_message("/users/AddRoom", data, this);
+    }
+
+    quickAreaSearch() {
+        const val = document.getElementById("add_area_input").value;
+        const data = { key: val };
+        this.context.requesthdr.send_message("/users/QSearchArea", data, this);
+    }
+
+    quickLandlordSearch() {
+        const val = document.getElementById("add_landlord_input").value;
+        const data = { key: val };
+        this.context.requesthdr.send_message("/users/QSearchLandlord", data, this);
     }
 
     get renderTypes() {
@@ -79,13 +94,45 @@ export default class AddRoomPage {
         );
     }
 
+    get renderAreaItem() {
+        return (
+            <div className="b add_page_common_item">
+                <label className="add_page_common_key w15_2ch in_top" htmlFor="area">{AddRoomStr.area}</label>
+                <input
+                    className="add_page_common_value in_top"
+                    name="area" id="add_area_input"
+                    list="add_area_input_data_list"
+                    onChange={this.quickAreaSearch}
+                    placeholder={AddRoomStr.area_placehold}>
+                </input>
+                <datalist id="add_area_input_data_list"></datalist>
+            </div>
+        );
+    }
+
+    get renderLandlordItem() {
+        return (
+            <div className="b add_page_common_item">
+                <label className="add_page_common_key w15_2ch in_top" htmlFor="landlord">{CommonStr.fangdong}</label>
+                <input
+                    className="add_page_common_value in_top"
+                    name="landlord" id="add_landlord_input"
+                    list="add_landlord_input_data_list"
+                    onChange={this.quickLandlordSearch}
+                    placeholder={AddRoomStr.landlord_placehold}>
+                </input>
+                <datalist id="add_landlord_input_data_list"></datalist>
+            </div >
+        );
+    }
+
     get render() {
         return (
             <div className="add_page_common_background">
                 <form className="in_top add_page_common_main_frame ma" onSubmit={this.handleSubmitEvent}>
-                    <label className="b add_page_common_title w20_1ch textalign_c">{this.bsale ? CommonStr.add_sale : CommonStr.add_rend}</label>
-                    {renderAddPageCommonItem("area", AddRoomStr.area, AddRoomStr.area_placehold)}
-                    {renderAddPageCommonItem("landlord", CommonStr.fangdong, AddRoomStr.landlord_placehold)}
+                    <label className="b add_page_common_title w20_1ch textalign_c">{this.title}</label>
+                    {this.renderAreaItem}
+                    {this.renderLandlordItem}
                     {this.renderTypes}
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.huxing}</label>
@@ -129,5 +176,38 @@ export default class AddRoomPage {
                 </form>
             </div>
         );
+    }
+
+    on_loadend(data) {
+        switch (data.key) {
+            case "/QSearchArea":
+                if (data.data.length > 0) {
+                    const root = document.getElementById("add_area_input_data_list");
+                    root.innerHTML = "";
+                    data.data.forEach((o) => {
+                        const item = document.createElement("option");
+                        item.value = o.data;
+                        root.appendChild(item);
+                    });
+                }
+                break;
+            case "/QSearchLandlord":
+                if (data.data.length > 0) {
+                    const root = document.getElementById("add_landlord_input_data_list");
+                    root.innerHTML = "";
+                    data.data.forEach((o) => {
+                        const item = document.createElement("option");
+                        item.value = o.data;
+                        root.appendChild(item);
+                    });
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
     }
 }
