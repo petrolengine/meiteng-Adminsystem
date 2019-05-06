@@ -41,12 +41,12 @@ class Login extends Component {
                 <div className="login_modal_left"></div>
                 <form className="login_modal_right" action={`${process.env.REACT_APP_URL_PREFIX}/login`} method="POST" onSubmit={this.handleSubmitEvent}>
                     <h1 className={"login_title w20_8ch"}>{CommonStr.login}</h1>
-                    {this.state.error && <label className="w15_2ch login_nmr">{this.state.message}</label>}
-                    <label className="login_nmr login_label w15_2ch" >{CommonStr.user}</label>
+                    {this.state.error && <label className="w15_2_ch login_nmr">{this.state.message}</label>}
+                    <label className="login_nmr login_label w15_2_ch" >{CommonStr.user}</label>
                     <input className="login_nmr login_input_sty" type="text" placeholder={CommonStr.placeholder_user} name="uname" required></input>
-                    <label className="login_nmr login_label w15_2ch">{CommonStr.pass}</label>
+                    <label className="login_nmr login_label w15_2_ch">{CommonStr.pass}</label>
                     <input className="login_nmr login_input_sty" type="password" placeholder={CommonStr.placeholder_pass} name="psw" required></input>
-                    <button className="login_nmr btn_ok w15_2ch" type="submit">{CommonStr.ok}</button>
+                    <button className="login_nmr btn_ok w15_2_ch" type="submit">{CommonStr.ok}</button>
                 </form>
             </div >
         );

@@ -34,38 +34,38 @@ export default class AddPersonPage {
             <div className="b add_page_common_background">
                 <form className="in_top add_page_common_main_frame" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch add_page_common_title textalign_c">{this.title}</label>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top" >{CommonStr.name}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="name" required></input>
+                    <div className="b add_page_common_item" style={{ marginTop: "30px" }}>
+                        <label className="add_page_common_key w15_2_ch in_top" >{CommonStr.name}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="name" required></input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_middle">{CommonStr.sex}</label>
+                        <label className="add_page_common_key w15_2_ch in_middle">{CommonStr.sex}</label>
                         <input id="gender_male" className="in_middle" style={{ "marginLeft": " 15px" }} type="radio" name="sex" value="MALE" required></input>
                         <label className="w16_1ch in_middle" htmlFor="gender_male">{CommonStr.man}</label>
                         <input id="gender_female" className="in_middle" style={{ "marginLeft": " 15px" }} type="radio" name="sex" value="FEMALE"></input>
                         <label className="w16_1ch in_middle" htmlFor="gender_female">{CommonStr.woman}</label>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.age}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="age"></input>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.age}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="age"></input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.phone}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="phone"></input>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.phone}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="phone"></input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.native_place}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="native_place"></input>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.native_place}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="native_place"></input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.id_card}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="id_card"></input>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.id_card}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="id_card"></input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.remarks}</label>
-                        <input className="add_page_common_value b15_1ch in_top" name="remarks"></input>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.remarks}</label>
+                        <input className="add_page_common_value b15_1ch in_top noborder" name="remarks"></input>
                     </div>
-                    <button className="b add_page_common_ok w15_2ch">{CommonStr.ok}</button>
+                    <button className="b add_page_common_ok w15_2_ch">{CommonStr.ok}</button>
                 </form>
             </div >
         );

@@ -36,70 +36,55 @@ export default class AddRoomPage {
         this.context.requesthdr.send_message("/users/QSearchLandlord", data, this);
     }
 
-    get renderTypes() {
-        const items = [];
-        AddRoomStr.types.forEach((o) => items.push(<option key={`add_room_page_types_key_${items.length}`}>{o}</option>));
-        return (
-            <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.type}</label>
-                <select className="lx b15_1_ch">
-                    {items}
-                </select>
-            </div>
-        );
-    }
-
-    get renderChaoXiang() {
-        const items = [];
-        AddRoomStr.chaoxiangs.forEach((o) => items.push(<option key={`add_room_page_chao_xiang_key_${items.length}`}>{o}</option>));
-        return (
-            <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.chaoxiang}</label>
-                <select className="lx b15_1_ch">
-                    {items}
-                </select>
-            </div>
-        );
-    }
-
-    get renderZhuangXiu() {
-        const items = [];
-        AddRoomStr.zhuangxius.forEach((o) => items.push(<option key={`add_room_page_zhuang_xiu_key_${items.length}`}>{o}</option>));
-        return (
-            <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.zhuangxiu}</label>
-                <select className="lx b15_1_ch">
-                    {items}
-                </select>
-            </div>
-        );
-    }
-
     get renderPeiTaoSheShi() {
         const items = [];
         AddRoomStr.peitaosheshis.forEach((o) => {
             const sub = [];
-            o.forEach((oo) => sub.push(<label className="facilities w2 distance0_7 c666_15_1_ch in_middle" key={`add_room_page_peitaosheshi_key_${sub.length}`}>{oo}</label>));
+            o.forEach((oo) => sub.push(
+                <div className={"in_middle" + (sub.length === o.length - 1 ? "" : " m_r_8")} key={`add_room_page_peitaosheshi_key_${sub.length}`}>
+                    <input className="add_room_page_peitaosheshi_cb" type="checkbox" id={`cb_${items.length}_${sub.length}`}></input>
+                    <label className="add_room_page_peitaosheshi c666_15_1_ch in_middle" htmlFor={`cb_${items.length}_${sub.length}`}>{oo}</label>
+                </div>
+            ));
             items.push(
-                <div className="b" key={`add_room_page_peitaosheshi2_key_${items.length}`}>
+                <div className={"b" + (items.length === 0 ? "" : " m_t_5")} key={`add_room_page_peitaosheshi2_key_${items.length}`}>
                     {sub}
                 </div>
             );
         });
         return (
             <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.peitaosheshi}</label>
-                {items}
+                <label className="add_page_common_key w15_2_ch in_top">{AddRoomStr.peitaosheshi}</label>
+                <div className="in_top">
+                    {items}
+                </div>
+            </div>
+        );
+    }
+
+    get renderBaseInfo() {
+        const types = [];
+        const zhuangxius = [];
+        const chaoxiangs = [];
+        AddRoomStr.types.forEach((o) => types.push(<option key={`add_room_page_types_key_${types.length}`}>{o}</option>));
+        AddRoomStr.zhuangxius.forEach((o) => zhuangxius.push(<option key={`add_room_page_zhuang_xiu_key_${zhuangxius.length}`}>{o}</option>));
+        AddRoomStr.chaoxiangs.forEach((o) => chaoxiangs.push(<option key={`add_room_page_chao_xiang_key_${chaoxiangs.length}`}>{o}</option>));
+        return (
+            <div className="b add_page_common_item">
+                <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.base_info}</label>
+                <select className="in_middle b15_1_ch add_room_base_info" name="type">{types}</select>
+                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="zhuangxiu">{zhuangxius}</select>
+                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="chaoxiang">{chaoxiangs}</select>
             </div>
         );
     }
 
     get renderAreaItem() {
         return (
-            <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top" htmlFor="area">{AddRoomStr.area}</label>
+            <div className="b add_page_common_item" style={{ marginTop: "30px" }} >
+                <label className="add_page_common_key w15_2_ch in_middle" htmlFor="area">{AddRoomStr.area}</label>
                 <input
-                    className="add_page_common_value in_top"
+                    className="add_page_common_value in_middle noborder b15_1_ch"
                     name="area" id="add_area_input"
                     list="add_area_input_data_list"
                     onChange={this.quickAreaSearch}
@@ -113,15 +98,29 @@ export default class AddRoomPage {
     get renderLandlordItem() {
         return (
             <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2ch in_top" htmlFor="landlord">{CommonStr.fangdong}</label>
+                <label className="add_page_common_key w15_2_ch in_top" htmlFor="landlord">{CommonStr.fangdong}</label>
                 <input
-                    className="add_page_common_value in_top"
+                    className="add_page_common_value in_top noborder b15_1_ch"
                     name="landlord" id="add_landlord_input"
                     list="add_landlord_input_data_list"
                     onChange={this.quickLandlordSearch}
                     placeholder={AddRoomStr.landlord_placehold}>
                 </input>
                 <datalist id="add_landlord_input_data_list"></datalist>
+            </div >
+        );
+    }
+
+    get renderHuXing() {
+        return (
+            <div className="b add_page_common_item">
+                <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.huxing}</label>
+                <input className="in_middle b12_1_ch add_room_small_value noborder" type="number" name="bedroom" min="0" defaultValue="1"></input>
+                <label className="in_middle w15_2_ch add_room_small_key" htmlFor="bedroom">{AddRoomStr.shi}</label>
+                <input className="in_middle b12_1_ch add_room_small_value b15_1_ch noborder" type="number" name="livingroom" min="0" defaultValue="0"></input>
+                <label className="in_middle w15_2_ch add_room_small_key" htmlFor="livingroom">{AddRoomStr.ting}</label>
+                <input className="in_middle b12_1_ch add_room_small_value b15_1_ch noborder" type="number" name="toliet" min="0" defaultValue="0"></input>
+                <label className="in_middle w15_2_ch add_room_small_key" htmlFor="toliet">{AddRoomStr.wei}</label>
             </div >
         );
     }
@@ -133,46 +132,33 @@ export default class AddRoomPage {
                     <label className="b add_page_common_title w20_1ch textalign_c">{this.title}</label>
                     {this.renderAreaItem}
                     {this.renderLandlordItem}
-                    {this.renderTypes}
+                    {this.renderBaseInfo}
+                    {this.renderHuXing}
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.huxing}</label>
-                        <input className="shi in_top b12_1_ch" name="bedroom" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.shi}</label>
-                        <input className="ting in_top b12_1_ch" name="livingroom" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.ting}</label>
-                        <input className="ting in_top b12_1_ch" name="toliet" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.wei}</label>
+                        <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.mianji_louceng}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" name="room_area"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="room_area">{AddRoomStr.pingmi}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" name="floor"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="floor">{AddRoomStr.louceng}</label>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.mianji_louceng}</label>
-                        <input className="mj in_top b12_1_ch" name="room_area" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.pingmi}</label>
-                        <input className="lc in_top b12_1_ch" name="floor" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.louceng}</label>
-                    </div>
-                    {this.renderChaoXiang}
-                    {this.renderZhuangXiu}
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.danjia_zongjia}</label>
-                        <input className="mj in_top b12_1_ch" name="unit_price" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.yuan_pingmi}</label>
-                        <input className="zj in_top b12_1_ch" name="total_price" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.wanyuan}</label>
+                        <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.danjia_zongjia}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" name="unit_price"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="unit_price">{AddRoomStr.yuan_pingmi}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" name="total_price"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="total_price">{AddRoomStr.wanyuan}</label>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{AddRoomStr.chewei_jiage}</label>
-                        <select className="park b15_1_ch">
-                            <option>{AddRoomStr.you}</option>
-                            <option>{AddRoomStr.wu}</option>
-                        </select>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.chewei}</label>
-                        <input className="zj in_top b12_1_ch" name="park_total_price" pattern="[0-9]" title={AddRoomStr.add_number_only}></input>
-                        <label className="w15_2ch in_top hx">{AddRoomStr.wanyuan_ge}</label>
+                        <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.chewei_jiage}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" type="number" name="has_park" min="0" defaultValue="0"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="has_park">{AddRoomStr.chewei}</label>
+                        <input className="in_middle b12_1_ch add_room_small_value noborder" name="park_total_price"></input>
+                        <label className="in_middle w15_2_ch add_room_small_key" htmlFor="park_total_price">{AddRoomStr.wanyuan_ge}</label>
                     </div>
                     {renderAddPageCommonItem("property_management_company", AddRoomStr.wuyegongsi, "")}
                     {renderAddPageCommonItem("remark", CommonStr.remarks, "")}
                     {this.renderPeiTaoSheShi}
-                    <button className="b add_page_common_ok w15_2ch">{CommonStr.ok}</button>
+                    <button className="b add_page_common_ok w15_2_ch">{CommonStr.ok}</button>
                 </form>
             </div>
         );
