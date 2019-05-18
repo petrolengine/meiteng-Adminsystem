@@ -11,8 +11,8 @@ const CommonStr = {
     remember_pass: "记住密码",
     search_result_1: "共有",
     search_result_2: "个符合要求",
-    fangdong: "房东",
-    guke: "顾客",
+    landlord: "房东",
+    tenant: "顾客",
     danjia: "单价",
     day: "天",
     sui: "岁",
@@ -60,6 +60,14 @@ const CommonStr = {
     zufang: "租房",
     maifang: "买房",
     yeji: "业绩",
+};
+
+export const RoomState = {
+    NORMAL: "正常",
+    SALED: "已出售",
+    SALEING: "正在出售",
+    RENTED: "已出租",
+    RENTING: "正在出租",
 };
 
 export default CommonStr;

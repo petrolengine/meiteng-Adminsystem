@@ -4,7 +4,7 @@ import '../resources/css/common.css'
 import '../resources/css/AddRoom.css'
 import '../resources/css/label.css'
 import CommonStr from '../resources/strings/common';
-import AddRoomStr from '../resources/strings/add_room';
+import AddRoomStr, { RoomDirection, RoomDecorate, RoomType } from '../resources/strings/add_room';
 import { formData2Json, renderAddPageCommonItem, commonSubInput } from '../common/Function';
 
 export default class AddRoomPage {
@@ -15,6 +15,7 @@ export default class AddRoomPage {
         this.context = context;
         this.bsale = bsale;
         this.title = bsale ? CommonStr.add_sale : CommonStr.add_rend;
+        this.url = bsale ? "/users/AddSaleRoom" : "/users/AddRentRoom";
         this.info = {
         }
     }
@@ -22,7 +23,7 @@ export default class AddRoomPage {
     handleSubmitEvent(event) {
         event.preventDefault();
         const data = formData2Json(new FormData(event.target));
-        this.context.requesthdr.send_message("/users/AddRoom", data, this);
+        this.context.requesthdr.send_message(this.url, data, this);
     }
 
     quickAreaSearch() {
@@ -78,17 +79,27 @@ export default class AddRoomPage {
 
     get renderBaseInfo() {
         const types = [];
-        const zhuangxius = [];
-        const chaoxiangs = [];
-        AddRoomStr.types.forEach((o) => types.push(<option key={`add_room_page_types_key_${types.length}`}>{o}</option>));
-        AddRoomStr.zhuangxius.forEach((o) => zhuangxius.push(<option key={`add_room_page_zhuang_xiu_key_${zhuangxius.length}`}>{o}</option>));
-        AddRoomStr.chaoxiangs.forEach((o) => chaoxiangs.push(<option key={`add_room_page_chao_xiang_key_${chaoxiangs.length}`}>{o}</option>));
+        const decorate = [];
+        const direction = [];
+        const addFunc = (arr, data) => {
+            Object.keys(data).forEach(o => arr.push(
+                <option key={`add_room_page_${o}_${arr.length}`} value={o}>
+                    {data[o]}
+                </option>
+            ));
+        };
+        types.push(<option key={`add_room_page_types_first`}>{AddRoomStr.types}</option>);
+        addFunc(types, RoomType);
+        decorate.push(<option key={`add_room_page_decorate_first`}>{AddRoomStr.decorate}</option>);
+        addFunc(decorate, RoomDecorate);
+        direction.push(<option key={`add_room_page_decorate_first`}>{AddRoomStr.direction}</option>);
+        addFunc(direction, RoomDirection);
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.base_info}</label>
                 <select className="in_middle b15_1_ch add_room_base_info" name="type">{types}</select>
-                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="zhuangxiu">{zhuangxius}</select>
-                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="chaoxiang">{chaoxiangs}</select>
+                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="decorate">{decorate}</select>
+                <select className="in_middle b15_1_ch add_room_base_info m_l_6" name="direction">{direction}</select>
             </div>
         );
     }
@@ -112,7 +123,7 @@ export default class AddRoomPage {
     get renderLandlordItem() {
         return (
             <div className="b add_page_common_item">
-                <label className="add_page_common_key w15_2_ch in_top" htmlFor="landlord">{CommonStr.fangdong}</label>
+                <label className="add_page_common_key w15_2_ch in_top" htmlFor="landlord">{CommonStr.landlord}</label>
                 <input
                     className="add_page_common_value in_top noborder b15_1_ch"
                     name="landlord" id="add_landlord_input"
@@ -129,9 +140,9 @@ export default class AddRoomPage {
         return (
             <div className="b add_page_common_item">
                 <label className="add_page_common_key w15_2_ch in_middle" htmlFor="bedroom">{AddRoomStr.huxing}</label>
-                {commonSubInput(AddRoomStr.shi, "1", "bedroom", "number")}
-                {commonSubInput(AddRoomStr.ting, "0", "livingroom", "number")}
-                {commonSubInput(AddRoomStr.wei, "0", "toliet", "number")}
+                {commonSubInput(AddRoomStr.bedroom, "1", "bedroom", "number")}
+                {commonSubInput(AddRoomStr.livingroom, "0", "livingroom", "number")}
+                {commonSubInput(AddRoomStr.toliet, "0", "toliet", "number")}
             </div >
         );
     }
@@ -171,10 +182,13 @@ export default class AddRoomPage {
 
     on_loadend(data) {
         switch (data.key) {
-            case "/QSearchArea":
+            case "/QSearchArea": {
+                const root = document.getElementById("add_area_input_data_list");
+                root.innerHTML = "";
+                if (data.data.length === 1 && data.data[0].data === document.getElementById("add_area_input").value) {
+                    return;
+                }
                 if (data.data.length > 0) {
-                    const root = document.getElementById("add_area_input_data_list");
-                    root.innerHTML = "";
                     data.data.forEach((o) => {
                         const item = document.createElement("option");
                         item.value = o.data;
@@ -182,10 +196,14 @@ export default class AddRoomPage {
                     });
                 }
                 break;
-            case "/QSearchLandlord":
+            }
+            case "/QSearchLandlord": {
+                const root = document.getElementById("add_landlord_input_data_list");
+                root.innerHTML = "";
+                if (data.data.length === 1 && data.data[0].data === document.getElementById("add_landlord_input").value) {
+                    return;
+                }
                 if (data.data.length > 0) {
-                    const root = document.getElementById("add_landlord_input_data_list");
-                    root.innerHTML = "";
                     data.data.forEach((o) => {
                         const item = document.createElement("option");
                         item.value = o.data;
@@ -193,8 +211,14 @@ export default class AddRoomPage {
                     });
                 }
                 break;
-            case "/AddRoom":
-                console.log(data.data);
+            }
+            case "/AddSaleRoom":
+                this.context.pages[1][0].info.data = [];
+                this.context.setState({ current_page: 1 });
+                break;
+            case "/AddRentRoom":
+                this.context.pages[2][0].info.data = [];
+                this.context.setState({ current_page: 2 });
                 break;
             default:
                 break;

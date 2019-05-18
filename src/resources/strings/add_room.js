@@ -3,38 +3,13 @@ const AddRoomStr = {
     area_placehold: "选择小区",
     landlord_placehold: "选择房东",
     base_info: "基本信息",
-    types: [
-        "类型",
-        "住宅",
-        "别墅",
-        "商铺",
-        "商住",
-        "写字楼",
-    ],
     huxing: "户型",
-    shi: "室",
-    ting: "厅",
-    wei: "卫",
+    bedroom: "室",
+    livingroom: "厅",
+    toliet: "卫",
     mianji_louceng: "面积/楼层",
     pingmi: "平米",
     louceng: "楼层",
-    chaoxiangs: [
-        "朝向",
-        "东",
-        "南",
-        "西",
-        "北",
-        "东南",
-        "西南",
-        "东北",
-        "西北",
-    ],
-    zhuangxius: [
-        "装修",
-        "普通装修",
-        "精装修",
-        "豪华装修",
-    ],
     danjia_zongjia: "单价/总价",
     yuan_pingmi: "元/平米",
     wanyuan: "万元",
@@ -44,6 +19,9 @@ const AddRoomStr = {
     wuyegongsi: "物业公司",
     wuyegongsi_ph: "请输入物业公司",
     peitaosheshi: "设施配套",
+    types: "类型",
+    direction: "朝向",
+    decorate: "装修",
     peitaosheshis: [
         [
             { key: "elevator", value: "电梯" },
@@ -64,7 +42,33 @@ const AddRoomStr = {
             { key: "gas", value: "天然气" },
         ],
     ],
+};
 
+export const RoomDirection = {
+    EAST: "东",
+    SOUTH: "南",
+    WEST: "西",
+    NORTH: "北",
+    SOUTH_EAST: "东南",
+    NORTH_EAST: "西南",
+    SOUTH_WEST: "东北",
+    NORTH_WEST: "西北",
+};
+
+export const RoomDecorate = {
+    UNFURNISHED: "毛胚",
+    ORDINARY: "普通装修",
+    FINE: "精装修",
+    LUXURY: "豪华装修",
+};
+
+export const RoomType = {
+    HOUSE: "住宅",
+    VILLA: "别墅",
+    SHOPS: "商铺",
+    COMMERCIAL_RESIDENTIAL: "商住",
+    OFFICE: "写字楼",
+    APARTMENT: "公寓"
 };
 
 export default AddRoomStr;

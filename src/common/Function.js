@@ -2,7 +2,8 @@ import React from 'react';
 import "../resources/css/common.css";
 import "../resources/css/label.css";
 import "../resources/css/GotoPage.css";
-
+import AddRoomStr, { RoomDirection, RoomDecorate } from '../resources/strings/add_room';
+import CommonStr, { RoomState } from '../resources/strings/common';
 
 export function getReadableTime(src) {
     const date = new Date(src);
@@ -124,4 +125,28 @@ export function commonSubInput(title, def, name, type) {
             <label className="in_middle w15_2_ch add_room_small_key" htmlFor={name}>{title}</label>
         </div>
     );
+}
+
+export function getHuxing(item) {
+    return `${item.bedroom}${AddRoomStr.bedroom}${item.livingroom}${AddRoomStr.livingroom}${item.toliet}${AddRoomStr.toliet}`;
+}
+
+export function getMianji(item) {
+    return `${item.room_area}${AddRoomStr.pingmi}`;
+}
+
+export function getLouCen(item) {
+    return `${item.floor}${CommonStr.lou}`;
+}
+
+export function getDirection(item) {
+    return RoomDirection[item.direction];
+}
+
+export function getDecorate(item) {
+    return RoomDecorate[item.decorate];
+}
+
+export function getRoomState(item) {
+    return RoomState[item.state];
 }
