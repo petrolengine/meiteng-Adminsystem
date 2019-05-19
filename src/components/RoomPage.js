@@ -13,30 +13,32 @@ import saler from '../resources/images/sale_page/saler.png';
 import sale_time from '../resources/images/sale_page/sale_time.png';
 import default_house_pic from '../resources/images/sale_page/house_pic.png';
 import sold from '../resources/images/sale_page/sold.png';
-// for debug
-import TestRoomResult from '../resources/strings/test_room_result';
+import { renderPage, onList1, getHuxing, getMianji, getLouCen, getDirection, getDecorate, getRoomState } from '../common/Function';
+import AddRoomStr from '../resources/strings/add_room';
 
 class RoomPage {
-    constructor(context) {
+    constructor(context, bsale) {
         this.current_items = [];
         this.context = context;
         this.roomConditionPage = new RoomConditionPage(context);
-        this.room_info = {
-            data: TestRoomResult,
-            result_sort_style: 0
-        }
+        this.prePage = 6;
+        this.updateKey = bsale ? "RoomSalePageInfo" : "RoomRentPageInfo";
+        this.url1 = bsale ? "/users/GetRoomSaleList" : "/users/GetRoomRentList";
+        this.initialize();
     }
 
     onClickResultSortStyle(idx) {
-        this.room_info.result_sort_style = idx;
-        this.context.setState({ "room_info": this.room_info });
+        const temp = {};
+        this.info.result_sort_style = idx;
+        temp[this.updateKey] = this.info;
+        this.context.setState(temp);
     }
 
     get renderResultSortTab() {
         const items = [];
         for (let idx = 0; idx < CommonStr.sort_style.length; idx++) {
             const o = CommonStr.sort_style[idx];
-            const clazName = (this.room_info.result_sort_style === idx ? "w20_1_ch orange_bg" : "b20_1_ch") + " in_top rp_search_result_style";
+            const clazName = (this.info.result_sort_style === idx ? "w20_1_ch orange_bg" : "b20_1_ch") + " in_top rp_search_result_style";
             items.push(<label className={clazName} onClick={() => this.onClickResultSortStyle(idx)} key={`rp_result_sort_${idx}`} > {o}</label>);
         }
         return (<div className="b" style={{ "marginTop": "30px" }}>{items}</div>);
@@ -57,11 +59,11 @@ class RoomPage {
     renderRoomBaseInfo(item) {
         return (
             <div className="rp_result_one_room_info_text in_middle">
-                <label className="B25_1_ch">{item.area + '  ' + item.huxing + '  ' + item.mianji}</label>
+                <label className="B25_1_ch">{`${item.area}  ${getHuxing(item)}  ${getMianji(item)}`}</label>
                 <div className="b m_t_16">
                     <img className="i" src={house} alt=''></img>
                     <label className="c666_15_1_ch m_l_6 i">
-                        {item.area + '  ' + item.huxing + '  ' + item.mianji + '  ' + item.loucen + CommonStr.lou + '  ' + item.chaoxiang + '  ' + item.zhuangxiu}
+                        {`${item.area} ${getHuxing(item)} ${getMianji(item)} ${getLouCen(item)} ${getDirection(item)} ${getDecorate(item)}`}
                     </label>
                 </div>
                 <div className="b m_t_12">
@@ -70,14 +72,12 @@ class RoomPage {
                     <label className="c666_15_1_ch m_l_6 i">{' - ' + item.address}</label>
                 </div>
                 <div className="b m_t_12">
-                    <img className="i" src={landlord} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 i">{CommonStr.fangdong + ': ' + item.fangdong}</label>
-                    <label className="c666_15_1_ch m_l_6 i">{' - ' + item.fangdongdianhua}</label>
+                    <img className="i" src={landlord} alt={CommonStr.landlord}></img>
+                    <label className="c666_15_1_ch m_l_6 i">{`${CommonStr.landlord}: ${item.landlord} - ${item.phone}`}</label>
                 </div>
                 <div className="b m_t_12">
-                    <img className="i" src={buyer} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 i">{CommonStr.guke + ': ' + item.guke}</label>
-                    <label className="c666_15_1_ch m_l_6 i">{' - ' + item.gukedianhua}</label>
+                    <img className="i" src={buyer} alt={CommonStr.tenant}></img>
+                    <label className="c666_15_1_ch m_l_6 i">{`${CommonStr.tenant}: ${item.guke} - ${item.gukedianhua}`}</label>
                 </div>
             </div >
         );
@@ -88,7 +88,7 @@ class RoomPage {
             <div className="rp_result_one_room_info_price in_middle">
                 <button className="rp_result_one_edition"></button>
                 <label className="rp_result_one_price">{item.shoujia}</label>
-                <label className="rp_result_one_unit_price">{CommonStr.danjia + ' ' + item.danjia}</label>
+                <label className="rp_result_one_unit_price">{`${CommonStr.danjia} ${item.unit_price}${AddRoomStr.yuan_pingmi}`}</label>
             </div>
         );
     }
@@ -99,7 +99,7 @@ class RoomPage {
                 <button className="rp_result_one_edition"></button>
                 <div className="m_t_35 b">
                     <img className="in_center" src={sold} alt=''></img>
-                    <label className="C666_23_3_ch in_center m_l_8">{item.state}</label>
+                    <label className="C666_23_3_ch in_center m_l_8">{getRoomState(item)}</label>
                     <label className="orange23_0_ch in_center">30</label>
                     <label className="C666_23_3_ch in_center m_l_5">{CommonStr.day}</label>
                 </div>
@@ -128,8 +128,11 @@ class RoomPage {
     }
 
     get render() {
+        if (this.info.data.length === 0) {
+            this.get_data_from_server(this.url1);
+        }
         const items = [];
-        this.room_info.data.forEach((o) => {
+        this.info.data.forEach((o) => {
             if (items.length > 0) {
                 items.push(<div className="line1_1" style={{ "marginTop": "38px", "marginBottom": "38px" }} key={`rp_one_result_line_${items.length}`}></div>);
             }
@@ -142,8 +145,42 @@ class RoomPage {
                 <div className="line2_1"></div>
                 {this.renderSearchResultSummary}
                 {items}
+                {renderPage(this)}
             </div>
         );
+    }
+
+    on_loadend(data) {
+        console.log(data);
+        switch (data.key) {
+            case "/GetRoomSaleList":
+                onList1(this, data);
+                break;
+            default:
+                break;
+        }
+    }
+
+    on_error(code, data) {
+        console.log(code, data);
+    }
+
+    get_data_from_server(url) {
+        const params = {
+            page: this.info.curPage,
+            prePage: this.prePage,
+            key: this.info.searchKey,
+        };
+        this.context.requesthdr.send_message(url, params, this);
+    }
+
+    initialize() {
+        this.info = {
+            data: [],
+            result_sort_style: 0,
+            totalPage: Math.ceil(this.context.totals.staff / this.prePage),
+            curPage: 0,
+        }
     }
 }
 

@@ -12,18 +12,15 @@ import idnumber from '../resources/images/browse_landlord/idnumber.png';
 
 import { PersonSex } from '../common/PersonType';
 import CommonStr from '../resources/strings/common';
-import { renderPage } from '../common/Function';
+import { renderPage, onList1, onList2 } from '../common/Function';
 
 export default class StaffPage {
     constructor(context) {
         this.context = context;
         this.prePage = 6;
-        this.info = {
-            data: [],
-            totalPage: Math.ceil(this.context.totals.staff / this.prePage),
-            curPage: 0,
-            searchKey: "",
-        }
+        this.updateKey = "StaffPageInfo";
+        this.url1 = "/users/GetStaffList";
+        this.initialize();
     }
 
     renderOneResult(obj, idx) {
@@ -85,7 +82,7 @@ export default class StaffPage {
 
     get render() {
         if (this.info.data.length === 0) {
-            this.get_data_from_server();
+            this.get_data_from_server(this.url1);
         }
         const items = [];
         this.info.data.forEach((o) => {
@@ -102,10 +99,10 @@ export default class StaffPage {
     on_loadend(data) {
         switch (data.key) {
             case "/GetStaffList":
-                if (this.info.data.length !== data.length || data.length > 0) {
-                    this.info.data = data.data;
-                    this.context.setState({ "StaffPageInfo": this.info });
-                }
+                onList1(this, data);
+                break;
+            case "/GetStaffList2":
+                onList2(this, data);
                 break;
             default:
                 break;
@@ -116,12 +113,25 @@ export default class StaffPage {
         console.log(code, data);
     }
 
-    get_data_from_server() {
+    get_data_from_server(url) {
         const params = {
             page: this.info.curPage,
             prePage: this.prePage,
             key: this.info.searchKey,
         };
-        this.context.requesthdr.send_message("/users/GetStaffList", params, this);
+        this.context.requesthdr.send_message(url, params, this);
+    }
+
+    search() {
+        this.get_data_from_server("/users/GetStaffList2");
+    }
+
+    initialize() {
+        this.info = {
+            data: [],
+            totalPage: Math.ceil(this.context.totals.staff / this.prePage),
+            curPage: 0,
+            searchKey: "",
+        }
     }
 }

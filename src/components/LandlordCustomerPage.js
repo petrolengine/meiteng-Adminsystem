@@ -12,7 +12,7 @@ import s_male_o from '../resources/images/browse_landlord/s_male_o.png';
 import s_female_o from '../resources/images/browse_landlord/s_female_o.png';
 
 import PersonType from "../common/PersonType";
-import { renderPage } from '../common/Function';
+import { renderPage, onList1, onList2 } from '../common/Function';
 import CommonStr from '../resources/strings/common';
 
 
@@ -21,15 +21,9 @@ export default class LandlordCustomerPage {
         this.context = context;
         this.prePage = 6;
         this.person_type = person_type;
-        this.info = {
-            data: [],
-            totalPage: Math.ceil((PersonType.LANDLORD === this.person_type
-                ? this.context.totals.landlord
-                : this.context.totals.tenant
-            ) / this.prePage),
-            curPage: 0,
-            searchKey: "",
-        }
+        this.updateKey = PersonType.LANDLORD === person_type ? "LandlordPageInfo" : "CustomerPageInfo";
+        this.url1 = PersonType.LANDLORD === this.person_type ? "/users/GetLandlordList" : "/users/GetTenantList";
+        this.initialize();
     }
 
     get renderBrowseFilter() {
@@ -125,7 +119,7 @@ export default class LandlordCustomerPage {
 
     get render() {
         if (this.info.data.length === 0) {
-            this.get_data_from_server();
+            this.get_data_from_server(this.url1);
         }
         const items = [];
         this.info.data.forEach((o) => {
@@ -144,11 +138,11 @@ export default class LandlordCustomerPage {
         switch (data.key) {
             case "/GetLandlordList":
             case "/GetTenantList":
-                this.info.data = data.data;
-                const key = PersonType.LANDLORD === this.person_type ? "LandlordPageInfo" : "CustomerPageInfo";
-                const temp = {};
-                temp[key] = this.info;
-                this.context.setState(temp);
+                onList1(this, data);
+                break;
+            case "/GetLandlordList2":
+            case "/GetTenantList2":
+                onList2(this, data);
                 break;
             default:
                 break;
@@ -159,13 +153,31 @@ export default class LandlordCustomerPage {
         console.log(code, data);
     }
 
-    get_data_from_server() {
-        const url = PersonType.LANDLORD === this.person_type ? "/users/GetLandlordList" : "/users/GetTenantList";
+    get_data_from_server(url) {
         const params = {
             page: this.info.curPage,
             prePage: 6,
             key: this.info.searchKey,
         };
         this.context.requesthdr.send_message(url, params, this);
+    }
+
+    search() {
+        this.get_data_from_server(PersonType.LANDLORD === this.person_type
+            ? "/users/GetLandlordList2"
+            : "/users/GetTenantList2"
+        );
+    }
+
+    initialize() {
+        this.info = {
+            data: [],
+            totalPage: Math.ceil((PersonType.LANDLORD === this.person_type
+                ? this.context.totals.landlord
+                : this.context.totals.tenant
+            ) / this.prePage),
+            curPage: 0,
+            searchKey: "",
+        }
     }
 }

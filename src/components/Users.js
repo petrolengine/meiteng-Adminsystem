@@ -25,8 +25,8 @@ class Users extends Component {
         this.pages = [
             // page obj | need search bar | 
             [new SearchPage(), false],
-            [new RoomPage(this), true],
-            [new RoomPage(this), true],
+            [new RoomPage(this, true), true],
+            [new RoomPage(this, false), true],
             [new LandlordCustomerPage(this, PersonType.LANDLORD), true],
             [new LandlordCustomerPage(this, PersonType.CUSTOMER), true],
             [new StaffPage(this), true],
@@ -39,10 +39,10 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 6,
+            current_page: 8,
             AddAreaPageInfo: {},
         };
-        this.oldPage = 6;
+        this.oldPage = 8;
     }
 
     componentDidMount() {

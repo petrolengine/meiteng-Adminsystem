@@ -1,0 +1,32 @@
+.add_room_small_key {
+    width: 60px;
+    margin-left: 5px;
+}
+
+.add_room_small_value {
+    height: 22px;
+    width: 50px;
+    text-align: center;
+}
+
+.add_room_base_info {
+    width: 110px;
+    height: 27px;
+}
+
+.add_room_page_peitaosheshi {
+    background-color: white;
+    height: 23px;
+    width: 61px;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.add_room_page_peitaosheshi_cb {
+    display: none;
+}
+
+.add_room_page_peitaosheshi_cb:checked ~ .add_room_page_peitaosheshi {
+    background-color: #ec6941;
+    color: white;
+}

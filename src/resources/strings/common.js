@@ -11,8 +11,8 @@ const CommonStr = {
     remember_pass: "记住密码",
     search_result_1: "共有",
     search_result_2: "个符合要求",
-    fangdong: "房东",
-    guke: "顾客",
+    landlord: "房东",
+    tenant: "顾客",
     danjia: "单价",
     day: "天",
     sui: "岁",
@@ -28,14 +28,19 @@ const CommonStr = {
     others: "例.持有房地产经纪人证",
     add_landord: "添加房东",
     name: "姓名",
+    name_ph: "请输入姓名",
     sex: "性别",
     man: "男",
     woman: "女",
     age: "年龄",
     phone: "电话",
+    phone_ph: "请输入电话",
     id_card: "身份证号",
+    id_card_ph: "请输入身份证号",
     remarks: "备注",
+    remarks_ph: "请输入备注",
     native_place: "籍贯",
+    native_place_ph: "请输入籍贯",
     add_customer: "添加顾客",
     add_area: "添加小区",
     area_name: "小区名字",
@@ -55,6 +60,14 @@ const CommonStr = {
     zufang: "租房",
     maifang: "买房",
     yeji: "业绩",
+};
+
+export const RoomState = {
+    NORMAL: "正常",
+    SALED: "已出售",
+    SALEING: "正在出售",
+    RENTED: "已出租",
+    RENTING: "正在出租",
 };
 
 export default CommonStr;

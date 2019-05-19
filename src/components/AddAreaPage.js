@@ -47,7 +47,7 @@ export default class AddAreaPage {
     onGetGeoLocationInfo(info) {
         const areas = []
         info.surroundingPois.forEach(e => {
-            if (e.Ei === "房地产" || e.Ei === "行政地标") {
+            if (e.ME.includes("房地产") || e.ME.includes("行政地标")) {
                 areas.push(e);
             }
         });
@@ -59,7 +59,7 @@ export default class AddAreaPage {
                 onSearchComplete: (results) => {
                     const arr = [], arr2 = [];
                     results.forEach(obj => {
-                        obj.Lq.forEach(o => {
+                        obj.Qq.forEach(o => {
                             if (obj.keyword === '银行') {
                                 o.title = ((str) => {
                                     const pos = str.indexOf('行');
@@ -168,7 +168,7 @@ export default class AddAreaPage {
                 <form className="in_top add_page_common_main_frame2" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch textalign_c add_page_common_title">{CommonStr.add_area}</label>
                     <div className="b add_page_common_item" style={{ marginTop: "30px" }}>
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.area_name}</label>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.area_name}</label>
                         <input className="add_page_common_value b15_1_ch in_top noborder"
                             name="name"
                             value={this.name}
@@ -177,7 +177,7 @@ export default class AddAreaPage {
                         </input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch in_top">{CommonStr.area_address}</label>
+                        <label className="add_page_common_key w15_2_ch in_top">{CommonStr.area_address}</label>
                         <input className="add_page_common_value b15_1_ch in_top noborder"
                             name="address"
                             value={this.address}
@@ -185,18 +185,18 @@ export default class AddAreaPage {
                         </input>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch b">{CommonStr.area_trafic}</label>
+                        <label className="add_page_common_key w15_2_ch b">{CommonStr.area_trafic}</label>
                         <div className="in_middle" style={{ maxHeight: "120px", overflow: "scroll" }}>
                             {this.traficTags}
                         </div>
                     </div>
                     <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2ch b">{CommonStr.area_around}</label>
+                        <label className="add_page_common_key w15_2_ch b">{CommonStr.area_around}</label>
                         <div className="in_middle" style={{ maxHeight: "190px", overflow: "scroll" }}>
                             {this.tags}
                         </div>
                     </div>
-                    <button className="b add_page_common_ok w15_2ch noborder">{CommonStr.ok}</button>
+                    <button className="b add_page_common_ok w15_2_ch noborder">{CommonStr.ok}</button>
                 </form>
             </div>
         );

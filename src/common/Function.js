@@ -2,7 +2,8 @@ import React from 'react';
 import "../resources/css/common.css";
 import "../resources/css/label.css";
 import "../resources/css/GotoPage.css";
-
+import AddRoomStr, { RoomDirection, RoomDecorate } from '../resources/strings/add_room';
+import CommonStr, { RoomState } from '../resources/strings/common';
 
 export function getReadableTime(src) {
     const date = new Date(src);
@@ -19,6 +20,10 @@ export function formData2Json(formData) {
     formData.forEach((value, key) => {
         if (value.length > 0) {
             object[key] = value;
+            if (value === "on")
+                object[key] = true;
+        } else if (key.length > 0) {
+            object[key] = false;
         }
     });
     return object;
@@ -26,9 +31,13 @@ export function formData2Json(formData) {
 
 function onPageClicked(obj, page) {
     obj.info.curPage = page;
-    obj.get_data_from_server();
+    obj.get_data_from_server(obj.url1);
 }
 
+/**
+ * Render pages
+ * @param {*} obj target object
+ */
 export function renderPage(obj) {
     const current = obj.info.curPage;
     if (obj.info.totalPage > 1) {
@@ -54,8 +63,8 @@ export function renderPage(obj) {
             <button className="goto_page_arrow_right in_top noborder m_l_2 goto_page_size"
                 key={`page_right`}
                 onClick={() => onPageClicked(obj, current + 1)}
-                disabled={current + 1 === obj.info.totalPage}>
-            </button>
+                disabled={current + 1 === obj.info.totalPage}
+            />
         );
         return (
             <div className="goto_page b">
@@ -65,11 +74,79 @@ export function renderPage(obj) {
     }
 }
 
+/**
+ * Render add page common item, key: value(text input)
+ * @param {string} name name key
+ * @param {string} key key
+ * @param {string} value place holder
+ */
 export function renderAddPageCommonItem(name, key, value) {
     return (
         <div className="b add_page_common_item">
-            <label className="add_page_common_key w15_2ch in_top" htmlFor={name}>{key}</label>
-            <input className="add_page_common_value in_top" name={name} placeholder={value}></input>
+            <label className="add_page_common_key w15_2_ch in_top" htmlFor={name}>{key}</label>
+            <input
+                className="add_page_common_value in_top noborder b15_1_ch"
+                name={name}
+                id={name}
+                placeholder={value}
+            />
         </div>
     );
+}
+
+function updateInfo(obj) {
+    const temp = {};
+    temp[obj.updateKey] = obj.info;
+    obj.context.setState(temp);
+}
+
+export function onList1(obj, data) {
+    if (obj.info.data.length !== data.length || data.length > 0) {
+        obj.info.data = data.data;
+        updateInfo(obj);
+    }
+}
+
+export function onList2(obj, data) {
+    obj.info.data = data.data.data;
+    obj.info.totalPage = Math.ceil(data.data.total / obj.prePage);
+    updateInfo(obj);
+}
+
+export function commonSubInput(title, def, name, type) {
+    return (
+        <div className="in_middle">
+            <input
+                className="in_middle b15_1_ch add_room_small_value noborder"
+                type={type} name={name} min="0"
+                defaultValue={def}
+                id={name}
+            />
+            <label className="in_middle w15_2_ch add_room_small_key" htmlFor={name}>{title}</label>
+        </div>
+    );
+}
+
+export function getHuxing(item) {
+    return `${item.bedroom}${AddRoomStr.bedroom}${item.livingroom}${AddRoomStr.livingroom}${item.toliet}${AddRoomStr.toliet}`;
+}
+
+export function getMianji(item) {
+    return `${item.room_area}${AddRoomStr.pingmi}`;
+}
+
+export function getLouCen(item) {
+    return `${item.floor}${CommonStr.lou}`;
+}
+
+export function getDirection(item) {
+    return RoomDirection[item.direction];
+}
+
+export function getDecorate(item) {
+    return RoomDecorate[item.decorate];
+}
+
+export function getRoomState(item) {
+    return RoomState[item.state];
 }

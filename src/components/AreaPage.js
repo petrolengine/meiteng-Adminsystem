@@ -4,7 +4,7 @@ import '../resources/css/AreaPage.css';
 import '../resources/css/label.css';
 import '../resources/css/common.css';
 
-import { renderPage } from '../common/Function';
+import { renderPage, onList1, onList2 } from '../common/Function';
 
 import environment from '../resources/images/browse_community/environment.png';
 import environment2 from '../resources/images/browse_community/environment2.png';
@@ -15,12 +15,9 @@ export default class AreaPage {
     constructor(context) {
         this.context = context;
         this.prePage = 6;
-        this.info = {
-            data: [],
-            totalPage: Math.ceil(this.context.totals.area / this.prePage),
-            curPage: 0,
-            searchKey: "",
-        }
+        this.updateKey = "AreaPageInfo";
+        this.url1 = "/users/GetAreaList";
+        this.initialize();
     }
 
     renderOneResult(obj, idx) {
@@ -57,7 +54,7 @@ export default class AreaPage {
 
     get render() {
         if (this.info.data.length === 0) {
-            this.get_data_from_server();
+            this.get_data_from_server(this.url1);
         }
         const items = [];
         this.info.data.forEach((o) => items.push(this.renderOneResult(o, items.length)));
@@ -72,13 +69,10 @@ export default class AreaPage {
     on_loadend(data) {
         switch (data.key) {
             case "/GetAreaList":
-                if (this.info.data.length !== data.length || data.length > 0) {
-                    this.info.data = data.data;
-                    const key = "AreaPageInfo";
-                    const temp = {};
-                    temp[key] = this.info;
-                    this.context.setState(temp);
-                }
+                onList1(this, data);
+                break;
+            case "/GetAreaList2":
+                onList2(this, data);
                 break;
             default:
                 break;
@@ -89,13 +83,25 @@ export default class AreaPage {
         console.log(code, data);
     }
 
-    get_data_from_server() {
-        const url = "/users/GetAreaList";
+    get_data_from_server(url) {
         const params = {
             page: this.info.curPage,
             prePage: this.prePage,
             key: this.info.searchKey,
         };
         this.context.requesthdr.send_message(url, params, this);
+    }
+
+    search() {
+        this.get_data_from_server("/users/GetAreaList2");
+    }
+
+    initialize() {
+        this.info = {
+            data: [],
+            totalPage: Math.ceil(this.context.totals.area / this.prePage),
+            curPage: 0,
+            searchKey: "",
+        }
     }
 }
