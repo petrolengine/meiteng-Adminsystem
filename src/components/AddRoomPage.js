@@ -104,6 +104,17 @@ export default class AddRoomPage {
         );
     }
 
+    get renderRentType() {
+        if (!this.bsale)
+            return (
+                <div className="b add_page_common_item">
+                    <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.is_sharing}</label>
+                    <input type="checkbox" name="rent_type" id="rent_type" />
+                    <label className="in_middle w15_2_ch" htmlFor="rent_type">{AddRoomStr.sharing}</label>
+                </div>
+            );
+    }
+
     get renderAreaItem() {
         return (
             <div className="b add_page_common_item" style={{ marginTop: "30px" }} >
@@ -147,6 +158,39 @@ export default class AddRoomPage {
         );
     }
 
+    get renderJiaGe() {
+        return (
+            this.bsale
+                ?
+                <div className="b add_page_common_item">
+                    <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.danjia_zongjia}</label>
+                    {commonSubInput(AddRoomStr.yuan_pingmi, "", "unit_price", "number")}
+                    {commonSubInput(AddRoomStr.wanyuan, "", "total_price", "number")}
+                </div>
+                :
+                <div className="b add_page_common_item">
+                    <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.danjia_zongjia}</label>
+                    {commonSubInput(AddRoomStr.deposit, "", "deposit", "number")}
+                    {commonSubInput(AddRoomStr.rental, "", "rental", "number")}
+                    {commonSubInput(AddRoomStr.stage, "", "stage", "number")}
+                </div>
+        );
+    }
+
+    get renderCheWei() {
+        return (
+            <div className="b add_page_common_item">
+                <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.chewei_jiage}</label>
+                {commonSubInput(AddRoomStr.chewei, "0", "has_park", "number")}
+                {
+                    this.bsale
+                        ? commonSubInput(AddRoomStr.wanyuan_ge, "", "park_total_price", "number")
+                        : commonSubInput(AddRoomStr.rental, "", "park_price", "number")
+                }
+            </div>
+        );
+    }
+
     get render() {
         return (
             <div className="add_page_common_background">
@@ -155,22 +199,15 @@ export default class AddRoomPage {
                     {this.renderAreaItem}
                     {this.renderLandlordItem}
                     {this.renderBaseInfo}
+                    {this.renderRentType}
                     {this.renderHuXing}
+                    {this.renderJiaGe}
                     <div className="b add_page_common_item">
                         <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.mianji_louceng}</label>
                         {commonSubInput(AddRoomStr.pingmi, "", "room_area", "number")}
                         {commonSubInput(AddRoomStr.louceng, "1", "floor", "number")}
                     </div>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.danjia_zongjia}</label>
-                        {commonSubInput(AddRoomStr.yuan_pingmi, "", "unit_price", "number")}
-                        {commonSubInput(AddRoomStr.wanyuan, "", "total_price", "number")}
-                    </div>
-                    <div className="b add_page_common_item">
-                        <label className="add_page_common_key w15_2_ch in_middle">{AddRoomStr.chewei_jiage}</label>
-                        {commonSubInput(AddRoomStr.chewei, "0", "has_park", "number")}
-                        {commonSubInput(AddRoomStr.wanyuan_ge, "", "park_total_price", "number")}
-                    </div>
+                    {this.renderCheWei}
                     {renderAddPageCommonItem("property_management_company", AddRoomStr.wuyegongsi, AddRoomStr.wuyegongsi_ph)}
                     {renderAddPageCommonItem("remark", CommonStr.remarks, CommonStr.remarks_ph)}
                     {this.renderPeiTaoSheShi}

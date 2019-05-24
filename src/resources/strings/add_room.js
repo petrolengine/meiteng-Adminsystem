@@ -22,6 +22,11 @@ const AddRoomStr = {
     types: "类型",
     direction: "朝向",
     decorate: "装修",
+    deposit: "元押金",
+    rental: "元/月",
+    stage: "个月/期",
+    is_sharing: "是否整租",
+    sharing: "整租",
     peitaosheshis: [
         [
             { key: "elevator", value: "电梯" },
