@@ -203,7 +203,7 @@ class RoomConditionPage {
             }
         }
         return (
-            <div className="rp_condition_page">
+            <div className="rp_condition_page" style={{ position: "inherit" }}>
                 {items}
                 <div className="line1_1" style={{ "marginTop": "15px" }}></div>
                 {this.getSearchResultPage}

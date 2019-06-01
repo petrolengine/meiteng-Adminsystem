@@ -41,6 +41,12 @@ export default class TopContent {
             searchItem.value = "";
             this.resetSearch(this.obj);
         }
+        if (this.context.oldPage !== idx) {
+            const temp = this.context.pages[this.context.oldPage % this.context.pages.length][0];
+            if (temp.componentFinish)
+                temp.componentFinish()
+            this.context.oldPage = idx;
+        }
         this.context.setState({ current_page: idx });
     }
 

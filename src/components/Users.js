@@ -39,10 +39,10 @@ class Users extends Component {
             [new AddPersonPage(this, PersonType.STAFF), false],
         ];
         this.state = {
-            current_page: 8,
+            current_page: 2,
             AddAreaPageInfo: {},
         };
-        this.oldPage = 8;
+        this.oldPage = 2;
     }
 
     componentDidMount() {
@@ -52,12 +52,6 @@ class Users extends Component {
     }
 
     componentDidUpdate() {
-        if (this.oldPage !== this.state.current_page) {
-            const temp = this.pages[this.oldPage % this.pages.length][0];
-            if (temp.componentFinish)
-                temp.componentFinish()
-            this.oldPage = this.state.current_page;
-        }
         const obj = this.pages[this.state.current_page % this.pages.length][0];
         if (obj.componentDidUpdate)
             obj.componentDidUpdate()

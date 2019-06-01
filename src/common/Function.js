@@ -2,12 +2,18 @@ import React from 'react';
 import "../resources/css/common.css";
 import "../resources/css/label.css";
 import "../resources/css/GotoPage.css";
-import AddRoomStr, { RoomDirection, RoomDecorate } from '../resources/strings/add_room';
-import CommonStr, { RoomState } from '../resources/strings/common';
+import AddRoomStr, { RoomDirection, RoomDecorate, RoomRentType } from '../resources/strings/add_room';
+import CommonStr, { RoomRentState, RoomSaleState } from '../resources/strings/common';
 
 export function getReadableTime(src) {
     const date = new Date(src);
     return date.toLocaleDateString("zh");
+}
+
+export function getDiffDays(src) {
+    const now = new Date();
+    const last = new Date(src);
+    return parseInt((now - last) / (1000 * 60 * 60 * 24), 10);
 }
 
 /**
@@ -147,6 +153,14 @@ export function getDecorate(item) {
     return RoomDecorate[item.decorate];
 }
 
-export function getRoomState(item) {
-    return RoomState[item.state];
+export function getRoomState(bsale, item) {
+    return bsale ? RoomSaleState[item.state] : RoomRentState[item.state];
+}
+
+export function getReadablePrice(src) {
+    return src > 10000 ? `${src / 10000}${CommonStr.w}` : src
+}
+
+export function getRentType(src) {
+    return src ? RoomRentType.TOTAL : RoomRentType.SHARING;
 }

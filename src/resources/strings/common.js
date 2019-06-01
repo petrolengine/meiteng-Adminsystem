@@ -60,14 +60,19 @@ const CommonStr = {
     zufang: "租房",
     maifang: "买房",
     yeji: "业绩",
+    w: "万",
 };
 
-export const RoomState = {
-    NORMAL: "正常",
-    SALED: "已出售",
-    SALEING: "正在出售",
+export const RoomRentState = {
+    NORMAL: "待租",
     RENTED: "已出租",
     RENTING: "正在出租",
 };
+
+export const RoomSaleState = {
+    NORMAL: "待售",
+    SALED: "已出售",
+    SALEING: "正在出售",
+}
 
 export default CommonStr;

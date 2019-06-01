@@ -120,6 +120,8 @@ export default class AddAreaPage {
     }
 
     componentFinish() {
+        const parent = document.getElementById("bdmap");
+        parent.innerHTML = "";
         this.map = undefined;
     }
 
@@ -163,7 +165,7 @@ export default class AddAreaPage {
 
     get render() {
         return (
-            <div className="add_page_common_background">
+            <div className="b add_page_common_background">
                 <div className="in_top bdmap" id="bdmap"></div>
                 <form className="in_top add_page_common_main_frame2" onSubmit={this.handleSubmitEvent}>
                     <label className="b w20_1ch textalign_c add_page_common_title">{CommonStr.add_area}</label>

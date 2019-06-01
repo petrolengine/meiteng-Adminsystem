@@ -13,7 +13,8 @@ import saler from '../resources/images/sale_page/saler.png';
 import sale_time from '../resources/images/sale_page/sale_time.png';
 import default_house_pic from '../resources/images/sale_page/house_pic.png';
 import sold from '../resources/images/sale_page/sold.png';
-import { renderPage, onList1, getHuxing, getMianji, getLouCen, getDirection, getDecorate, getRoomState } from '../common/Function';
+import { renderPage, onList1, getHuxing, getMianji, getLouCen, getDirection } from '../common/Function';
+import { getDecorate, getRoomState, getReadablePrice, getReadableTime, getDiffDays, getRentType } from '../common/Function';
 import AddRoomStr from '../resources/strings/add_room';
 
 class RoomPage {
@@ -22,6 +23,7 @@ class RoomPage {
         this.context = context;
         this.roomConditionPage = new RoomConditionPage(context);
         this.prePage = 6;
+        this.bsale = bsale;
         this.updateKey = bsale ? "RoomSalePageInfo" : "RoomRentPageInfo";
         this.url1 = bsale ? "/users/GetRoomSaleList" : "/users/GetRoomRentList";
         this.initialize();
@@ -56,15 +58,29 @@ class RoomPage {
         );
     }
 
+    renderTenantInfo(item) {
+        if (item.state !== "NORMAL") {
+            return (
+                <div className="b m_t_12">
+                    <img className="i" src={buyer} alt={CommonStr.tenant}></img>
+                    <label className="c666_15_1_ch m_l_6 i">{`${CommonStr.tenant}: ${item.guke} - ${item.gukedianhua}`}</label>
+                </div>
+            );
+        }
+    }
+
+    getSummary(item) {
+        const pre = this.bsale ? "" : getRentType(item.rent_type) + " ";
+        return `${pre}${getDecorate(item)} ${getLouCen(item)} ${getDirection(item)}`;
+    }
+
     renderRoomBaseInfo(item) {
         return (
             <div className="rp_result_one_room_info_text in_middle">
                 <label className="B25_1_ch">{`${item.area}  ${getHuxing(item)}  ${getMianji(item)}`}</label>
                 <div className="b m_t_16">
                     <img className="i" src={house} alt=''></img>
-                    <label className="c666_15_1_ch m_l_6 i">
-                        {`${item.area} ${getHuxing(item)} ${getMianji(item)} ${getLouCen(item)} ${getDirection(item)} ${getDecorate(item)}`}
-                    </label>
+                    <label className="c666_15_1_ch m_l_6 i">{this.getSummary(item)}</label>
                 </div>
                 <div className="b m_t_12">
                     <img className="i" src={address} alt=''></img>
@@ -75,22 +91,32 @@ class RoomPage {
                     <img className="i" src={landlord} alt={CommonStr.landlord}></img>
                     <label className="c666_15_1_ch m_l_6 i">{`${CommonStr.landlord}: ${item.landlord} - ${item.phone}`}</label>
                 </div>
-                <div className="b m_t_12">
-                    <img className="i" src={buyer} alt={CommonStr.tenant}></img>
-                    <label className="c666_15_1_ch m_l_6 i">{`${CommonStr.tenant}: ${item.guke} - ${item.gukedianhua}`}</label>
-                </div>
+                {this.renderTenantInfo(item)}
             </div >
         );
     }
 
     renderRoomPriceInfo(item) {
-        return (
-            <div className="rp_result_one_room_info_price in_middle">
-                <button className="rp_result_one_edition"></button>
-                <label className="rp_result_one_price">{item.shoujia}</label>
-                <label className="rp_result_one_unit_price">{`${CommonStr.danjia} ${item.unit_price}${AddRoomStr.yuan_pingmi}`}</label>
-            </div>
-        );
+        if (this.bsale)
+            return (
+                <div className="rp_result_one_room_info_price in_middle">
+                    <button className="rp_result_one_edition"></button>
+                    <label className="rp_result_one_price">{getReadablePrice(item.total_price)}</label>
+                    <label className="rp_result_one_unit_price">
+                        {`${CommonStr.danjia} ${getReadablePrice(item.unit_price)}${AddRoomStr.yuan_pingmi}`}
+                    </label>
+                </div>
+            );
+        else
+            return (
+                <div className="rp_result_one_room_info_price in_middle">
+                    <button className="rp_result_one_edition"></button>
+                    <label className="rp_result_one_price">{getReadablePrice(item.rental) + AddRoomStr.rental}</label>
+                    <label className="rp_result_one_unit_price">
+                        {`${getReadablePrice(item.deposit)}${AddRoomStr.deposit} ${item.stage}${AddRoomStr.stage}`}
+                    </label>
+                </div>
+            );
     }
 
     renderRoomStatusInfo(item) {
@@ -99,17 +125,17 @@ class RoomPage {
                 <button className="rp_result_one_edition"></button>
                 <div className="m_t_35 b">
                     <img className="in_center" src={sold} alt=''></img>
-                    <label className="C666_23_3_ch in_center m_l_8">{getRoomState(item)}</label>
-                    <label className="orange23_0_ch in_center">30</label>
+                    <label className="C666_23_3_ch in_center m_l_8">{getRoomState(this.bsale, item)}</label>
+                    <label className="orange23_0_ch in_center">{getDiffDays(item.create_time)}</label>
                     <label className="C666_23_3_ch in_center m_l_5">{CommonStr.day}</label>
                 </div>
                 <div className="m_t_35 b">
                     <img className="i m_l_5" src={saler} alt=''></img>
-                    <label className="m_l_6 c666_15_1_ch i">{CommonStr.xiaoshourenyuan + ':  ' + item.chushouyuangong}</label>
+                    <label className="m_l_6 c666_15_1_ch i">{CommonStr.xiaoshourenyuan + ':  ' + item.staff}</label>
                 </div>
                 <div className="m_t_16 b">
                     <img className="i m_l_5" src={sale_time} alt=''></img>
-                    <label className="m_l_6 c666_15_1_ch i">{CommonStr.chushoushijian + ':  ' + item.chushoushijian}</label>
+                    <label className="m_l_6 c666_15_1_ch i">{`${CommonStr.chushoushijian}:  ${getReadableTime(item.create_time)}`}</label>
                 </div>
             </div>
         );
@@ -151,8 +177,8 @@ class RoomPage {
     }
 
     on_loadend(data) {
-        console.log(data);
         switch (data.key) {
+            case "/GetRoomRentList":
             case "/GetRoomSaleList":
                 onList1(this, data);
                 break;

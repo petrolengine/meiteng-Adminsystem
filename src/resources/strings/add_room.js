@@ -76,4 +76,9 @@ export const RoomType = {
     APARTMENT: "公寓"
 };
 
+export const RoomRentType = {
+    SHARING: "合租",
+    TOTAL: "整租",
+};
+
 export default AddRoomStr;
